@@ -1,0 +1,141 @@
+//
+//  PrefixHeader.pch
+//  edum
+//
+//  Created by Kevin Chan on 24/8/2018.
+//  Copyright © 2018 MD Chen. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
+
+#define APPVERSION @"0.1"
+#define APPTYPE @"1"
+#define WEIXIN_APP_ID @"wxe251cfa16f299736"
+#define UNIVERSAL_LINK @"https://www.faceimpart.com/"
+
+#define APPFullScreenFrame  [[UIScreen mainScreen] bounds]
+#define APPScreenFrame      [[UIScreen mainScreen] bounds]
+#define APPScreenWidth      APPScreenFrame.size.width
+#define APPScreenHeight     APPScreenFrame.size.height
+#define APPFullScreenWidth  APPFullScreenFrame.size.width
+#define APPFullScreenHeight APPFullScreenFrame.size.height
+#define RealScreenHeight    [UIScreen mainScreen].bounds.size.height
+#define ButtonRadius         5
+#define APPScreenWidthHalf APPScreenWidth / 2
+
+#define APPKeyWindow        [UIApplication sharedApplication].keyWindow
+#define SelfViewFrame       self.view.frame
+#define SelfViewWidth       SelfViewFrame.size.width
+#define SelfViewHeight      SelfViewFrame.size.height
+#define IS_iPhoneX_SERIES ([[UIScreen mainScreen] currentMode].size.height/[[UIScreen mainScreen] currentMode].size.width > 2.16)
+
+
+#define iPhoneX             (APPFullScreenHeight == 812.0f || APPFullScreenHeight == 896.0f)
+#define AdaptNaviHeight     (iPhoneX ? 24 : 0)
+#define AdaptTabHeight      (iPhoneX ? 34 : 0)
+#define NAVIHEIGHT          (iPhoneX ? 88 : 64)
+#define TABBARHEIGHT        (iPhoneX ? 83 : 49)
+
+
+#define is35Inch   ((NSInteger)RealScreenHeight == 480 ? YES : NO)
+#define is4Inch   ((NSInteger)RealScreenHeight == 568 ? YES : NO)
+#define is47Inch  ((NSInteger)RealScreenHeight == 667 ? YES : NO)
+#define is55Inch  ((NSInteger)RealScreenHeight == 736 ? YES : NO)
+
+#define BASE_TABLEVIEW_Y  (IS_iPhoneX_SERIES ? 88 : 64)
+#define BASE_VIEW_Y  (IS_iPhoneX_SERIES ? 20 : 0)
+#define SafeAreaBottomHeight (IS_iPhoneX_SERIES ? 34 : 0)
+#define SafeAreaViewHeight (RealScreenHeight - BASE_VIEW_Y - SafeAreaBottomHeight)
+
+#define APPSystemVersion    [[[UIDevice currentDevice] systemVersion] intValue]
+#define ImageNamed(name)    [UIImage imageNamed:name]
+#define ImageContentOfFile(name) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"png"]]
+//#define ImageNamedWithRenderMode(name) [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+#define SHORTSTR(...)          [NSString stringWithFormat:__VA_ARGS__]
+#define SHORTURL(str)          [NSURL URLWithString:str]
+#define WeakSelf            __weak typeof(self) weakSelf = self
+#define ShortUserDefaults     [NSUserDefaults standardUserDefaults]
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+
+#else
+#define NSLog(...)
+#endif
+
+// networking
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#define AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES
+
+#import "BaseUser.h"
+
+// async web image downloader
+//#import "SDWebImageDownloader.h"
+//#import "SDImageCache.h"
+#import "UIImageView+WebCache.h"
+
+#define WXKEY @"wx24eb81f07e93f4a1"
+
+
+#define BASEUSER [BaseUser instance]
+#define SERVER_DOMAIN @"http://www.klavier.cn"
+
+#define RESPONSE_ERROR_MESSAGE @"服务无响应"
+#define RESPONSE_NONE @"没有更多了"
+#define __LOGIN @"login"
+#define __LOGOUT @"logout"
+
+#define RESPONSE_OK 200
+#define RESPONSE_UNAUTH 401
+#define RESPOSNE_LOGIC_ERROR 1000
+#define RESPONSE_FATAL_ERROR 500
+
+#define KEYCHAIN_ACCESS_GROUP @"bundle.faceimpart.com.userinfo"
+
+#define MAIN_CELL_WIDTH (APPScreenWidth - 22) / 2
+#define MAIN_CELL_HEIGHT ((APPScreenWidth - 22) / 2) * 0.75 + 40
+#define MAIN_PHOTO_WIDTH MAIN_CELL_WIDTH - 5
+#define MAIN_PHOTO_HEIGHT MAIN_PHOTO_WIDTH * 0.75
+
+#define LANDING_SIGHT_WIDTH 240
+#define LANDING_SIGHT_HEIGHT 180
+#define GRLLERY_PADDING 1
+#define GENERAL_PADDING 10
+
+#define BANNER_WIDTH APPScreenWidth - 20
+#define BANNER_HEIGHT APPScreenWidth * 0.5
+
+#define LANDING_TEACHER_WIDTH (APPScreenWidth - 45) / 2
+#define LANDING_TEACHER_HEIGHT LANDING_TEACHER_WIDTH / 2
+
+#define LANDING_COURSE_WIDTH APPScreenWidth - 30
+#define LANDING_COURSE_HEIGHT ((APPScreenWidth - 30) / 2)
+
+#define LANDING_ARTICLE_WIDTH APPScreenWidth * 0.4
+#define LANDING_ARTICLE_HEIGHT APPScreenWidth * 0.2
+
+#define WEEKLY_CELL_HEIGHT 159
+
+
+#define COVER_ALPHA 0.3
+#define COVER_ALPHA_DARK 0.25
+#define CORNERRADIUS 3.f
+
+#define MAS_SHORTHAND 1
+
+#define SIGHT_BRIEF_LINESPACE 5
+#define SIGHT_DETAIL_LINESPACE 3
+
