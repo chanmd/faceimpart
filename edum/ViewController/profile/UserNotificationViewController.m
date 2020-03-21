@@ -9,6 +9,7 @@
 #import "UserNotificationViewController.h"
 #import "UserNotificationCell.h"
 #import "UILabel+LineSpace.h"
+#import "UserNotificationDetailViewController.h"
 
 @interface UserNotificationViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -146,6 +147,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *data = [self.array_data objectAtIndex:indexPath.row];
+    UserNotificationDetailViewController *detail = [[UserNotificationDetailViewController alloc] init];
+    detail.data = data;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (void)sim_data

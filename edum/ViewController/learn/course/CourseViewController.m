@@ -18,9 +18,7 @@
 #import "CourseDetailBriefCell.h"
 #import "CourseContentBriefCell.h"
 #import "CourseContentCell.h"
-
 #import "CourseBriefDetailViewController.h"
-#import "PlayerViewController.h"
 
 
 #define NAVBAR_CHANGE_POINT 50
@@ -38,22 +36,6 @@
 @property (nonatomic, strong) NSMutableArray *array_data_brief;
 @property (nonatomic, strong) NSMutableArray *array_data_content;
 
-@property (nonatomic, strong) UIView *view_navigationbar;
-@property (nonatomic, strong) UILabel *label_title;
-@property (nonatomic, strong) UIButton *button_back;
-@property (nonatomic, strong) UIView *view_navi_border;
-
-
-@property (nonatomic, strong) UIView *parallaxview;
-@property (nonatomic, strong) UIButton *button_back_white;
-@property (nonatomic, strong) UIButton *button_navi_fav;
-@property (nonatomic, strong) UIButton *button_fav;
-@property (nonatomic, strong) UIImageView *imageview_cover;
-
-//cell label
-@property (nonatomic, strong) UILabel *callabel;
-@property (nonatomic, assign) BOOL isfavorite;
-
 @end
 
 @implementation CourseViewController
@@ -62,10 +44,8 @@
 {
     [super viewDidLoad];
     [self.view insertSubview:self.tableView atIndex:1];
-    [self.view insertSubview:self.view_navigationbar atIndex:1001];
     [self __init_test_data];
     [self.tableView reloadData];
-    self.label_title.text = @"C大调音阶练习";
 }
 
 - (void)__init_test_data
@@ -80,34 +60,6 @@
     [self.dict_data setObject:dict forKey:@"brief"];
     
     
-}
-
-- (void)___setupNavigationItem_fav
-{
-    //    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    //    [button setImage:ImageNamed(@"icon_add") forState:UIControlStateNormal];
-    //    [button addTarget:self action:@selector(___action_fav) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.button_fav];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
-- (void)__fav_button_like
-{
-    [self.button_fav setImage:ImageNamed(@"heart_h") forState:UIControlStateNormal];
-    [self.button_fav setImage:ImageNamed(@"icon_heart_n") forState:UIControlStateHighlighted];
-    
-    [self.button_navi_fav setImage:ImageNamed(@"heart_h") forState:UIControlStateNormal];
-    [self.button_navi_fav setImage:ImageNamed(@"heart_w") forState:UIControlStateHighlighted];
-    
-}
-
-- (void)__fav_button_unlike
-{
-    [self.button_fav setImage:ImageNamed(@"icon_heart_n") forState:UIControlStateNormal];
-    [self.button_fav setImage:ImageNamed(@"heart_h") forState:UIControlStateHighlighted];
-    
-    [self.button_navi_fav setImage:ImageNamed(@"heart_w") forState:UIControlStateNormal];
-    [self.button_navi_fav setImage:ImageNamed(@"heart_h") forState:UIControlStateHighlighted];
 }
 
 - (void)action_goback
@@ -169,152 +121,6 @@
     return _array_data_content;
 }
 
-- (UIView *)parallaxview
-{
-    if (!_parallaxview) {
-        _parallaxview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth)];
-        [_parallaxview addSubview:self.imageview_cover];
-        [_parallaxview addSubview:self.button_back_white];
-        [_parallaxview addSubview:self.button_navi_fav];
-    }
-    return _parallaxview;
-}
-
-- (UIImageView *)imageview_cover
-{
-    if (!_imageview_cover) {
-        _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth)];
-        _imageview_cover.image = ImageNamed(@"piano_cover");
-    }
-    return _imageview_cover;
-}
-
-- (UIButton *)button_back_white
-{
-    if (!_button_back_white) {
-        _button_back_white = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button_back_white setBackgroundImage:ImageNamed(@"back_white") forState:UIControlStateNormal];
-        [_button_back_white addTarget:self action:@selector(action_goback) forControlEvents:UIControlEventTouchUpInside];
-        CGFloat pading_y = 30;
-        if (IS_iPhoneX_SERIES) {
-            pading_y = 55;
-        }
-        _button_back_white.frame = CGRectMake(10, pading_y, 24, 24);
-    }
-    return _button_back_white;
-}
-
-- (UIButton *)button_navi_fav
-{
-    if (!_button_navi_fav) {
-        _button_navi_fav = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button_navi_fav addTarget:self action:@selector(___action_fav) forControlEvents:UIControlEventTouchUpInside];
-        [_button_navi_fav setImage:ImageNamed(@"heart_w") forState:UIControlStateNormal];
-        [_button_navi_fav setImage:ImageNamed(@"heart_h") forState:UIControlStateHighlighted];
-        CGFloat pading_y = 30;
-        if (IS_iPhoneX_SERIES) {
-            pading_y = 55;
-        }
-        _button_navi_fav.frame = CGRectMake(APPScreenWidth - 10 - 24, pading_y, 22, 22);
-    }
-    return _button_navi_fav;
-}
-
-- (UIView *)view_navigationbar
-{
-    if (!_view_navigationbar) {
-        _view_navigationbar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, BASE_TABLEVIEW_Y)];
-        _view_navigationbar.backgroundColor = __color_white;
-        [_view_navigationbar addSubview:self.label_title];
-        [_view_navigationbar addSubview:self.button_back];
-        [_view_navigationbar addSubview:self.button_fav];
-        [_view_navigationbar addSubview:self.view_navi_border];
-        
-    }
-    return _view_navigationbar;
-}
-
-- (UILabel *)label_title
-{
-    if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(45, 32 + BASE_VIEW_Y, APPScreenWidth - 90, 20)];
-        _label_title.font = __font(18);
-        _label_title.textColor = __color_font_title;
-        _label_title.textAlignment = NSTextAlignmentCenter;
-    }
-    return _label_title;
-}
-
-
-
-- (UIButton *)button_back
-{
-    if (!_button_back) {
-        _button_back = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button_back.frame = CGRectMake(10, 10 + 21 + BASE_VIEW_Y, 30, 30);
-        [_button_back setImage:ImageNamed(@"navigation_back") forState:UIControlStateNormal];
-        [_button_back addTarget:self action:@selector(action_back) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _button_back;
-}
-
-- (void)action_back
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (UIButton *)button_fav
-{
-    if (!_button_fav) {
-        _button_fav = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button_fav.frame = CGRectMake(APPScreenWidth - 35, 9 + 20 + BASE_VIEW_Y, 22, 22);
-        [_button_fav setImage:ImageNamed(@"icon_heart_n") forState:UIControlStateNormal];
-        [_button_fav setImage:ImageNamed(@"heart_h") forState:UIControlStateHighlighted];
-        [_button_fav addTarget:self action:@selector(___action_fav) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _button_fav;
-}
-
-- (UIView *)view_navi_border
-{
-    if (!_view_navi_border) {
-        _view_navi_border = [[UIView alloc] initWithFrame:CGRectMake(0, 43.5 + 20 + BASE_VIEW_Y, APPScreenWidth, 0.5)];
-        _view_navi_border.backgroundColor = __color_gray_separator;
-    }
-    return _view_navi_border;
-}
-
-- (UILabel *)callabel
-{
-    if (!_callabel) {
-        _callabel = [[UILabel alloc] init];
-        _callabel.font = __font(16);
-        _callabel.numberOfLines = 0;
-        _callabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _callabel.frame = CGRectMake(0, 0, APPScreenWidth - 30, 20);
-    }
-    return _callabel;
-}
-
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        CGFloat pading_y = -20;
-        if (IS_iPhoneX_SERIES) {
-            pading_y = PADDING_OFFSET_X;
-        }
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, pading_y, APPScreenWidth, APPFullScreenHeight - pading_y - 60) style:UITableViewStyleGrouped];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.separatorColor = __color_gray_separator;
-        _tableView.backgroundColor = __color_white;
-        //        _tableView.backgroundColor = __color_main;
-        _tableView.tableHeaderView = self.parallaxview;
-    }
-    return _tableView;
-}
-
 #pragma mark - scrolling view
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -322,9 +128,9 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > NAVBAR_CHANGE_POINT) {
         CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
-        self.view_navigationbar.alpha = alpha;
+//        self.view_navigationbar.alpha = alpha;
     } else {
-        self.view_navigationbar.alpha = 0;
+//        self.view_navigationbar.alpha = 0;
     }
 }
 
@@ -377,7 +183,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == TABLEVIEW_TITLE) {
-        return [self __calculate_height_title:[self.dict_data dictionaryForKey:@"brief"]];
+        return 64 + 60; 
         
     } else if (indexPath.section == TABLEVIEW_BRIEF) {
         
@@ -480,7 +286,6 @@
     }
     NSDictionary *brief = [self.dict_data dictionaryForKey:@"brief"];
     [cell bindDict:brief];
-    [cell.button addTarget:self action:@selector(___action_readmore) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -523,8 +328,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    PlayerViewController *player = [[PlayerViewController alloc] init];
-    [self.navigationController pushViewController:player animated:YES];
 }
 
 #pragma mark - actions
@@ -556,15 +359,6 @@
 //    [self presentViewController:login animated:YES completion:nil];
 }
 
-- (void)___action_fav
-{
-    if ([BASEUSER loginstatus]) {
-        [self ___update_favorite];
-    } else {
-        [self hud_text:@"Sign in or sign up for favorite" removeauto:YES];
-    }
-}
-
 - (UIImage *)takeSnapshotOfView:(UIView *)view
 {
     UIGraphicsBeginImageContext(CGSizeMake(APPFullScreenWidth, APPFullScreenHeight));
@@ -574,10 +368,6 @@
     
     return image;
 }
-
-
-#pragma mark - cache
-
 
 #pragma mark - network
 
@@ -602,58 +392,13 @@
                 weakSelf.dict_data = [NSMutableDictionary dictionaryWithDictionary:dict];
                 
                 weakSelf.array_data_content = [weakSelf.dict_data arrayForKey:@"detail"];
-                BOOL isfav = [[dict objectForKey:@"isfav"] boolValue];
-                weakSelf.isfavorite = isfav;
-                if (isfav) {
-                    [weakSelf __fav_button_like];
-                } else {
-                    [weakSelf __fav_button_unlike];
-                }
-                
                 [weakSelf.tableView reloadData];
             }
             
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        //        [self ___fetch_cache_sights];
         [self hud_hide];
-        [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
-    }];
-}
-
-
-///////////////////////////////////////////////////////////////////////////
-
-
-- (void)___update_favorite
-{
-    NSString *url = [NSString stringWithFormat:@"%@/favorite", SERVER_DOMAIN];
-    NSString *action = @"unfav";
-    if (self.isfavorite == NO) {
-        action = @"fav";
-        [self __fav_button_like];
-    } else {
-        [self __fav_button_unlike];
-    }
-    NSDictionary *dict = @{@"user_id": [BaseUser instance].user_id, @"package_id": @"package_id", @"action": action};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    WeakSelf;
-    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *tempDic = (NSDictionary *)responseObject;
-        NSLog(@"----------%@", tempDic);
-        //        NSString *msg = [tempDic stringForKey:@"message"];
-        if (![[tempDic objectForKey:@"error"] boolValue]) {
-            self.isfavorite = !self.isfavorite;
-            if (self.isfavorite) {
-                [weakSelf __fav_button_like];
-            } else {
-                [weakSelf __fav_button_unlike];
-            }
-        }
-        //        [self hud_textonly:msg];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
         [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
     }];
 }

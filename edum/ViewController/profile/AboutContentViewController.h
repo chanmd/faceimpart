@@ -10,6 +10,6 @@
 
 @interface AboutContentViewController : BaseViewController
 
-@property (nonatomic, strong) NSString *content_type;
+@property (nonatomic, strong) NSString *content_type;          
 
 @end

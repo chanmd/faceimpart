@@ -14,8 +14,6 @@
 #import "CategoryView.h"
 #import "NSTimer+UnretainCircle.h"
 
-#define PADDING_TITLE 60
-
 @interface BannerView() <UIScrollViewDelegate>
 
 @end
@@ -27,7 +25,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = __color_white;
-        [self addSubview:self.label_title];
         [self addSubview:self.scrollview];
         [self addSubview:self.pagecontrol];
         
@@ -35,20 +32,10 @@
     return self;
 }
 
-- (UILabel *)label_title
-{
-    if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(11, 17, APPScreenWidth, 26)];
-        _label_title.font = __font(24);
-        _label_title.text = @"首页";
-    }
-    return _label_title;
-}
-
 - (UIScrollView *)scrollview
 {
     if (!_scrollview) {
-        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, PADDING_TITLE, APPScreenWidth, APPScreenWidth / 2)];
+        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 15, APPScreenWidth, APPScreenWidth / 2)];
         _scrollview.delegate = self;
         _scrollview.pagingEnabled = YES;
         _scrollview.showsHorizontalScrollIndicator = NO;
@@ -60,7 +47,7 @@
 - (UIPageControl *)pagecontrol
 {
     if (!_pagecontrol) {
-        _pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(0, PADDING_TITLE + BANNER_HEIGHT - 20, 80, 20)];
+        _pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(0, BANNER_HEIGHT - 20, 80, 20)];
         _pagecontrol.centerX = self.centerX;
     }
     return _pagecontrol;

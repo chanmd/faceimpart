@@ -27,6 +27,7 @@
         _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - LANDING_ARTICLE_WIDTH, 0, LANDING_ARTICLE_WIDTH, LANDING_ARTICLE_HEIGHT)];
         _imageview_cover.layer.masksToBounds = YES;
         _imageview_cover.layer.cornerRadius = CORNERRADIUS;
+        _imageview_cover.clipsToBounds = YES;
     }
     return _imageview_cover;
 }

@@ -11,10 +11,6 @@ target 'edum' do
   pod 'MJRefresh'
   pod 'SDWebImage'
   pod 'FDFullscreenPopGesture'
-  pod 'ZFPlayer/ControlView'
-  pod 'ZFPlayer/AVPlayer'
-  pod 'ZFPlayer/ijkplayer'
-  pod 'ZFPlayer'
   pod 'FSCalendar'
   pod 'WechatOpenSDK'
   

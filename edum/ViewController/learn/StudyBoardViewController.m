@@ -17,7 +17,6 @@
 #import "SightBriefViewController.h"
 #import "UIImageEffects.h"
 #import "GuideViewController.h"
-#import "ProcessPlayerViewController.h"
 
 #define STUDY_HEADER_HEIGHT 260
 
@@ -390,10 +389,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ProcessPlayerViewController *videocontroller = [[ProcessPlayerViewController alloc] init];
-//    NSDictionary *dic = [self.array_data objectAtIndex:indexPath.row];
-    videocontroller.video_url = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
-    [self.navigationController pushViewController:videocontroller animated:YES];
 }
 
 - (void)fetch_course_info

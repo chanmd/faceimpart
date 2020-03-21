@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "LandingViewController.h"
 #import "WeeklyScheduleViewController.h"
 #import "MyCoursesViewController.h"
 #import "ZhenViewController.h"
@@ -67,7 +67,7 @@
 {
     self.tabbarcontroller = [[UITabBarController alloc] init];
     
-    MainViewController *a = [[MainViewController alloc] init];
+    LandingViewController *a = [[LandingViewController alloc] init];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:a];
     
     WeeklyScheduleViewController *b = [[WeeklyScheduleViewController alloc] init];

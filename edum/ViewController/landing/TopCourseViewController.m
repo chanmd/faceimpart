@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
-    self.title = @"关注的老师";
+    self.title = @"精选课程";
 }
 
 - (void)didReceiveMemoryWarning {
