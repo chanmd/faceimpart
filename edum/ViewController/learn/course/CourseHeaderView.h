@@ -1,16 +1,17 @@
 //
-//  CourseTitleCell.h
+//  CourseHeaderView.h
 //  edum
 //
-//  Created by Kevin Chan on 13/10/2018.
-//  Copyright © 2018 MD Chen. All rights reserved.
+//  Created by Kevin Chan on 24/3/2020.
+//  Copyright © 2020 MD Chen. All rights reserved.
 //
 
-#import "BaseTableViewCell.h"
+#import <UIKit/UIKit.h>
+#import "HMSegmentedControl.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CourseTitleCell : BaseTableViewCell
+@interface CourseHeaderView : UIView
 
 @property (nonatomic, strong) UILabel *label_title;
 @property (nonatomic, strong) UILabel *label_price;
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *imageview_avatar;
 @property (nonatomic, strong) UILabel *label_name;
 @property (nonatomic, strong) UILabel *label_bio;
+@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
 
 - (void)bindDict:(NSDictionary *)dic;
 

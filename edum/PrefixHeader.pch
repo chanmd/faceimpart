@@ -103,6 +103,7 @@
 #define RESPOSNE_LOGIC_ERROR 1000
 #define RESPONSE_FATAL_ERROR 500
 
+#define KEYCHAIN_ACCESS_KEY @"keychain"
 #define KEYCHAIN_ACCESS_GROUP @"bundle.faceimpart.com.userinfo"
 
 #define MAIN_CELL_WIDTH (APPScreenWidth - 22) / 2

@@ -28,6 +28,13 @@
 		0A4F562F23BB31EE003CB439 /* FileHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F562E23BB31EE003CB439 /* FileHash.m */; };
 		0A6E5F2922C44C2D00551733 /* CourseCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E5F2822C44C2D00551733 /* CourseCalViewController.m */; };
 		0A6E5F2C22CC336700551733 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E5F2B22CC336700551733 /* BaseTableViewController.m */; };
+		0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */; };
+		0A744118242A5E340042F7E9 /* CourseBriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A744117242A5E340042F7E9 /* CourseBriefCell.m */; };
+		0A74411B242EE9C30042F7E9 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A74411A242EE9C30042F7E9 /* PaymentViewController.m */; };
+		0A74411E242EEC590042F7E9 /* PaymentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A74411D242EEC590042F7E9 /* PaymentHeader.m */; };
+		0A744121243380800042F7E9 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A744120243380800042F7E9 /* PaymentCell.m */; };
+		0A744124243724440042F7E9 /* PaymentDoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A744123243724440042F7E9 /* PaymentDoneController.m */; };
+		0A744127243882590042F7E9 /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A744126243882590042F7E9 /* AppointmentViewController.m */; };
 		0A7625452109A8AD0054C4A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7625442109A8AD0054C4A4 /* AppDelegate.m */; };
 		0A76254D2109A8AF0054C4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A76254C2109A8AF0054C4A4 /* Assets.xcassets */; };
 		0A7625502109A8AF0054C4A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A76254E2109A8AF0054C4A4 /* LaunchScreen.storyboard */; };
@@ -83,10 +90,7 @@
 		0AB7C4F92410ABDF000F013E /* TopTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4F82410ABDE000F013E /* TopTeacherViewController.m */; };
 		0AB7C4FC2410B251000F013E /* TopCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4FB2410B251000F013E /* TopCourseViewController.m */; };
 		0AB7C4FF24114358000F013E /* UserNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4FE24114358000F013E /* UserNotificationDetailViewController.m */; };
-		0ABBCD7B216C8E030033F0A2 /* CourseDetailBriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBCD7A216C8E030033F0A2 /* CourseDetailBriefCell.m */; };
-		0ABBCD7E216DD3150033F0A2 /* CourseContentBriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBCD7D216DD3150033F0A2 /* CourseContentBriefCell.m */; };
 		0ABBCD81216F6C970033F0A2 /* CourseContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBCD80216F6C970033F0A2 /* CourseContentCell.m */; };
-		0ABBCD842171F4EA0033F0A2 /* CourseTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBCD832171F4EA0033F0A2 /* CourseTitleCell.m */; };
 		0ABD3C24217658A500A5C130 /* CourseBriefDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3C23217658A500A5C130 /* CourseBriefDetailViewController.m */; };
 		0ABE540D2264999A001A7DD2 /* MyCoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE540C2264999A001A7DD2 /* MyCoursesViewController.m */; };
 		0AC38A19212FDA0E0083E24F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC389EE212FDA050083E24F /* Base64.m */; };
@@ -201,6 +205,20 @@
 		0A6E5F2822C44C2D00551733 /* CourseCalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseCalViewController.m; sourceTree = "<group>"; };
 		0A6E5F2A22CC336700551733 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		0A6E5F2B22CC336700551733 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		0A744113242A3BBD0042F7E9 /* CourseHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseHeaderView.h; sourceTree = "<group>"; };
+		0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseHeaderView.m; sourceTree = "<group>"; };
+		0A744116242A5E340042F7E9 /* CourseBriefCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseBriefCell.h; sourceTree = "<group>"; };
+		0A744117242A5E340042F7E9 /* CourseBriefCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseBriefCell.m; sourceTree = "<group>"; };
+		0A744119242EE9C30042F7E9 /* PaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		0A74411A242EE9C30042F7E9 /* PaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		0A74411C242EEC590042F7E9 /* PaymentHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentHeader.h; sourceTree = "<group>"; };
+		0A74411D242EEC590042F7E9 /* PaymentHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentHeader.m; sourceTree = "<group>"; };
+		0A74411F243380800042F7E9 /* PaymentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
+		0A744120243380800042F7E9 /* PaymentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
+		0A744122243724440042F7E9 /* PaymentDoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentDoneController.h; sourceTree = "<group>"; };
+		0A744123243724440042F7E9 /* PaymentDoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentDoneController.m; sourceTree = "<group>"; };
+		0A744125243882590042F7E9 /* AppointmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
+		0A744126243882590042F7E9 /* AppointmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentViewController.m; sourceTree = "<group>"; };
 		0A7625402109A8AD0054C4A4 /* 音湃.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "音湃.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7625432109A8AD0054C4A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A7625442109A8AD0054C4A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -303,14 +321,8 @@
 		0AB7C4FB2410B251000F013E /* TopCourseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopCourseViewController.m; sourceTree = "<group>"; };
 		0AB7C4FD24114358000F013E /* UserNotificationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNotificationDetailViewController.h; sourceTree = "<group>"; };
 		0AB7C4FE24114358000F013E /* UserNotificationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNotificationDetailViewController.m; sourceTree = "<group>"; };
-		0ABBCD79216C8E030033F0A2 /* CourseDetailBriefCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseDetailBriefCell.h; sourceTree = "<group>"; };
-		0ABBCD7A216C8E030033F0A2 /* CourseDetailBriefCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseDetailBriefCell.m; sourceTree = "<group>"; };
-		0ABBCD7C216DD3150033F0A2 /* CourseContentBriefCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseContentBriefCell.h; sourceTree = "<group>"; };
-		0ABBCD7D216DD3150033F0A2 /* CourseContentBriefCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseContentBriefCell.m; sourceTree = "<group>"; };
 		0ABBCD7F216F6C970033F0A2 /* CourseContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseContentCell.h; sourceTree = "<group>"; };
 		0ABBCD80216F6C970033F0A2 /* CourseContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseContentCell.m; sourceTree = "<group>"; };
-		0ABBCD822171F4EA0033F0A2 /* CourseTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseTitleCell.h; sourceTree = "<group>"; };
-		0ABBCD832171F4EA0033F0A2 /* CourseTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseTitleCell.m; sourceTree = "<group>"; };
 		0ABD3C22217658A500A5C130 /* CourseBriefDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseBriefDetailViewController.h; sourceTree = "<group>"; };
 		0ABD3C23217658A500A5C130 /* CourseBriefDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseBriefDetailViewController.m; sourceTree = "<group>"; };
 		0ABE540B2264999A001A7DD2 /* MyCoursesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCoursesViewController.h; sourceTree = "<group>"; };
@@ -489,16 +501,24 @@
 			children = (
 				0A1FE9E7215B7D6600B74453 /* CourseViewController.h */,
 				0A1FE9E8215B7D6600B74453 /* CourseViewController.m */,
-				0ABBCD822171F4EA0033F0A2 /* CourseTitleCell.h */,
-				0ABBCD832171F4EA0033F0A2 /* CourseTitleCell.m */,
-				0ABBCD79216C8E030033F0A2 /* CourseDetailBriefCell.h */,
-				0ABBCD7A216C8E030033F0A2 /* CourseDetailBriefCell.m */,
-				0ABBCD7C216DD3150033F0A2 /* CourseContentBriefCell.h */,
-				0ABBCD7D216DD3150033F0A2 /* CourseContentBriefCell.m */,
+				0A744113242A3BBD0042F7E9 /* CourseHeaderView.h */,
+				0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */,
+				0A744116242A5E340042F7E9 /* CourseBriefCell.h */,
+				0A744117242A5E340042F7E9 /* CourseBriefCell.m */,
 				0ABBCD7F216F6C970033F0A2 /* CourseContentCell.h */,
 				0ABBCD80216F6C970033F0A2 /* CourseContentCell.m */,
 				0ABD3C22217658A500A5C130 /* CourseBriefDetailViewController.h */,
 				0ABD3C23217658A500A5C130 /* CourseBriefDetailViewController.m */,
+				0A744119242EE9C30042F7E9 /* PaymentViewController.h */,
+				0A74411A242EE9C30042F7E9 /* PaymentViewController.m */,
+				0A74411C242EEC590042F7E9 /* PaymentHeader.h */,
+				0A74411D242EEC590042F7E9 /* PaymentHeader.m */,
+				0A74411F243380800042F7E9 /* PaymentCell.h */,
+				0A744120243380800042F7E9 /* PaymentCell.m */,
+				0A744122243724440042F7E9 /* PaymentDoneController.h */,
+				0A744123243724440042F7E9 /* PaymentDoneController.m */,
+				0A744125243882590042F7E9 /* AppointmentViewController.h */,
+				0A744126243882590042F7E9 /* AppointmentViewController.m */,
 			);
 			path = course;
 			sourceTree = "<group>";
@@ -1174,7 +1194,6 @@
 				0A15197323F2644200692178 /* ZhenCell.m in Sources */,
 				0AA713D8213D7A8500C6D038 /* ApplePayTestViewController.m in Sources */,
 				0AC38A19212FDA0E0083E24F /* Base64.m in Sources */,
-				0ABBCD7B216C8E030033F0A2 /* CourseDetailBriefCell.m in Sources */,
 				0AA713DD213D7A8500C6D038 /* MyOrderViewController.m in Sources */,
 				0AC38A25212FDA0E0083E24F /* UIColor+ColorExtension.m in Sources */,
 				0AC38A27212FDA0E0083E24F /* UIView+Prompting.m in Sources */,
@@ -1186,6 +1205,7 @@
 				0AE646A7229B686000E3A370 /* CalHeader.m in Sources */,
 				0A328783229383E3002B088D /* LunarFormatter.m in Sources */,
 				0A3AED58226DB3F600169900 /* CourseBannerCell.m in Sources */,
+				0A744121243380800042F7E9 /* PaymentCell.m in Sources */,
 				0AC38A4C212FDA780083E24F /* BaseWebViewController.m in Sources */,
 				0AC38A22212FDA0E0083E24F /* NSDictionary+JSONEXtern.m in Sources */,
 				0AB7C4FC2410B251000F013E /* TopCourseViewController.m in Sources */,
@@ -1207,7 +1227,6 @@
 				0AC38A4B212FDA780083E24F /* BaseViewController.m in Sources */,
 				0AC38B79212FDABE0083E24F /* AFHTTPRequestOperationManager.m in Sources */,
 				0AA713E7213D7AF900C6D038 /* FavoritesViewController.m in Sources */,
-				0ABBCD842171F4EA0033F0A2 /* CourseTitleCell.m in Sources */,
 				0AA713EE213D802100C6D038 /* StudyBoardViewController.m in Sources */,
 				0A3AED5E226E16EE00169900 /* SightBriefViewController.m in Sources */,
 				0AA71415213D97D600C6D038 /* GuideLanguageViewController.m in Sources */,
@@ -1218,11 +1237,14 @@
 				0AC38A1F212FDA0E0083E24F /* NSString+YYAdditions.m in Sources */,
 				0AC38A44212FDA780083E24F /* BaseUser.m in Sources */,
 				0AE646A4229A39E300E3A370 /* TouchEventsTestViewController.m in Sources */,
+				0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */,
+				0A74411E242EEC590042F7E9 /* PaymentHeader.m in Sources */,
 				0AC38A1E212FDA0E0083E24F /* NSString+IsValidate.m in Sources */,
 				0AC38A24212FDA0E0083E24F /* NSString+Size.m in Sources */,
 				0AA713DE213D7A8500C6D038 /* ProfileHeaderView.m in Sources */,
 				0AC38A48212FDA780083E24F /* SelectSlideContainerViewController.m in Sources */,
 				0AC38B7A212FDABE0083E24F /* AFHTTPRequestOperation.m in Sources */,
+				0A744124243724440042F7E9 /* PaymentDoneController.m in Sources */,
 				0AC38A2A212FDA0E0083E24F /* PaddingLabel.m in Sources */,
 				0AC38A2D212FDA0E0083E24F /* UITableView+YYAdditions.m in Sources */,
 				0A15197623F2B04300692178 /* SettingCell.m in Sources */,
@@ -1230,6 +1252,7 @@
 				0A96B1102138D4500015A625 /* CategoryHeaderView.m in Sources */,
 				0A96B11B2138D4500015A625 /* CategoryDetailViewController.m in Sources */,
 				0AC38A2B212FDA0E0083E24F /* NSString+URLEncode.m in Sources */,
+				0A744118242A5E340042F7E9 /* CourseBriefCell.m in Sources */,
 				0AC38A1D212FDA0E0083E24F /* UIButton+BRAdditions.m in Sources */,
 				0AC38BBF21338C1C0083E24F /* UIImageEffects.m in Sources */,
 				0ABD3C24217658A500A5C130 /* CourseBriefDetailViewController.m in Sources */,
@@ -1238,6 +1261,7 @@
 				0AA71417213D97D600C6D038 /* GuideGeneralCell.m in Sources */,
 				0A4F562623B9F0A2003CB439 /* UrlConstants.m in Sources */,
 				0AA713E0213D7A8500C6D038 /* AboutContentViewController.m in Sources */,
+				0A744127243882590042F7E9 /* AppointmentViewController.m in Sources */,
 				0AC38A45212FDA780083E24F /* BasePager.m in Sources */,
 				0AA713F4213D843D00C6D038 /* SightOrderInputCell.m in Sources */,
 				0AB7C4F6240E6368000F013E /* AllCoursesViewController.m in Sources */,
@@ -1256,7 +1280,6 @@
 				0A96B11A2138D4500015A625 /* CategoryView.m in Sources */,
 				0AC38A23212FDA0E0083E24F /* NSString+BFExtension.m in Sources */,
 				0A7F92A823E2978500557E4D /* LandingTeacherCell.m in Sources */,
-				0ABBCD7E216DD3150033F0A2 /* CourseContentBriefCell.m in Sources */,
 				0A7F92B123E476A700557E4D /* LandingArticleCell.m in Sources */,
 				0A6E5F2922C44C2D00551733 /* CourseCalViewController.m in Sources */,
 				0AA86FAF241F649A003A2AA8 /* LandingViewController.m in Sources */,
@@ -1265,6 +1288,7 @@
 				0A96B1162138D4500015A625 /* BannerView.m in Sources */,
 				0AC38A47212FDA780083E24F /* BasePickerViewController.m in Sources */,
 				0A4F273C23F5328300D04BA5 /* TTTAttributedLabel.m in Sources */,
+				0A74411B242EE9C30042F7E9 /* PaymentViewController.m in Sources */,
 				0A4F562F23BB31EE003CB439 /* FileHash.m in Sources */,
 				0ABBCD81216F6C970033F0A2 /* CourseContentCell.m in Sources */,
 				0AC38A1A212FDA0E0083E24F /* BTKeychain.m in Sources */,

@@ -21,8 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"我的课程";
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.emptyView];
+    [self simulate_data];
+    [self.tableView reloadData];
 }
 
 -(UIView *)emptyView

@@ -12,11 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CourseContentCell : BaseTableViewCell
 
+@property (nonatomic, strong) UIView *view_shadow;
 @property (nonatomic, strong) UILabel *label_title;
 @property (nonatomic, strong) UILabel *label_subtitle;
-@property (nonatomic, strong) UILabel *label_content;
-@property (nonatomic, strong) UIView *view_border;
-@property (nonatomic, strong) UIView *view_accessory;
 
 - (void)bindDict:(NSDictionary *)dic;
 

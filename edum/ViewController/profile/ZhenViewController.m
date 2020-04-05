@@ -213,7 +213,7 @@
 {
     if (!_array_data) {
         NSArray *array = @[@[
-                               @[@"achieve", @"我的课程", @"action_course"],
+                               @[@"musicnote", @"我的课程", @"action_course"],
                                @[@"study", @"我的关注", @"action_following"],
                                @[@"remainder", @"我的消息", @"action_message"],
                                @[@"teacher", @"我是老师", @"action_teacher"],

@@ -17,6 +17,10 @@
 
 @property (nonatomic, strong) WeeklyScheduleHeaderView *header;
 @property (nonatomic, strong) UIView *emptyView;
+@property (nonatomic, strong) UIButton *button_login;
+
+@property (nonatomic, strong) UIView *view_empty_data;
+
 
 @end
 
@@ -24,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"我的课程表";
     [self.view insertSubview:self.header atIndex:998];
     [self.header addSubview:self.calendar];
     [self.view insertSubview:self.tableView atIndex:1000];
@@ -49,6 +53,11 @@
     
     [self simulate_data];
 //    self.emptyView.hidden = NO;
+    
+//    self.tableView.hidden = YES;
+//    self.header.hidden = YES;
+//    self.calendar.hidden = YES;
+    
     [self.tableView reloadData];
 }
 
@@ -61,14 +70,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
     [self.button_b setImage:ImageNamed(@"calendar_highlight") forState:UIControlStateNormal];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
 //    [MobClick endLogPageView:@"mainview"];
 }
 
@@ -114,27 +123,54 @@
     return _calendar;
 }
 
+- (UIView *)view_empty_data
+{
+    if (!_view_empty_data) {
+        _view_empty_data = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    }
+    return _view_empty_data;
+}
+
 -(UIView *)emptyView
 {
     if (!_emptyView)
     {
-        _emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, APPScreenWidthHalf + 222, self.tableView.width, 150)];
+        _emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, BASE_TABLEVIEW_Y, APPScreenWidth, APPScreenHeight - BASE_TABLEVIEW_Y - SafeAreaBottomHeight - 49)];
         _emptyView.backgroundColor = self.view.backgroundColor;
         
-        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake((_emptyView.width - 155) / 2.0, 0, 155, 109)];
-        img.image = ImageNamed(@"empty");
-        [_emptyView addSubview:img];
-        
-        UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(15, img.bottom + 10, self.view.width - 30, 18)];
+        UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(15, 160, self.view.width - 30, 22)];
         tips.backgroundColor = self.view.backgroundColor;
         tips.textAlignment = NSTextAlignmentCenter;
-        tips.font = __font(16);
-        tips.textColor = __color_gray_separator;
-        tips.text = @"没有课程";
+        tips.font = __font(18);
+        tips.textColor = __color_font_placeholder;
+        tips.text = @"登录后查看课程";
         [_emptyView addSubview:tips];
+        self.button_login.top = tips.bottom + 40;
+        [_emptyView addSubview:self.button_login];
+        
         _emptyView.hidden = YES;
     }
     return _emptyView;
+}
+
+- (UIButton *)button_login
+{
+    if (!_button_login) {
+        _button_login = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button_login.frame = CGRectMake((APPScreenWidth - 150) / 2, 60, 150, 44);
+        _button_login.layer.cornerRadius = 22;
+        _button_login.layer.masksToBounds = YES;
+        [_button_login setTitle:@"登陆/注册" forState:UIControlStateNormal];
+        [_button_login addTarget:self action:@selector(action_login) forControlEvents:UIControlEventTouchUpInside];
+        [_button_login setTitleColor:__color_white forState:UIControlStateNormal];
+        _button_login.layer.backgroundColor = [__color_main CGColor];
+    }
+    return _button_login;
+}
+
+- (void)action_login
+{
+    
 }
 
 - (UITableView *)tableView

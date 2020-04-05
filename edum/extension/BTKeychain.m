@@ -57,7 +57,7 @@
 }
 
 + (void)saveUUID {
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"UUID" accessGroup:KEYCHAIN_ACCESS_GROUP];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_ACCESS_KEY accessGroup:KEYCHAIN_ACCESS_GROUP];
     NSString *string = [keychainItem objectForKey: (__bridge id)kSecAttrGeneric];
     if([string isEqualToString:@""] || !string){
         [keychainItem setObject:[self getUUID] forKey:(__bridge id)kSecAttrGeneric];
@@ -65,7 +65,7 @@
 }
 
 + (NSString *)readUUID {
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"UUID" accessGroup:KEYCHAIN_ACCESS_GROUP];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_ACCESS_KEY accessGroup:KEYCHAIN_ACCESS_GROUP];
     NSString *UUID = [keychainItem objectForKey: (__bridge id)kSecAttrGeneric];
     return UUID;
 }

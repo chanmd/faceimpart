@@ -32,6 +32,12 @@
     return self;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat index = scrollView.contentOffset.x / APPScreenWidth;
+    self.pagecontrol.currentPage = (int)floor(index);
+}
+
 - (UIScrollView *)scrollview
 {
     if (!_scrollview) {
@@ -49,6 +55,7 @@
     if (!_pagecontrol) {
         _pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(0, BANNER_HEIGHT - 20, 80, 20)];
         _pagecontrol.centerX = self.centerX;
+        _pagecontrol.currentPage = 0;
     }
     return _pagecontrol;
 }
@@ -80,13 +87,16 @@
         [category.button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollview addSubview:category];
     }
-    self.currentPage = 0;
+    self.pagecontrol.currentPage = 0;
     WeakSelf;
     self.timer = [NSTimer proxyScheduledTimerWithTimeInterval:5.f repeats:YES block:^(NSTimer *timer){
-        if (weakSelf.currentPage < [array_data count]) {
-            weakSelf.currentPage ++;
+        if (weakSelf.pagecontrol.currentPage < [array_data count] - 1) {
+//            NSLog(@"%ld", weakSelf.pagecontrol.currentPage);
+            weakSelf.pagecontrol.currentPage ++;
+            [weakSelf.scrollview setContentOffset:CGPointMake(weakSelf.pagecontrol.currentPage * APPScreenWidth, 0) animated:YES];
         } else {
-            weakSelf.currentPage = 0;
+            weakSelf.pagecontrol.currentPage = 0;
+            [weakSelf.scrollview setContentOffset:CGPointMake(0, 0) animated:YES];
         }
     }];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];

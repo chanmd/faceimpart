@@ -1,25 +1,31 @@
 //
-//  CourseTitleCell.m
+//  CourseHeaderView.m
 //  edum
 //
-//  Created by Kevin Chan on 13/10/2018.
-//  Copyright © 2018 MD Chen. All rights reserved.
+//  Created by Kevin Chan on 24/3/2020.
+//  Copyright © 2020 MD Chen. All rights reserved.
 //
 
-#import "CourseTitleCell.h"
-#import "UILabel+LineSpace.h"
+#import "CourseHeaderView.h"
+#import "UIView+BFExtension.h"
+#import "UIColor+ColorExtension.h"
+#import "NSDictionary+JSONExtern.h"
 
-@implementation CourseTitleCell
+@implementation CourseHeaderView
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithFrame:frame];
     if (self) {
-        [self.contentView addSubview:self.label_title];
-        [self.contentView addSubview:self.label_price];
-        [self.contentView addSubview:self.label_price_fake];
-        [self.contentView addSubview:self.label_appiontment];
-        [self.contentView addSubview:self.view_contact];
+        [self addSubview:self.label_title];
+        [self addSubview:self.label_price];
+        [self addSubview:self.label_price_fake];
+        [self addSubview:self.label_appiontment];
+        [self addSubview:self.view_contact];
+        [self addSubview:self.segmentedControl];
+        UIView *splitview = [[UIView alloc] initWithFrame:CGRectMake(0, 184 + 40, APPScreenWidth, 0.5)];
+        splitview.backgroundColor = __color_gray_separator;
+        [self addSubview:splitview];
     }
     return self;
 }
@@ -27,8 +33,8 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, APPScreenWidth - 30, 30)];
-        _label_title.font = __fontbold(22);
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(15, 23, APPScreenWidth - 30, 30)];
+        _label_title.font = __font(22);
         _label_title.textColor = __color_font_title;
         _label_title.numberOfLines = 0;
         _label_title.lineBreakMode = NSLineBreakByWordWrapping;
@@ -39,7 +45,7 @@
 - (UILabel *)label_price
 {
     if (!_label_price) {
-        _label_price = [[UILabel alloc] initWithFrame:CGRectMake(15, self.label_title.bottom + 5, 120, 30)];
+        _label_price = [[UILabel alloc] initWithFrame:CGRectMake(15, self.label_title.bottom + 15, 120, 30)];
         _label_price.textColor = __color_main;
         _label_price.font = __font(20);
     }
@@ -62,7 +68,7 @@
         _label_appiontment = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 150, 68, 150, 20)];
         _label_appiontment.textAlignment = NSTextAlignmentRight;
         _label_appiontment.textColor = __color_font_subtitle;
-        _label_appiontment.font = __font(16);
+        _label_appiontment.font = __font(12);
     }
     return _label_appiontment;
 }
@@ -70,10 +76,10 @@
 - (UIView *)view_contact
 {
     if (!_view_contact) {
-        _view_contact = [[UIView alloc] initWithFrame:CGRectMake(15,  64, APPScreenWidth - 60, 64)];
+        _view_contact = [[UIView alloc] initWithFrame:CGRectMake(15, 100, APPScreenWidth - 30, 64)];
         _view_contact.backgroundColor = __color_gray_background;
         _view_contact.layer.masksToBounds = YES;
-        _view_contact.layer.cornerRadius = 3.f;
+        _view_contact.layer.cornerRadius = 4.f;
         [_view_contact addSubview:self.imageview_avatar];
         [_view_contact addSubview:self.label_name];
         [_view_contact addSubview:self.label_bio];
@@ -111,6 +117,33 @@
     return _label_bio;
 }
 
+- (HMSegmentedControl *)segmentedControl
+{
+    if(!_segmentedControl) {
+        _segmentedControl = [[HMSegmentedControl alloc] init];
+        _segmentedControl.sectionTitles = @[@"课程简介", @"课程目录"];
+        _segmentedControl.frame = CGRectMake(15, 184, APPScreenWidth - 30, 40);
+        _segmentedControl.backgroundColor = __color_white;
+        _segmentedControl.selectionIndicatorHeight = 2.f;
+        _segmentedControl.selectionIndicatorColor = __color_main;
+        _segmentedControl.shouldAnimateUserSelection = YES;
+        _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
+        _segmentedControl.selectedSegmentIndex = 0;
+        _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        _segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjects:
+                                                         [NSArray arrayWithObjects:__color_main, __fontthin(18), nil]
+                                                                                    forKeys:
+                                                         [NSArray arrayWithObjects:NSForegroundColorAttributeName, NSFontAttributeName, nil]];
+        
+        _segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjects:
+                                                 [NSArray arrayWithObjects:__color_font_title,
+                                                  __fontthin(18), nil]
+                                                                            forKeys:
+                                                 [NSArray arrayWithObjects:NSForegroundColorAttributeName,NSFontAttributeName, nil]];
+    }
+    return _segmentedControl;
+}
+
 - (void)bindDict:(NSDictionary *)data
 {
     self.label_price.text = [data stringForKey:@"price"];
@@ -125,21 +158,19 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥39999" attributes:attribtDic];
     self.label_price_fake.attributedText = attribtStr;
+    self.label_price_fake.top = self.label_price.bottom - 20;
+    self.label_appiontment.top = self.label_price.bottom - 20;
     
     [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[data stringForKey:@"url"]] placeholderImage:ImageNamed(@"logo_launch")];
-    self.label_title.text = [NSString stringWithFormat:@"  %@", [data stringForKey:@"title"]];
     self.label_name.text = [data stringForKey:@"name"];
     self.label_bio.text = [data stringForKey:@"bio"];
-    
     self.label_title.text = [data stringForKey:@"title"];
-    self.label_title.width = APPScreenWidth - 30;
-    [self.label_title sizeToFit];
-    
     
     self.label_title.text = @"钢琴课基础指法练习";
+    self.label_title.width = APPScreenWidth - 30;
+    [self.label_title sizeToFit];
     self.label_name.text = @"张天一";
     self.label_bio.text = @"钢琴家 教育家";
-    
 }
 
 @end
