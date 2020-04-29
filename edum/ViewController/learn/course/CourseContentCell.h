@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *label_title;
 @property (nonatomic, strong) UILabel *label_subtitle;
 
-- (void)bindDict:(NSDictionary *)dic;
+- (void)bindCourseContent:(NSDictionary *)data;
 
 @end
 

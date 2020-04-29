@@ -7,6 +7,7 @@
 //
 
 #import "CourseViewController.h"
+#import "LoginViewController.h"
 
 #pragma utils
 #import "NSDictionary+JSONExtern.h"
@@ -17,19 +18,25 @@
 #pragma cells
 #import "CourseHeaderView.h"
 #import "CourseBriefCell.h"
+#import "CourseSectionTopHeader.h"
+#import "CourseSectionHeaderView.h"
 #import "CourseContentCell.h"
+#import "CourseSectionCell.h"
 #import "CourseBriefDetailViewController.h"
 #import "PaymentViewController.h"
+#import "AppointmentViewController.h"
+#import <WebKit/WebKit.h>
 
 #define NAVBAR_CHANGE_POINT 50
 #define PADDING_OFFSET_X -50
 
 
-@interface CourseViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CourseViewController () <UITableViewDelegate, UITableViewDataSource, WKUIDelegate, WKNavigationDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableDictionary *dict_data;
+@property (nonatomic, strong) NSMutableDictionary *dict_course;
 @property (nonatomic, strong) NSMutableArray *array_data_content;
+@property (nonatomic, assign) CGFloat content_height;
 
 @property (nonatomic, strong) CourseHeaderView *header;
 @property (nonatomic, strong) UIView *briefview;
@@ -52,34 +59,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"课程";
     [self.view addSubview:self.tableView];
-    [self __init_test_data];
-    self.selectedIndex = 1;
+    self.content_height = 200;//内容来自html，默认给200的高度
+    self.selectedIndex = 0;
     [self.tableView reloadData];
     [self.header.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.view_border];
     [self.view addSubview:self.view_buy];
     [self.view addSubview:self.view_arrange];
-//    self.view_buy.hidden = YES;
-//    self.view_arrange.hidden = NO;
-    
-}
-
-- (void)segmentedControlChangedValue
-{
-    self.selectedIndex = self.header.segmentedControl.selectedSegmentIndex + 1;
-    [self.tableView reloadData];
+    [self action_course_detail];
 }
 
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 49 - SafeAreaBottomHeight) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = __color_clear;
-        _tableView.tableHeaderView = self.header;
     }
     return _tableView;
 }
@@ -88,7 +87,6 @@
 {
     if (!_header) {
         _header = [[CourseHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 184 + 44)];
-        [_header bindDict:@{}];
     }
     return _header;
 }
@@ -113,24 +111,6 @@
     return _label_brief;
 }
 
-- (void)__init_test_data
-{
-    NSArray *content =@[@{@"title": @"第一组", @"subtitle": @"长弓练习", @"content": @"一弓四拍，一共24小节"}, @{@"title": @"第二组", @"subtitle": @"分弓练习 一弓一拍，20小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节"}, @{@"title": @"第三组", @"subtitle": @"快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节快速换弓练习 一弓16分音符，16小节"}];
-    self.array_data_content = [NSMutableArray arrayWithArray:content];
-    
-    NSDictionary *dict = @{@"title": @"C大调音阶练习", @"subtitle": @"音阶的练习既是音准练习的必修课，同时也是视作流畅的左手练习的重要教材。\n\n这正是为什么全世界弦乐工作者反复强调音阶重要性的原因，作为大提琴学生，学习大提琴，目的是为了更完美的将大提琴美好的音质传递给观众。因此对学习过程中所面临的技巧问题，诸如音阶的掌握程度，直接关系到演奏水平的发挥。\n\n音阶的基本功愈扎实，其表现的音乐愈准确且流畅。\n\n著名小提琴家海菲兹曾说：“技巧的解决之时，才是音乐的开始。”这也充分证明了技巧的重要性。音阶既然是技巧的重要组成部分之一，我们在学习中应树立正确的观念和做好长期艰苦训练的打算，从小培养准、匀、美的高标准和高质量发音要求，既要高度重视音阶的音准，也要高质量的要求发音圆润的大提琴音质以及连贯性，动听的旋律表现效果，从准备好听方面严格要求，并通过长期的历练从而获得表现音乐美的良好手段，这也是我们大提琴演奏者追求的最终目的。\n\n我们知道音乐是表现情感的艺术，有了坚实的技术支撑，尤其是在音阶技术有保障的情况下，我们更能由哀的表达各自内心的情感，今后无论演奏任何作品均可更得心应手。\n\n因为无论任何作品尤其像奏鸣曲、协奏曲及组曲类作品其基本音乐语言包含了太多的音阶、双音琶音等一系列基础音乐语汇，这些乐音的表达需要有稳定和谐的音准去体现音乐的意味和音乐流动的自然度，如果我们拥有坚实的音准把握度和良好的发音感方可运筹帷幄地去实现作品的内涵，风格和情感的表达意义，其诠释的作品更具有匀、准、美的审美意义，换句话说演奏的作品更能打动观众的心，因此我认为音阶学习是大提琴学生必须高度重视的课题。\n\n作为教师应从小培养他们主动学习音阶的意识，并逐步让他们认识到音准及发音的基本标准。从概念到意识上帮助他们建立起良好的审美标准和正确的演奏动势，这样有助于学生们在学习的道路上走的更高、更宽、更远，并充分施展自己的才华。"};
-    self.dict_data = [NSMutableDictionary dictionaryWithDictionary:dict];
-    
-    self.label_price.text = @"¥3033";
-    [self.label_price sizeToFit];
-    self.label_price_fake.centerY = self.label_price.centerY;
-    
-    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥39999" attributes:attribtDic];
-    self.label_price_fake.attributedText = attribtStr;
-    self.label_price_fake.left = self.label_price.right + 5;
-}
-
 - (UIView *)view_border
 {
     if (!_view_border) {
@@ -143,7 +123,7 @@
 - (UIView *)view_buy
 {
     if (!_view_buy) {
-        _view_buy = [[UIView alloc] initWithFrame:CGRectMake(0, APPScreenHeight - 49 - SafeAreaBottomHeight, APPScreenWidth, 49 + SafeAreaBottomHeight)];
+        _view_buy = [[UIView alloc] initWithFrame:CGRectMake(0, APPScreenHeight - 55 - SafeAreaBottomHeight, APPScreenWidth, 55 + SafeAreaBottomHeight)];
         _view_buy.backgroundColor = __color_white;
         [_view_buy addSubview:self.label_price];
         [_view_buy addSubview:self.label_price_fake];
@@ -155,7 +135,7 @@
 - (UILabel *)label_price
 {
     if (!_label_price) {
-        _label_price = [[UILabel alloc] initWithFrame:CGRectMake(30, 6, 120, 36)];
+        _label_price = [[UILabel alloc] initWithFrame:CGRectMake(30, 16, 120, 36)];
         _label_price.textColor = __color_main;
         _label_price.font = __font(24);
     }
@@ -166,7 +146,7 @@
 - (UILabel *)label_price_fake
 {
     if (!_label_price_fake) {
-        _label_price_fake = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 120, 36)];
+        _label_price_fake = [[UILabel alloc] initWithFrame:CGRectMake(30, 16, 120, 36)];
         _label_price_fake.textColor = __color_font_subtitle;
         _label_price_fake.font = __font(18);
     }
@@ -177,7 +157,7 @@
 - (UIButton *)button_buy
 {
     if (!_button_buy) {
-        _button_buy = [[UIButton alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 120, 6, 120, 36)];
+        _button_buy = [[UIButton alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 120, 16, 120, 36)];
         [_button_buy setTitle:@"购买" forState:UIControlStateNormal];
         _button_buy.layer.masksToBounds = YES;
         _button_buy.layer.backgroundColor = [__color_main CGColor];
@@ -191,7 +171,7 @@
 - (UIView *)view_arrange
 {
     if (!_view_arrange) {
-        _view_arrange = [[UIView alloc] initWithFrame:CGRectMake(0, APPScreenHeight - 49 - SafeAreaBottomHeight, APPScreenWidth, 49)];
+        _view_arrange = [[UIView alloc] initWithFrame:CGRectMake(0, APPScreenHeight - 55 - SafeAreaBottomHeight, APPScreenWidth, 55 + SafeAreaBottomHeight)];
         _view_arrange.backgroundColor = __color_white;
         [_view_arrange addSubview:self.label_status];
         [_view_arrange addSubview:self.button_arrangement];
@@ -203,7 +183,7 @@
 - (UILabel *)label_status
 {
     if (!_label_status) {
-        _label_status = [[UILabel alloc] initWithFrame:CGRectMake(0, 6, APPScreenWidth - 15 - 120, 36)];
+        _label_status = [[UILabel alloc] initWithFrame:CGRectMake(0, 16, APPScreenWidth - 15 - 120, 36)];
         _label_status.textColor = __color_font_subtitle;
         _label_status.font = __font(18);
         _label_status.textAlignment = NSTextAlignmentCenter;
@@ -215,7 +195,7 @@
 - (UIButton *)button_arrangement
 {
     if (!_button_arrangement) {
-        _button_arrangement = [[UIButton alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 120, 6, 120, 36)];
+        _button_arrangement = [[UIButton alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 120, 16, 120, 36)];
         [_button_arrangement setTitle:@"约课" forState:UIControlStateNormal];
         _button_arrangement.layer.masksToBounds = YES;
         _button_arrangement.layer.backgroundColor = [__color_main CGColor];
@@ -228,7 +208,8 @@
 
 - (void)action_arrangement
 {
-    
+    AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
+    [self.navigationController pushViewController:appointment animated:YES];
 }
 
 
@@ -240,7 +221,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
     //    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     //    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     //    [MobClick beginLogPageView:@"sight"];
@@ -259,7 +240,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -267,12 +248,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSMutableDictionary *)dict_data
+- (NSMutableDictionary *)dict_course
 {
-    if (!_dict_data) {
-        _dict_data = [NSMutableDictionary dictionary];
+    if (!_dict_course) {
+        _dict_course = [NSMutableDictionary dictionary];
     }
-    return _dict_data;
+    return _dict_course;
 }
 
 - (NSMutableArray *)array_data_content
@@ -296,84 +277,121 @@
     }
 }
 
+- (void)segmentedControlChangedValue
+{
+    self.selectedIndex = self.header.segmentedControl.selectedSegmentIndex;
+    [self.tableView reloadData];
+}
 
 #pragma mark - tableiview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (self.selectedIndex == 1) {
+        
+        return [self.array_data_content count];
+    }
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.selectedIndex == 1) {
-        return 1;
-    } else {
-        return [self.array_data_content count];
+        
+        return [[[self.array_data_content objectAtIndex:section] objectForKey:@"courseInfoList"] count];
     }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.selectedIndex == 1) {
-        return [self __cell_brief:tableView];
-    } else {
         return [self __cell_category:tableView cellForRowAtIndexPath:indexPath];
+        
+    } else {
+        return [self __cell_brief:tableView];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.selectedIndex == 1) {
-        return [self __calculate_height_brief:[self.dict_data stringForKey:@"subtitle"]];
-    } else {
         return [self __calculate_height_content:indexPath];
+    } else {
+        return self.content_height;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (self.selectedIndex == 2) {
-        return 44.f;
+    if (self.selectedIndex == 0) {
+        return 0.01;
     } else {
-        return 0.1f;
+        if (section == 0) {
+            return 94.f;
+        }
+        return 44.f;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 20.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 0.1)];
-    view.backgroundColor = __color_gray_background;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
+    view.backgroundColor = __color_white;
     return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (self.selectedIndex == 2) {
-        return self.briefview;
+    if (self.selectedIndex == 0) {
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.01)];
+    } else {
+        
+        if (section == 0) {
+            static NSString *reuseIdentifier = @"top_header";
+            CourseSectionTopHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifier];
+            if (!header) {
+                header = [[CourseSectionTopHeader alloc] initWithReuseIdentifier:reuseIdentifier];
+            }
+            NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"name"];
+            header.label_subtitle.width = APPScreenWidth - 40;
+            header.label_subtitle.text = chapter_name;
+            header.label_title.text = [NSString stringWithFormat:@"一共%ld章课程", [self.array_data_content count]];
+            
+            return header;
+        }
+        
+        static NSString *reuseIdentifier = @"header";
+        CourseSectionHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifier];
+        if (!header) {
+            header = [[CourseSectionHeaderView alloc] initWithReuseIdentifier:reuseIdentifier];
+        }
+        NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"name"];
+        header.label_title.width = APPScreenWidth - 30;
+        header.label_title.text = chapter_name;
+        return header;
     }
-    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.01)];
 }
 
 #pragma mark heights
 
 - (CGFloat)__calculate_height_brief:(NSString *)brief
 {
-    CGFloat height = [UILabel text:brief font:__fontlight(18) width:APPScreenWidth - 40 lineSpacing:5];
-    return height + 65;
+    CGFloat height = [UILabel text:brief font:__fontlight(16) width:APPScreenWidth - 40 lineSpacing:5];
+    return height + 70;
 }
 
 - (CGFloat)__calculate_height_content:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = [self.array_data_content objectAtIndex:indexPath.row];
-    NSString *content = [dic stringForKey:@"subtitle"];
-    CGFloat label_height = [UILabel text:content font:__fontthin(16) width:APPScreenWidth - 40 lineSpacing:5];
-    CGFloat height = label_height + 90;
+    NSDictionary *data = [[[self.array_data_content objectAtIndex:indexPath.section] arrayForKey:@"courseInfoList"] objectAtIndex:indexPath.row];
+    NSString *content = [data stringForKey:@"title"];
+    CGFloat label_height = [UILabel text:content font:__fontthin(16) width:APPScreenWidth - 30 lineSpacing:5];
+    CGFloat height = label_height + 21;
     return height;
 }
 
@@ -386,19 +404,21 @@
     if (!cell) {
         cell = [[CourseBriefCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
     }
-    [cell bindData:self.dict_data];
+    cell.webView.UIDelegate = self;
+    cell.webView.navigationDelegate = self;
+    [cell bindCourseBrief:self.dict_course];
     return cell;
 }
 
 - (UITableViewCell *)__cell_category:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *detailcell = @"detailcell";
-    CourseContentCell *cell = [tableView dequeueReusableCellWithIdentifier:detailcell];
+    CourseSectionCell *cell = [tableView dequeueReusableCellWithIdentifier:detailcell];
     if (!cell) {
-        cell = [[CourseContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
+        cell = [[CourseSectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
     }
-    NSDictionary *dic = [self.array_data_content objectAtIndex:indexPath.row];
-    [cell bindDict:dic];
+    NSDictionary *data = [[[self.array_data_content objectAtIndex:indexPath.section] arrayForKey:@"courseInfoList"] objectAtIndex:indexPath.row];
+    [cell bindCourseSection:data];
     return cell;
 }
 
@@ -407,16 +427,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - webview delegates
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    self.content_height = webView.scrollView.contentSize.height;
+    [self.tableView reloadData];
+    
+}
+
 #pragma mark - actions
 
 
 - (void)action_buy
 {
     if (![BASEUSER loginstatus]) {
-        
         PaymentViewController *payment = [[PaymentViewController alloc] init];
-//        payment.course_id = self.course_id;
-        payment.course_id = @"13424243";
+        payment.course_id = self.course_id;
         [self.navigationController pushViewController:payment animated:YES];
         
     } else {
@@ -426,8 +453,8 @@
 
 - (void)action_login
 {
-//    LoginViewController *login = [[LoginViewController alloc] init];
-//    [self presentViewController:login animated:YES completion:nil];
+    LoginViewController *login = [[LoginViewController alloc] init];
+    [self presentViewController:login animated:YES completion:nil];
 }
 
 - (UIImage *)takeSnapshotOfView:(UIView *)view
@@ -436,43 +463,57 @@
     [view drawViewHierarchyInRect:CGRectMake(0, 0, APPFullScreenWidth, APPFullScreenHeight) afterScreenUpdates:YES];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return image;
 }
 
 #pragma mark - network
 
-- (void)___fetch_sights
+- (void)action_course_detail
 {
-    [self hud_show];
-    NSString *url = [NSString stringWithFormat:@"%@/package", SERVER_DOMAIN];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:@"package_id" forKey:@"package_id"];
-    if ([BASEUSER loginstatus]) {
-        [dict setValue:[BaseUser instance].user_id forKey:@"user_id"];
-    }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parms = @{
+        @"id": self.course_id,
+    };
     WeakSelf;
-    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [AFR requestWithUrl:REQUEST_COURSE_DETAIL
+             httpmethod:@"GET"
+                 params:[NSMutableDictionary dictionaryWithDictionary:parms]
+          finishedBlock:^(id responseObject){
+        NSLog(@"-------------------");
         NSDictionary *tempDic = (NSDictionary *)responseObject;
-        [self hud_hide];
-        NSLog(@"--------------------------------------------------%@", tempDic);
-        if (![[tempDic objectForKey:@"error"] boolValue]) {
-            NSDictionary *dict = [tempDic dictionaryForKey:@"data"];
-            if ([dict.allKeys count] > 0) {
-                weakSelf.dict_data = [NSMutableDictionary dictionaryWithDictionary:dict];
-                
-                weakSelf.array_data_content = [weakSelf.dict_data arrayForKey:@"detail"];
-                [weakSelf.tableView reloadData];
-            }
+        
+        if ([[tempDic objectForKey:@"code"] integerValue] == RESPONSE_OK) {
+            NSLog(@"%@", responseObject);
+            NSDictionary *data = [tempDic dictionaryForKey:@"data"];
             
+            weakSelf.dict_course = [NSMutableDictionary dictionaryWithDictionary:[data dictionaryForKey:@"course"]];
+            weakSelf.array_data_content = [NSMutableArray arrayWithArray:[data arrayForKey:@"chapters"]];
+            
+            weakSelf.label_brief.text = [NSString stringWithFormat:@"共%ld章，%@节课程", [weakSelf.array_data_content count], @"20"];
+            
+            weakSelf.tableView.tableHeaderView = nil;
+            weakSelf.tableView.tableHeaderView = weakSelf.header;
+            [weakSelf.header bindCourseHeader:weakSelf.dict_course];
+            
+            weakSelf.label_price.text = [NSString stringWithFormat:@"¥%@", [weakSelf.dict_course stringIntForKey:@"price"]];
+            [weakSelf.label_price sizeToFit];
+            weakSelf.label_price_fake.centerY = weakSelf.label_price.centerY;
+            
+            NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+            NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@", [weakSelf.dict_course stringIntForKey:@"oprice"]] attributes:attribtDic];
+            weakSelf.label_price_fake.attributedText = attribtStr;
+            weakSelf.label_price_fake.left = self.label_price.right + 5;
+            weakSelf.view_buy.hidden = NO;
+            weakSelf.view_arrange.hidden = YES;
+            
+            [weakSelf.tableView reloadData];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self hud_hide];
+        
+                }
+            failedBlock:^(NSError *errorInfo){
+        NSLog(@"~~~~~~~~~~");
         [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
     }];
+    
 }
-
 
 @end

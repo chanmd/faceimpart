@@ -7,14 +7,16 @@
 //
 
 #import "BaseTableViewCell.h"
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CourseBriefCell : BaseTableViewCell
 
 @property (nonatomic, strong) UILabel *label_title;
+@property (nonatomic, strong) WKWebView *webView;
 
-- (void)bindData:(NSDictionary *)data;
+- (void)bindCourseBrief:(NSDictionary *)data;
 
 @end
 

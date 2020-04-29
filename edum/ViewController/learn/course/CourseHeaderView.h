@@ -23,8 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *label_name;
 @property (nonatomic, strong) UILabel *label_bio;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (nonatomic, strong) UIView *view_border;
 
-- (void)bindDict:(NSDictionary *)dic;
+- (void)bindCourseHeader:(NSDictionary *)dic;
 
 @end
 

@@ -56,12 +56,12 @@
     return _label_subtitle;
 }
 
-- (void)bindDict:(NSDictionary *)dic
+- (void)bindCourseContent:(NSDictionary *)data
 {
-    self.label_title.text = [dic stringForKey:@"title"];
+    self.label_title.text = [data stringForKey:@"title"];
     self.label_subtitle.width = APPScreenWidth - 40;
-    self.label_subtitle.text = [dic stringForKey:@"subtitle"];
-    [self.label_subtitle setText:[dic stringForKey:@"subtitle"] lineSpacing:SIGHT_DETAIL_LINESPACE];
+    self.label_subtitle.text = [data stringForKey:@"subtitle"];
+    [self.label_subtitle setText:[data stringForKey:@"subtitle"] lineSpacing:5];
     [self.label_subtitle sizeToFit];
 }
 

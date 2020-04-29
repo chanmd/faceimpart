@@ -338,8 +338,12 @@
         if (indexPath.section == SECTION_TYPE_TEACHER) {
             
         } else if (indexPath.section == SECTION_TYPE_COURSE) {
+            
+            NSDictionary *course_dictionary = [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_COURSE] objectAtIndex:indexPath.row];
             CourseViewController *courseview = [[CourseViewController alloc] init];
+            courseview.course_id = [course_dictionary stringIntForKey:@"id"];
             [self.navigationController pushViewController:courseview animated:YES];
+            
         }
     }
 }

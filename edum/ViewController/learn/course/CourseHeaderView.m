@@ -23,9 +23,7 @@
         [self addSubview:self.label_appiontment];
         [self addSubview:self.view_contact];
         [self addSubview:self.segmentedControl];
-        UIView *splitview = [[UIView alloc] initWithFrame:CGRectMake(0, 184 + 40, APPScreenWidth, 0.5)];
-        splitview.backgroundColor = __color_gray_separator;
-        [self addSubview:splitview];
+        [self addSubview:self.view_border];
     }
     return self;
 }
@@ -117,6 +115,15 @@
     return _label_bio;
 }
 
+- (UIView *)view_border
+{
+    if (!_view_border) {
+        _view_border = [[UIView alloc] initWithFrame:CGRectMake(0, 184 + 40, APPScreenWidth, 0.5)];
+        _view_border.backgroundColor = __color_gray_separator;
+    }
+    return _view_border;
+}
+
 - (HMSegmentedControl *)segmentedControl
 {
     if(!_segmentedControl) {
@@ -144,33 +151,27 @@
     return _segmentedControl;
 }
 
-- (void)bindDict:(NSDictionary *)data
+- (void)bindCourseHeader:(NSDictionary *)data
 {
-    self.label_price.text = [data stringForKey:@"price"];
-    self.label_price_fake.text = [data stringForKey:@"price_fake"];
-    self.label_appiontment.text = [NSString stringWithFormat:@"%@人已约课", [data stringForKey:@"order_count"]];
-    self.label_appiontment.text = @"300人已约课";
+    self.label_price.text = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"price"]];
+    NSString *oprice = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"oprice"]];
+    self.label_appiontment.text = [NSString stringWithFormat:@"%@人已约课", [data stringForKey:@"reserveCount"]];
     self.label_price.width = 100;
-    self.label_price.text = @"¥3033";
     [self.label_price sizeToFit];
     self.label_price_fake.left = self.label_price.right + 5;
     
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥39999" attributes:attribtDic];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:oprice attributes:attribtDic];
     self.label_price_fake.attributedText = attribtStr;
-    self.label_price_fake.top = self.label_price.bottom - 20;
+    self.label_price_fake.top = self.label_price.bottom - 19;
     self.label_appiontment.top = self.label_price.bottom - 20;
     
-    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[data stringForKey:@"url"]] placeholderImage:ImageNamed(@"logo_launch")];
-    self.label_name.text = [data stringForKey:@"name"];
-    self.label_bio.text = [data stringForKey:@"bio"];
-    self.label_title.text = [data stringForKey:@"title"];
-    
-    self.label_title.text = @"钢琴课基础指法练习";
+    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[data stringForKey:@"teacherUrl"]] placeholderImage:ImageNamed(@"logo_launch")];
+    self.label_name.text = [data stringForKey:@"teacherName"];
+    self.label_bio.text = @"暂无简介";
+    self.label_title.text = [data stringForKey:@"name"];
     self.label_title.width = APPScreenWidth - 30;
     [self.label_title sizeToFit];
-    self.label_name.text = @"张天一";
-    self.label_bio.text = @"钢琴家 教育家";
 }
 
 @end

@@ -27,6 +27,9 @@ NSString *const REQUEST_LANDING_COURSE = @"landing/course";//首页课程列表�
 NSString *const REQUEST_LANDING_TEACHER = @"landing/teacher";//首页老师列表页面
 NSString *const REQUEST_LANDING_NEWS = @"landing/news";//新闻列表页
 
+NSString *const REQUEST_COURSE_DETAIL = @"data/getCourseById";
+
+
 NSString *const REQUEST_CALENDAR_LIST = @"calendar/list";//所有课程列表
 NSString *const REQUEST_CALENDAR_WEEK = @"calendar/week";//课程一周列表
 NSString *const REQUEST_CALENDAR_DETAIL = @"calendar/detail";//课程详情

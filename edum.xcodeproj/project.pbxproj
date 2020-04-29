@@ -26,6 +26,9 @@
 		0A4F562623B9F0A2003CB439 /* UrlConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F562523B9F0A2003CB439 /* UrlConstants.m */; };
 		0A4F562923B9F0F3003CB439 /* AFRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F562823B9F0F3003CB439 /* AFRequest.m */; };
 		0A4F562F23BB31EE003CB439 /* FileHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F562E23BB31EE003CB439 /* FileHash.m */; };
+		0A6597512456B996000515F1 /* CourseSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6597502456B996000515F1 /* CourseSectionCell.m */; };
+		0A6597542456EA3D000515F1 /* CourseSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6597532456EA3D000515F1 /* CourseSectionHeaderView.m */; };
+		0A65975724583242000515F1 /* CourseSectionTopHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65975624583242000515F1 /* CourseSectionTopHeader.m */; };
 		0A6E5F2922C44C2D00551733 /* CourseCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E5F2822C44C2D00551733 /* CourseCalViewController.m */; };
 		0A6E5F2C22CC336700551733 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E5F2B22CC336700551733 /* BaseTableViewController.m */; };
 		0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */; };
@@ -155,6 +158,7 @@
 		0AC38BF72134E0D70083E24F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC38BF62134E0D70083E24F /* libz.tbd */; };
 		0AC38BF92134E0DE0083E24F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC38BF82134E0DE0083E24F /* SystemConfiguration.framework */; };
 		0AC38BFB2134E0EA0083E24F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC38BFA2134E0E90083E24F /* CoreTelephony.framework */; };
+		0ADB1B42243F44DC00FAD8C5 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB1B41243F44DC00FAD8C5 /* AppointmentCell.m */; };
 		0AE646A1229A355600E3A370 /* CalendarGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE646A0229A355600E3A370 /* CalendarGridViewController.m */; };
 		0AE646A4229A39E300E3A370 /* TouchEventsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE646A3229A39E300E3A370 /* TouchEventsTestViewController.m */; };
 		0AE646A7229B686000E3A370 /* CalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE646A6229B686000E3A370 /* CalHeader.m */; };
@@ -201,6 +205,12 @@
 		0A4F562823B9F0F3003CB439 /* AFRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFRequest.m; sourceTree = "<group>"; };
 		0A4F562D23BB31EE003CB439 /* FileHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHash.h; sourceTree = "<group>"; };
 		0A4F562E23BB31EE003CB439 /* FileHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHash.m; sourceTree = "<group>"; };
+		0A65974F2456B996000515F1 /* CourseSectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseSectionCell.h; sourceTree = "<group>"; };
+		0A6597502456B996000515F1 /* CourseSectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseSectionCell.m; sourceTree = "<group>"; };
+		0A6597522456EA3D000515F1 /* CourseSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseSectionHeaderView.h; sourceTree = "<group>"; };
+		0A6597532456EA3D000515F1 /* CourseSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseSectionHeaderView.m; sourceTree = "<group>"; };
+		0A65975524583242000515F1 /* CourseSectionTopHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseSectionTopHeader.h; sourceTree = "<group>"; };
+		0A65975624583242000515F1 /* CourseSectionTopHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseSectionTopHeader.m; sourceTree = "<group>"; };
 		0A6E5F2722C44C2D00551733 /* CourseCalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseCalViewController.h; sourceTree = "<group>"; };
 		0A6E5F2822C44C2D00551733 /* CourseCalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseCalViewController.m; sourceTree = "<group>"; };
 		0A6E5F2A22CC336700551733 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -427,6 +437,8 @@
 		0AC38BF62134E0D70083E24F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0AC38BF82134E0DE0083E24F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0AC38BFA2134E0E90083E24F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		0ADB1B40243F44DC00FAD8C5 /* AppointmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentCell.h; sourceTree = "<group>"; };
+		0ADB1B41243F44DC00FAD8C5 /* AppointmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentCell.m; sourceTree = "<group>"; };
 		0AE6469F229A355600E3A370 /* CalendarGridViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarGridViewController.h; sourceTree = "<group>"; };
 		0AE646A0229A355600E3A370 /* CalendarGridViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarGridViewController.m; sourceTree = "<group>"; };
 		0AE646A2229A39E300E3A370 /* TouchEventsTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchEventsTestViewController.h; sourceTree = "<group>"; };
@@ -505,6 +517,12 @@
 				0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */,
 				0A744116242A5E340042F7E9 /* CourseBriefCell.h */,
 				0A744117242A5E340042F7E9 /* CourseBriefCell.m */,
+				0A65975524583242000515F1 /* CourseSectionTopHeader.h */,
+				0A65975624583242000515F1 /* CourseSectionTopHeader.m */,
+				0A6597522456EA3D000515F1 /* CourseSectionHeaderView.h */,
+				0A6597532456EA3D000515F1 /* CourseSectionHeaderView.m */,
+				0A65974F2456B996000515F1 /* CourseSectionCell.h */,
+				0A6597502456B996000515F1 /* CourseSectionCell.m */,
 				0ABBCD7F216F6C970033F0A2 /* CourseContentCell.h */,
 				0ABBCD80216F6C970033F0A2 /* CourseContentCell.m */,
 				0ABD3C22217658A500A5C130 /* CourseBriefDetailViewController.h */,
@@ -519,6 +537,8 @@
 				0A744123243724440042F7E9 /* PaymentDoneController.m */,
 				0A744125243882590042F7E9 /* AppointmentViewController.h */,
 				0A744126243882590042F7E9 /* AppointmentViewController.m */,
+				0ADB1B40243F44DC00FAD8C5 /* AppointmentCell.h */,
+				0ADB1B41243F44DC00FAD8C5 /* AppointmentCell.m */,
 			);
 			path = course;
 			sourceTree = "<group>";
@@ -1192,6 +1212,7 @@
 				0A1FE9DF2156B9A500B74453 /* CoursesCell.m in Sources */,
 				0A3AED5B226E168000169900 /* SightBriefCell.m in Sources */,
 				0A15197323F2644200692178 /* ZhenCell.m in Sources */,
+				0A65975724583242000515F1 /* CourseSectionTopHeader.m in Sources */,
 				0AA713D8213D7A8500C6D038 /* ApplePayTestViewController.m in Sources */,
 				0AC38A19212FDA0E0083E24F /* Base64.m in Sources */,
 				0AA713DD213D7A8500C6D038 /* MyOrderViewController.m in Sources */,
@@ -1215,6 +1236,7 @@
 				0AC38A21212FDA0E0083E24F /* UIImage+initWithColor.m in Sources */,
 				0AE646A1229A355600E3A370 /* CalendarGridViewController.m in Sources */,
 				0A1FE9E6215B7CD200B74453 /* CourseListViewController.m in Sources */,
+				0ADB1B42243F44DC00FAD8C5 /* AppointmentCell.m in Sources */,
 				0AC38A29212FDA0E0083E24F /* UINavigationBar+Awesome.m in Sources */,
 				0AA71416213D97D600C6D038 /* GuideContentViewController.m in Sources */,
 				0AE646AA229C175A00E3A370 /* CalCell.m in Sources */,
@@ -1238,6 +1260,7 @@
 				0AC38A44212FDA780083E24F /* BaseUser.m in Sources */,
 				0AE646A4229A39E300E3A370 /* TouchEventsTestViewController.m in Sources */,
 				0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */,
+				0A6597512456B996000515F1 /* CourseSectionCell.m in Sources */,
 				0A74411E242EEC590042F7E9 /* PaymentHeader.m in Sources */,
 				0AC38A1E212FDA0E0083E24F /* NSString+IsValidate.m in Sources */,
 				0AC38A24212FDA0E0083E24F /* NSString+Size.m in Sources */,
@@ -1264,6 +1287,7 @@
 				0A744127243882590042F7E9 /* AppointmentViewController.m in Sources */,
 				0AC38A45212FDA780083E24F /* BasePager.m in Sources */,
 				0AA713F4213D843D00C6D038 /* SightOrderInputCell.m in Sources */,
+				0A6597542456EA3D000515F1 /* CourseSectionHeaderView.m in Sources */,
 				0AB7C4F6240E6368000F013E /* AllCoursesViewController.m in Sources */,
 				0AA713D5213D7A8500C6D038 /* AboutViewController.m in Sources */,
 				0AC38BBB21338C060083E24F /* SKPanoramaView.m in Sources */,
