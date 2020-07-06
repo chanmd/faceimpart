@@ -8,6 +8,8 @@
 
 #import "TopCourseViewController.h"
 #import "LandingCourseCell.h"
+#import "CourseViewController.h"
+#import "MJRefresh.h"
 
 @interface TopCourseViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,6 +24,7 @@
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
     self.title = @"精选课程";
+    [self ___fetch_course];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,24 +34,7 @@
 - (NSMutableArray *)array_data
 {
     if (!_array_data) {
-        NSArray *array = @[
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-            @{},
-  ];
-        _array_data = [[NSMutableArray alloc] initWithArray:array];
+        _array_data = [NSMutableArray array];
     }
     return _array_data;
 }
@@ -61,8 +47,7 @@
         _tableView.delegate = self;
         _tableView.backgroundColor = __color_white;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//        _tableView.separatorColor = __color_gray_separator;
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(___fetch_course)];
     }
     return _tableView;
 }
@@ -101,15 +86,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"cellIdentifier";
+    static NSString *cellIdentifier = @"course_cell";
     LandingCourseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[LandingCourseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSDictionary *dictionary = [self.array_data objectAtIndex:indexPath.row];
-    dictionary = @{@"name": @"非常棒的课程", @"url": @"https://faceimpart-test.oss-cn-beijing.aliyuncs.com/image/banner_1.png"};
-    [cell bindElementWithData:dictionary];
+    [cell bindCourseWithData:dictionary];
     return cell;
 }
 
@@ -120,9 +103,43 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSDictionary *data = [self.array_data objectAtIndex:indexPath.row];
+    NSDictionary *course = [self.array_data objectAtIndex:indexPath.row];
+    CourseViewController *courseview = [[CourseViewController alloc] init];
+    courseview.course_id = [course stringForKey:@"course_id"];
+    [self.navigationController pushViewController:courseview animated:YES];
     
 }
+
+- (void)___fetch_course
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"category": [NSString stringWithFormat:@"%ld", self.category]}];
+    NSString *request_url = REQUEST_SEGMENT_COURSE;
+    if (self.category == 0) {
+        request_url = REQUEST_LANDING_COURSE;
+    } else {
+        request_url = REQUEST_SEGMENT_COURSE;
+    }
+    WeakSelf;
+    [AFR requestWithUrl:request_url
+             httpmethod:@"POST"
+                 params:params
+          finishedBlock:^(id responseObject){
+        NSDictionary *tempDic = (NSDictionary *)responseObject;
+        [weakSelf.tableView.mj_header endRefreshing];
+        if (![[tempDic objectForKey:@"error"] boolValue]) {
+            
+            NSArray *data = [tempDic arrayForKey:@"data"];
+            weakSelf.array_data = [NSMutableArray arrayWithArray:data];
+            [weakSelf.tableView reloadData];
+        }
+    }
+            failedBlock:^(NSError *errorInfo){
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
+    }];
+    
+}
+
 
 
 @end

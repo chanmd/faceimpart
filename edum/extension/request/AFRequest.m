@@ -44,7 +44,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",nil];
-    NSString* urlString = [NSString stringWithFormat:@"%@/%@/%@/%@", BASE_URL, BASE_PLATFORM, BASE_VERSION, url];
+    NSString* urlString = [NSString stringWithFormat:@"%@/%@/", BASE_URL, url];
     if ([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"]) {
         urlString = url;
     }
@@ -64,9 +64,9 @@
     if ([httpMethod isEqualToString:@"POST"]) {
         [manager POST:urlString parameters:paramsDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dic = responseObject;
-            NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);
+//            NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);
             NSString *code = [dic stringIntForKey:@"code"];
-            NSString *msg = [dic stringForKey:@"msg"];
+            NSString *msg = [dic stringForKey:@"message"];
             NSLog(@"responseCode: [%@]", msg);
             if ([code isEqualToString:@"1000"] || [code isEqualToString:@"500"] || [code isEqualToString:@"401"]) {
                 NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);

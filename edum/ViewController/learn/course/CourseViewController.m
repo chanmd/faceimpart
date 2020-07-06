@@ -31,7 +31,7 @@
 #define PADDING_OFFSET_X -50
 
 
-@interface CourseViewController () <UITableViewDelegate, UITableViewDataSource, WKUIDelegate, WKNavigationDelegate>
+@interface CourseViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableDictionary *dict_course;
@@ -106,7 +106,6 @@
         _label_brief = [[UILabel alloc] initWithFrame:CGRectMake(15, 12, APPScreenWidth - 30, 20)];
         _label_brief.font = __fontthin(16);
         _label_brief.textColor = __color_font_title;
-        _label_brief.text = @"共3章，7节课";
     }
     return _label_brief;
 }
@@ -296,10 +295,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.selectedIndex == 1) {
-        
-        return [[[self.array_data_content objectAtIndex:section] objectForKey:@"courseInfoList"] count];
-    }
+//    if (self.selectedIndex == 1) {
+//
+//        return 1;
+//    }
     return 1;
 }
 
@@ -318,7 +317,10 @@
     if (self.selectedIndex == 1) {
         return [self __calculate_height_content:indexPath];
     } else {
-        return self.content_height;
+        
+        NSString *ori_text = [self.dict_course stringForKey:@"desc"];
+        NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+        return [self __calculate_height_brief:text];
     }
 }
 
@@ -358,10 +360,10 @@
             if (!header) {
                 header = [[CourseSectionTopHeader alloc] initWithReuseIdentifier:reuseIdentifier];
             }
-            NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"name"];
+            NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"title"];
             header.label_subtitle.width = APPScreenWidth - 40;
             header.label_subtitle.text = chapter_name;
-            header.label_title.text = [NSString stringWithFormat:@"一共%ld章课程", [self.array_data_content count]];
+            header.label_title.text = [NSString stringWithFormat:@"共%ld节课程", [self.array_data_content count]];
             
             return header;
         }
@@ -371,8 +373,8 @@
         if (!header) {
             header = [[CourseSectionHeaderView alloc] initWithReuseIdentifier:reuseIdentifier];
         }
-        NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"name"];
-        header.label_title.width = APPScreenWidth - 30;
+        NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"title"];
+        header.label_title.width = APPScreenWidth - 40;
         header.label_title.text = chapter_name;
         return header;
     }
@@ -388,9 +390,10 @@
 
 - (CGFloat)__calculate_height_content:(NSIndexPath *)indexPath
 {
-    NSDictionary *data = [[[self.array_data_content objectAtIndex:indexPath.section] arrayForKey:@"courseInfoList"] objectAtIndex:indexPath.row];
-    NSString *content = [data stringForKey:@"title"];
-    CGFloat label_height = [UILabel text:content font:__fontthin(16) width:APPScreenWidth - 30 lineSpacing:5];
+    NSDictionary *data = [self.array_data_content objectAtIndex:indexPath.section];
+    NSString *ori_text = [data stringForKey:@"subtitle"];
+    NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    CGFloat label_height = [UILabel text:text font:__fontthin(16) width:APPScreenWidth - 30 lineSpacing:5];
     CGFloat height = label_height + 21;
     return height;
 }
@@ -404,8 +407,6 @@
     if (!cell) {
         cell = [[CourseBriefCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
     }
-    cell.webView.UIDelegate = self;
-    cell.webView.navigationDelegate = self;
     [cell bindCourseBrief:self.dict_course];
     return cell;
 }
@@ -417,7 +418,7 @@
     if (!cell) {
         cell = [[CourseSectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
     }
-    NSDictionary *data = [[[self.array_data_content objectAtIndex:indexPath.section] arrayForKey:@"courseInfoList"] objectAtIndex:indexPath.row];
+    NSDictionary *data = [self.array_data_content objectAtIndex:indexPath.row];
     [cell bindCourseSection:data];
     return cell;
 }
@@ -471,24 +472,24 @@
 - (void)action_course_detail
 {
     NSDictionary *parms = @{
-        @"id": self.course_id,
+        @"course_id": self.course_id,
     };
     WeakSelf;
-    [AFR requestWithUrl:REQUEST_COURSE_DETAIL
-             httpmethod:@"GET"
+    [AFR requestWithUrl:REQUEST_COURSE
+             httpmethod:@"POST"
                  params:[NSMutableDictionary dictionaryWithDictionary:parms]
           finishedBlock:^(id responseObject){
         NSLog(@"-------------------");
         NSDictionary *tempDic = (NSDictionary *)responseObject;
         
-        if ([[tempDic objectForKey:@"code"] integerValue] == RESPONSE_OK) {
+        if (![[tempDic objectForKey:@"error"] boolValue]) {
             NSLog(@"%@", responseObject);
             NSDictionary *data = [tempDic dictionaryForKey:@"data"];
             
-            weakSelf.dict_course = [NSMutableDictionary dictionaryWithDictionary:[data dictionaryForKey:@"course"]];
-            weakSelf.array_data_content = [NSMutableArray arrayWithArray:[data arrayForKey:@"chapters"]];
+            weakSelf.dict_course = [NSMutableDictionary dictionaryWithDictionary:data];
+            weakSelf.array_data_content = [NSMutableArray arrayWithArray:[data arrayForKey:@"catlog"]];
             
-            weakSelf.label_brief.text = [NSString stringWithFormat:@"共%ld章，%@节课程", [weakSelf.array_data_content count], @"20"];
+            weakSelf.label_brief.text = [NSString stringWithFormat:@"共%ld节课程", [weakSelf.array_data_content count]];
             
             weakSelf.tableView.tableHeaderView = nil;
             weakSelf.tableView.tableHeaderView = weakSelf.header;

@@ -9,7 +9,7 @@
 #import "NSTimer+UnretainCircle.h"
 #if TARGET_IPHONE_SIMULATOR
 #else
-#import <AppKit/AppKit.h>
+//#import <AppKit/AppKit.h>
 #endif
 
 @implementation NSTimer (UnretainCircle)

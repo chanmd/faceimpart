@@ -11,6 +11,15 @@
 		0A15197623F2B04300692178 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A15197523F2B04300692178 /* SettingCell.m */; };
 		0A15197923F3B44000692178 /* UserNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A15197823F3B44000692178 /* UserNotificationViewController.m */; };
 		0A15197C23F3BAB800692178 /* UserNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A15197B23F3BAB800692178 /* UserNotificationCell.m */; };
+		0A15ECA6247B6EFA0031B642 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A15ECA3247B6EFA0031B642 /* README.txt */; };
+		0A15ECA7247B6EFA0031B642 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A15ECA5247B6EFA0031B642 /* libWeChatSDK.a */; };
+		0A15ECB3247B72DC0031B642 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A15ECB2247B72DC0031B642 /* WebKit.framework */; };
+		0A15ECB8247BB5B80031B642 /* WXApiManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A15ECB4247BB5B80031B642 /* WXApiManager.mm */; };
+		0A15ECBC247BE11B0031B642 /* WXApiRequestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A15ECBA247BE11A0031B642 /* WXApiRequestHandler.mm */; };
+		0A15ECC6247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A15ECC0247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.mm */; };
+		0A15ECC7247BE1890031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A15ECC2247BE1890031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.mm */; };
+		0A15ECC8247BE1890031B642 /* WXMediaMessage+messageConstruct.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A15ECC3247BE1890031B642 /* WXMediaMessage+messageConstruct.mm */; };
+		0A15ECC9247BE1890031B642 /* UIAlertView+WX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A15ECC4247BE1890031B642 /* UIAlertView+WX.mm */; };
 		0A1FE9D82152665B00B74453 /* StudyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FE9D72152665B00B74453 /* StudyListCell.m */; };
 		0A1FE9DF2156B9A500B74453 /* CoursesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FE9DE2156B9A500B74453 /* CoursesCell.m */; };
 		0A1FE9E6215B7CD200B74453 /* CourseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FE9E5215B7CD200B74453 /* CourseListViewController.m */; };
@@ -83,6 +92,8 @@
 		0AA71419213D97D600C6D038 /* GuideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA71413213D97D600C6D038 /* GuideHeaderView.m */; };
 		0AA7141D213D997100C6D038 /* HostQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA7141B213D997100C6D038 /* HostQuestionHeaderView.m */; };
 		0AA86FAF241F649A003A2AA8 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA86FAE241F649A003A2AA8 /* LandingViewController.m */; };
+		0AAF6B23247E38F400D3519A /* LandingTeacherListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */; };
+		0AAF6B26247E4EEB00D3519A /* TeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */; };
 		0AB7C4E123FA4B98000F013E /* DailyScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4E023FA4B98000F013E /* DailyScheduleCell.m */; };
 		0AB7C4E424068B27000F013E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4E324068B26000F013E /* ProfileViewController.m */; };
 		0AB7C4E72406B723000F013E /* GeneralHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4E62406B723000F013E /* GeneralHeaderView.m */; };
@@ -177,6 +188,25 @@
 		0A15197823F3B44000692178 /* UserNotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNotificationViewController.m; sourceTree = "<group>"; };
 		0A15197A23F3BAB800692178 /* UserNotificationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNotificationCell.h; sourceTree = "<group>"; };
 		0A15197B23F3BAB800692178 /* UserNotificationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNotificationCell.m; sourceTree = "<group>"; };
+		0A15ECA1247B6EFA0031B642 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		0A15ECA2247B6EFA0031B642 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		0A15ECA3247B6EFA0031B642 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		0A15ECA4247B6EFA0031B642 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		0A15ECA5247B6EFA0031B642 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		0A15ECB2247B72DC0031B642 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		0A15ECB4247BB5B80031B642 /* WXApiManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXApiManager.mm; sourceTree = "<group>"; };
+		0A15ECB6247BB5B80031B642 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		0A15ECBA247BE11A0031B642 /* WXApiRequestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXApiRequestHandler.mm; sourceTree = "<group>"; };
+		0A15ECBB247BE11B0031B642 /* WXApiRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiRequestHandler.h; sourceTree = "<group>"; };
+		0A15ECBD247BE1880031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GetMessageFromWXResp+responseWithTextOrMediaMessage.h"; sourceTree = "<group>"; };
+		0A15ECBE247BE1880031B642 /* WXMediaMessage+messageConstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXMediaMessage+messageConstruct.h"; sourceTree = "<group>"; };
+		0A15ECBF247BE1890031B642 /* UIAlertView+WX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+WX.h"; sourceTree = "<group>"; };
+		0A15ECC0247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.mm"; sourceTree = "<group>"; };
+		0A15ECC1247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.h"; sourceTree = "<group>"; };
+		0A15ECC2247BE1890031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GetMessageFromWXResp+responseWithTextOrMediaMessage.mm"; sourceTree = "<group>"; };
+		0A15ECC3247BE1890031B642 /* WXMediaMessage+messageConstruct.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WXMediaMessage+messageConstruct.mm"; sourceTree = "<group>"; };
+		0A15ECC4247BE1890031B642 /* UIAlertView+WX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIAlertView+WX.mm"; sourceTree = "<group>"; };
+		0A15ECC5247BE1890031B642 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		0A1FE9D62152665B00B74453 /* StudyListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyListCell.h; sourceTree = "<group>"; };
 		0A1FE9D72152665B00B74453 /* StudyListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyListCell.m; sourceTree = "<group>"; };
 		0A1FE9DD2156B9A500B74453 /* CoursesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoursesCell.h; sourceTree = "<group>"; };
@@ -311,6 +341,10 @@
 		0AA7141C213D997100C6D038 /* HostQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostQuestionHeaderView.h; sourceTree = "<group>"; };
 		0AA86FAD241F649A003A2AA8 /* LandingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
 		0AA86FAE241F649A003A2AA8 /* LandingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
+		0AAF6B21247E38F400D3519A /* LandingTeacherListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandingTeacherListCell.h; sourceTree = "<group>"; };
+		0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandingTeacherListCell.m; sourceTree = "<group>"; };
+		0AAF6B24247E4EEB00D3519A /* TeacherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherViewController.h; sourceTree = "<group>"; };
+		0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherViewController.m; sourceTree = "<group>"; };
 		0AB7C4DF23FA4B98000F013E /* DailyScheduleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyScheduleCell.h; sourceTree = "<group>"; };
 		0AB7C4E023FA4B98000F013E /* DailyScheduleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyScheduleCell.m; sourceTree = "<group>"; };
 		0AB7C4E224068B26000F013E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -459,11 +493,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A15ECB3247B72DC0031B642 /* WebKit.framework in Frameworks */,
 				0A328777228960B4002B088D /* libc++.tbd in Frameworks */,
 				0AC38BFB2134E0EA0083E24F /* CoreTelephony.framework in Frameworks */,
 				0AC38BF92134E0DE0083E24F /* SystemConfiguration.framework in Frameworks */,
 				0AC38BF72134E0D70083E24F /* libz.tbd in Frameworks */,
 				0AC38BF52134E0D00083E24F /* libsqlite3.tbd in Frameworks */,
+				0A15ECA7247B6EFA0031B642 /* libWeChatSDK.a in Frameworks */,
 				0AC38BF12134E0B40083E24F /* AssetsLibrary.framework in Frameworks */,
 				0AC38BEF2134E0A20083E24F /* AVFoundation.framework in Frameworks */,
 				0AC38BED2134E0910083E24F /* CFNetwork.framework in Frameworks */,
@@ -497,6 +533,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A15ECA0247B6EFA0031B642 /* WechatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0A15ECC5247BE1890031B642 /* Constant.h */,
+				0A15ECBD247BE1880031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.h */,
+				0A15ECC2247BE1890031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.mm */,
+				0A15ECC1247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.h */,
+				0A15ECC0247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.mm */,
+				0A15ECBF247BE1890031B642 /* UIAlertView+WX.h */,
+				0A15ECC4247BE1890031B642 /* UIAlertView+WX.mm */,
+				0A15ECBE247BE1880031B642 /* WXMediaMessage+messageConstruct.h */,
+				0A15ECC3247BE1890031B642 /* WXMediaMessage+messageConstruct.mm */,
+				0A15ECBB247BE11B0031B642 /* WXApiRequestHandler.h */,
+				0A15ECBA247BE11A0031B642 /* WXApiRequestHandler.mm */,
+				0A15ECB6247BB5B80031B642 /* WXApiManager.h */,
+				0A15ECB4247BB5B80031B642 /* WXApiManager.mm */,
+				0A15ECA1247B6EFA0031B642 /* WXApi.h */,
+				0A15ECA2247B6EFA0031B642 /* WXApiObject.h */,
+				0A15ECA3247B6EFA0031B642 /* README.txt */,
+				0A15ECA4247B6EFA0031B642 /* WechatAuthSDK.h */,
+				0A15ECA5247B6EFA0031B642 /* libWeChatSDK.a */,
+			);
+			path = WechatSDK;
+			sourceTree = "<group>";
+		};
 		0A1FE9D9215490CB00B74453 /* courses */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +791,8 @@
 				0AB7C4FB2410B251000F013E /* TopCourseViewController.m */,
 				0AA86FAD241F649A003A2AA8 /* LandingViewController.h */,
 				0AA86FAE241F649A003A2AA8 /* LandingViewController.m */,
+				0AAF6B21247E38F400D3519A /* LandingTeacherListCell.h */,
+				0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */,
 			);
 			path = landing;
 			sourceTree = "<group>";
@@ -785,6 +848,8 @@
 				0AB7C4EF2407C728000F013E /* FollowingCell.m */,
 				0AB7C4F4240E6368000F013E /* AllCoursesViewController.h */,
 				0AB7C4F5240E6368000F013E /* AllCoursesViewController.m */,
+				0AAF6B24247E4EEB00D3519A /* TeacherViewController.h */,
+				0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -913,6 +978,7 @@
 		0AC387BD212FB17E0083E24F /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				0A15ECA0247B6EFA0031B642 /* WechatSDK */,
 				0A4F273923F5328200D04BA5 /* TTTAttributedLabel */,
 				0A7F928C23DC203800557E4D /* Umeng */,
 				0A96B11D2138D4DB0015A625 /* HMSegmentedControl */,
@@ -1043,6 +1109,7 @@
 		51E38CE0C064086A568D36A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A15ECB2247B72DC0031B642 /* WebKit.framework */,
 				0AC38BFA2134E0E90083E24F /* CoreTelephony.framework */,
 				0AC38BF82134E0DE0083E24F /* SystemConfiguration.framework */,
 				0AC38BF62134E0D70083E24F /* libz.tbd */,
@@ -1151,6 +1218,7 @@
 				0A7625502109A8AF0054C4A4 /* LaunchScreen.storyboard in Resources */,
 				0A76254D2109A8AF0054C4A4 /* Assets.xcassets in Resources */,
 				0A7F929F23DC203800557E4D /* UMCommonLog.bundle in Resources */,
+				0A15ECA6247B6EFA0031B642 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,6 +1271,7 @@
 				0AC38A20212FDA0E0083E24F /* UIButton+YYAdditions.m in Sources */,
 				0A96B1122138D4500015A625 /* LandingSectionHeaderView.m in Sources */,
 				0AB7C4F02407C728000F013E /* FollowingCell.m in Sources */,
+				0A15ECC8247BE1890031B642 /* WXMediaMessage+messageConstruct.mm in Sources */,
 				0ABE540D2264999A001A7DD2 /* MyCoursesViewController.m in Sources */,
 				0AB7C4ED2407ABEA000F013E /* FollowingViewController.m in Sources */,
 				0A7F92B723E8457700557E4D /* WeeklyScheduleViewController.m in Sources */,
@@ -1224,6 +1293,7 @@
 				0AB7C4FF24114358000F013E /* UserNotificationDetailViewController.m in Sources */,
 				0AA713DA213D7A8500C6D038 /* AvatarView.m in Sources */,
 				0AE646A7229B686000E3A370 /* CalHeader.m in Sources */,
+				0A15ECB8247BB5B80031B642 /* WXApiManager.mm in Sources */,
 				0A328783229383E3002B088D /* LunarFormatter.m in Sources */,
 				0A3AED58226DB3F600169900 /* CourseBannerCell.m in Sources */,
 				0A744121243380800042F7E9 /* PaymentCell.m in Sources */,
@@ -1233,6 +1303,7 @@
 				0AC38A1B212FDA0E0083E24F /* UIView+BFExtension.m in Sources */,
 				0AB7C4E424068B27000F013E /* ProfileViewController.m in Sources */,
 				0A1FE9D82152665B00B74453 /* StudyListCell.m in Sources */,
+				0A15ECC9247BE1890031B642 /* UIAlertView+WX.mm in Sources */,
 				0AC38A21212FDA0E0083E24F /* UIImage+initWithColor.m in Sources */,
 				0AE646A1229A355600E3A370 /* CalendarGridViewController.m in Sources */,
 				0A1FE9E6215B7CD200B74453 /* CourseListViewController.m in Sources */,
@@ -1251,6 +1322,7 @@
 				0AA713E7213D7AF900C6D038 /* FavoritesViewController.m in Sources */,
 				0AA713EE213D802100C6D038 /* StudyBoardViewController.m in Sources */,
 				0A3AED5E226E16EE00169900 /* SightBriefViewController.m in Sources */,
+				0A15ECC6247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.mm in Sources */,
 				0AA71415213D97D600C6D038 /* GuideLanguageViewController.m in Sources */,
 				0A7F92B423E5745400557E4D /* NSTimer+UnretainCircle.m in Sources */,
 				0AA71414213D97D600C6D038 /* GuideViewController.m in Sources */,
@@ -1282,8 +1354,11 @@
 				0AA713D9213D7A8500C6D038 /* ProfileHeadCell.m in Sources */,
 				0AC38A46212FDA780083E24F /* BasePresentController.m in Sources */,
 				0AA71417213D97D600C6D038 /* GuideGeneralCell.m in Sources */,
+				0A15ECC7247BE1890031B642 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.mm in Sources */,
 				0A4F562623B9F0A2003CB439 /* UrlConstants.m in Sources */,
+				0AAF6B26247E4EEB00D3519A /* TeacherViewController.m in Sources */,
 				0AA713E0213D7A8500C6D038 /* AboutContentViewController.m in Sources */,
+				0AAF6B23247E38F400D3519A /* LandingTeacherListCell.m in Sources */,
 				0A744127243882590042F7E9 /* AppointmentViewController.m in Sources */,
 				0AC38A45212FDA780083E24F /* BasePager.m in Sources */,
 				0AA713F4213D843D00C6D038 /* SightOrderInputCell.m in Sources */,
@@ -1320,6 +1395,7 @@
 				0AB7C4E72406B723000F013E /* GeneralHeaderView.m in Sources */,
 				0AA71418213D97D600C6D038 /* GuideEditViewController.m in Sources */,
 				0A7F92AB23E33F4100557E4D /* LandingCourseCell.m in Sources */,
+				0A15ECBC247BE11B0031B642 /* WXApiRequestHandler.mm in Sources */,
 				0AA71419213D97D600C6D038 /* GuideHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1480,6 +1556,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/edum/lib/WeChat",
+					"$(PROJECT_DIR)/edum/lib/WechatSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.faceimpart.impartcace;
@@ -1521,6 +1598,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/edum/lib/WeChat",
+					"$(PROJECT_DIR)/edum/lib/WechatSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.faceimpart.impartcace;

@@ -124,26 +124,54 @@
 
 - (void)bindDailyData:(NSDictionary *)daily
 {
-    self.label_time.text = [daily stringForKey:@"time"];
-    self.label_title.text = [daily stringForKey:@"title"];
-    if ([[daily stringIntForKey:@"status"] isEqualToString:@"1"]) {
-        self.button_status.hidden = NO;
-        [self.button_status setBackgroundImage:ImageNamed(@"processing") forState:UIControlStateNormal];
-        
-    } else if ([[daily stringForKey:@"status"] isEqualToString:@"2"]) {
-        self.button_status.hidden = NO;
-        [self.button_status setBackgroundImage:ImageNamed(@"ended") forState:UIControlStateNormal];
-    } else {
-        self.button_status.hidden = YES;
+    NSDictionary *user = [daily dictionaryForKey:@"user"];
+    NSDictionary *course = [daily dictionaryForKey:@"course"];
+    self.label_time.text = [daily stringForKey:@"start_time"];
+    self.label_title.text = [course stringForKey:@"title"];
+    
+    NSString *start_time_string = [daily stringForKey:@"start_time"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSDateFormatter *display_formatter = [[NSDateFormatter alloc] init];
+//    [display_formatter setDateFormat:@"HH:mm:ss"];
+    
+    NSDate *start_time = [formatter dateFromString:start_time_string];
+    NSInteger status = 0;
+    NSComparisonResult date_result = [start_time compare:[NSDate date]];
+    switch (date_result) {
+        case NSOrderedAscending:
+            status = 2;
+            break;
+        case NSOrderedDescending:
+            status = 1;
+            break;
+        default:
+            break;
     }
-    self.imageview_avatar.image = ImageNamed(@"logo_launch");
-    self.label_name.text = @"张天一";
-    self.label_bio.text = @"大提琴课";
+    [self bindScheduleStatus:status];
+    
+    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[user stringForKey:@"avatar"]] placeholderImage:ImageNamed(@"logo_launch")];
+    self.label_name.text = [user stringForKey:@"name"];
+    self.label_bio.text = [user stringForKey:@"bio"];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+
+- (void)bindScheduleStatus:(NSInteger )status
+{
+    if (status == 1) {
+        self.button_status.hidden = NO;
+        [self.button_status setBackgroundImage:ImageNamed(@"processing") forState:UIControlStateNormal];
+        
+    } else if (status == 2) {
+        self.button_status.hidden = NO;
+        [self.button_status setBackgroundImage:ImageNamed(@"ended") forState:UIControlStateNormal];
+    } else {
+        self.button_status.hidden = YES;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

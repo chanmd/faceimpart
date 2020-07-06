@@ -20,8 +20,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        [self.contentView addSubview:self.label_title];
-        [self.contentView addSubview:self.webView];
+        [self.contentView addSubview:self.label_title];
+//        [self.contentView addSubview:self.webView];
     }
     return self;
 }
@@ -48,10 +48,13 @@
 
 - (void)bindCourseBrief:(NSDictionary *)data
 {
-//    self.label_title.width = APPScreenWidth - 40;
-//    [self.label_title setText:[data objectForKey:@"remark"] lineSpacing:5];
-//    [self.label_title sizeToFit];
-    [self.webView loadHTMLString:[data objectForKey:@"remark"] baseURL:nil];
+    self.label_title.width = APPScreenWidth - 40;
+    
+    NSString *ori_text = [data stringForKey:@"desc"];
+    NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    [self.label_title setText:text lineSpacing:5];
+    [self.label_title sizeToFit];
+//    [self.webView loadHTMLString:[data objectForKey:@"remark"] baseURL:nil];
 }
 
 

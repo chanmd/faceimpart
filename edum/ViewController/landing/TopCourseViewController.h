@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TopCourseViewController : BaseViewController
 
+@property (nonatomic, assign) NSInteger category;
+
 @end
 
 NS_ASSUME_NONNULL_END

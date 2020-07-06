@@ -91,7 +91,8 @@
 
 
 #define BASEUSER [BaseUser instance]
-#define SERVER_DOMAIN @"http://www.klavier.cn"
+#define SERVER_DOMAIN @"http://localhost:8000"
+//#define SERVER_DOMAIN @"http://www.klavier.cn"
 
 #define RESPONSE_ERROR_MESSAGE @"服务无响应"
 #define RESPONSE_NONE @"没有更多了"

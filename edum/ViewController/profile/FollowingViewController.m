@@ -106,20 +106,8 @@
         cell = [[FollowingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-//    NSArray *array = [self.array_data objectAtIndex:indexPath.row];
-    cell.imageview_avatar.image = ImageNamed(@"logo_launch");
-    cell.label_name.text = @"张天一";
-    cell.label_bio.text = @"小提琴 钢琴 乐理";
-    BOOL status = YES;
-    if (status) {
-        [cell.button_follow setTitle:@"已关注" forState:UIControlStateNormal];
-        cell.button_follow.layer.backgroundColor = [__color_gray_background CGColor];
-        [cell.button_follow setTitleColor:__color_font_placeholder forState:UIControlStateNormal];
-    } else {
-        [cell.button_follow setTitle:@"关注" forState:UIControlStateNormal];
-        cell.button_follow.layer.backgroundColor = [__color_main CGColor];
-        [cell.button_follow setTitleColor:__color_white forState:UIControlStateNormal];
-    }
+    NSDictionary *data = [self.array_data objectAtIndex:indexPath.row];
+    [cell bindFollowingStatus:data];
     return cell;
 }
 

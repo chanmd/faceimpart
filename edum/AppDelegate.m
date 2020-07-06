@@ -17,7 +17,7 @@
 #import <UMCommon/UMCommon.h>
 #import <UserNotifications/UserNotifications.h>
 #import "BTKeychain.h"
-#import <WXApi.h>
+#import "WXApiManager.h"
 
 @interface AppDelegate () <WXApiDelegate>
 
@@ -30,6 +30,11 @@
     // Override point for customization after application launch.
     
     [BTKeychain saveUUID];
+    
+    [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
+        NSLog(@"log : %@", log);
+    }];
+    
     [WXApi registerApp:WEIXIN_APP_ID universalLink:UNIVERSAL_LINK];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -61,6 +66,19 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler
+{
+    return [WXApi handleOpenUniversalLink:userActivity delegate:[WXApiManager sharedManager]];
 }
 
 - (void)___initTabbars

@@ -177,8 +177,6 @@
 
 - (void)action_button:(UIButton *)button
 {
-    [button setImage:ImageNamed(@"selectbutton") forState:UIControlStateNormal];
-    [button setImage:ImageNamed(@"unselectbutton") forState:UIControlStateHighlighted];
     self.payment = button.tag;
     [self.tableView reloadData];
 }
@@ -210,6 +208,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
     view.backgroundColor = __color_gray_background;
     return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.payment = indexPath.row;
+    [self.tableView reloadData];
 }
 
 

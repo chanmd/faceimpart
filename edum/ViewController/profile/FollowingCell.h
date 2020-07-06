@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *label_bio;
 @property (nonatomic, strong) UIButton *button_follow;
 
+- (void)bindFollowingWithData:(NSDictionary *)data;
+- (void)bindFollowingStatus:(NSInteger)status;
+
 @end
 
 NS_ASSUME_NONNULL_END

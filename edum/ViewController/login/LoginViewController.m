@@ -8,7 +8,6 @@
 
 #import "LoginViewController.h"
 #import "NSDictionary+JSONExtern.h"
-#import "WXApi.h"
 #import "BaseUser.h"
 #import "BaseWebViewController.h"
 #import "VerificationCodeViewController.h"
@@ -16,6 +15,10 @@
 
 #import "TTTAttributedLabel.h"
 #import "AboutContentViewController.h"
+
+#import "WXApiRequestHandler.h"
+//#import "WXApi.h"
+#import "WXApiManager.h"
 
 #define kAuthScope @"snsapi_userinfo"
 #define kAuthState @"xxx"
@@ -344,6 +347,10 @@
 {
     if ([WXApi isWXAppInstalled]) {
         
+        [WXApiRequestHandler sendAuthRequestScope: kAuthScope
+                   State:kAuthState
+                  OpenID:kAuthOpenID
+        InViewController:self];
         
         
     } else {
@@ -369,7 +376,7 @@
 - (void)upload_userinfo_wx:(NSString *)code
 {
     WeakSelf;
-    NSString *url = [NSString stringWithFormat:@"%@/wx", SERVER_DOMAIN];
+    NSString *url = [NSString stringWithFormat:@"%@/login", SERVER_DOMAIN];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     NSDictionary *dic = @{@"code": code};

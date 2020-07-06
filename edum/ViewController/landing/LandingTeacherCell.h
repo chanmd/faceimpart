@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *imageview_right;
 @property (nonatomic, strong) UIButton *button_right;
 
-- (void)bindElementWithData:(NSDictionary *)data;
+- (void)bindTeacherWithData:(NSArray *)data;
 
 @end
 

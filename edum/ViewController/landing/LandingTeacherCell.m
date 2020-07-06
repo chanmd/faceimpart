@@ -58,17 +58,26 @@
     return _button_right;
 }
 
-- (void)bindElementWithData:(NSArray *)data
+- (void)bindTeacherWithData:(NSArray *)data
 {
-    NSDictionary *left = [data objectAtIndex:0];
-    NSDictionary *right = [data objectAtIndex:1];
-    [self.imageview_left sd_setImageWithURL:[NSURL URLWithString:[left stringForKey:@"url"]] placeholderImage:ImageNamed(@"placeholder_half")];
-    
-    if ([[right allKeys] count] > 0) {
-        self.imageview_right.hidden = NO;
-        self.button_right.hidden = NO;
-        [self.imageview_right sd_setImageWithURL:[NSURL URLWithString:[right stringForKey:@"url"]] placeholderImage:ImageNamed(@"placeholder_half")];
+    if (data && [data count] >= 2) {
+        NSDictionary *left = [data objectAtIndex:0];
+        NSDictionary *right = [data objectAtIndex:1];
+        [self.imageview_left sd_setImageWithURL:[NSURL URLWithString:[left stringForKey:@"cover_avatar"]] placeholderImage:ImageNamed(@"placeholder_half")];
+        
+        if ([[right allKeys] count] > 0) {
+            self.imageview_right.hidden = NO;
+            self.button_right.hidden = NO;
+            [self.imageview_right sd_setImageWithURL:[NSURL URLWithString:[right stringForKey:@"cover_avatar"]] placeholderImage:ImageNamed(@"placeholder_half")];
+        } else {
+            self.imageview_right.hidden = YES;
+            self.button_right.hidden = YES;
+        }
+        
     } else {
+        
+        self.imageview_left.hidden = YES;
+        self.button_left.hidden = YES;
         self.imageview_right.hidden = YES;
         self.button_right.hidden = YES;
     }

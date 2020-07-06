@@ -18,8 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) FSCalendar *calendar;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) UIPanGestureRecognizer *scopeGesture;
-@property (nonatomic, strong) NSMutableArray *array_data;
+@property (nonatomic, strong) UIPanGestureRecognizer *scopeGesture;
+@property (nonatomic, strong) NSMutableDictionary *dictionary_data;
+@property (nonatomic, strong) NSString *current_date;
 
 @end
 

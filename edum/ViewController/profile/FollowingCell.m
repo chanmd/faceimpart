@@ -79,4 +79,30 @@
     // Configure the view for the selected state
 }
 
+- (void)bindFollowingWithData:(NSDictionary *)data
+{
+    NSDictionary *user = [data dictionaryForKey:@"user"];
+    self.label_name.text = [user stringForKey:@"name"];
+    self.label_bio.text = [user stringForKey:@"bio"];
+    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[user stringForKey:@"avatar"]] placeholderImage:ImageNamed(@"placeholder_half")];
+    
+    self.imageview_avatar.image = ImageNamed(@"logo_launch");
+    self.label_name.text = @"张天一";
+    self.label_bio.text = @"小提琴 钢琴 乐理";
+    [self bindFollowingStatus:1];
+}
+
+- (void)bindFollowingStatus:(NSInteger)status
+{
+    if (status == 1) {
+        [self.button_follow setTitle:@"已关注" forState:UIControlStateNormal];
+        self.button_follow.layer.backgroundColor = [__color_gray_background CGColor];
+        [self.button_follow setTitleColor:__color_font_placeholder forState:UIControlStateNormal];
+    } else {
+        [self.button_follow setTitle:@"关注" forState:UIControlStateNormal];
+        self.button_follow.layer.backgroundColor = [__color_main CGColor];
+        [self.button_follow setTitleColor:__color_white forState:UIControlStateNormal];
+    }
+}
+
 @end

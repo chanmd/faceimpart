@@ -40,7 +40,7 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, LANDING_COURSE_WIDTH - 65, 30)];
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(30, 15, LANDING_COURSE_WIDTH - 65, 30)];
         _label_title.font = __font(22);
         _label_title.textColor = __color_font_title;
     }
@@ -50,7 +50,7 @@
 - (UIImageView *)imageview_avatar
 {
     if (!_imageview_avatar) {
-        _imageview_avatar = [[UIImageView alloc] initWithFrame:CGRectMake(50, 53, 46, 46)];
+        _imageview_avatar = [[UIImageView alloc] initWithFrame:CGRectMake(30, 53 + 3, 46, 46)];
         _imageview_avatar.layer.masksToBounds = YES;
         _imageview_avatar.layer.cornerRadius = 23;
     }
@@ -60,7 +60,7 @@
 - (UILabel *)label_name
 {
     if (!_label_name) {
-        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, 55, APPScreenWidth - 100, 18)];
+        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, 55 + 3, APPScreenWidth - 100, 18)];
         _label_name.font = __font(16);
         _label_name.textColor = __color_font_title;
     }
@@ -100,22 +100,18 @@
 }
 
 
-- (void)bindElementWithData:(NSDictionary *)data
+- (void)bindCourseWithData:(NSDictionary *)data
 {
-    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[data stringForKey:@"url"]] placeholderImage:ImageNamed(@"logo_launch")];
-    self.label_title.text = [NSString stringWithFormat:@"  %@", [data stringForKey:@"title"]];
-    self.label_name.text = [data stringForKey:@"name"];
-    self.label_bio.text = [data stringForKey:@"bio"];
-    self.label_price.text = [data stringForKey:@"price"];
-    self.label_price_fake.text = [data stringForKey:@"price_fake"];
+    NSDictionary *user = [data dictionaryForKey:@"user"];
+    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[user stringForKey:@"avatar"]] placeholderImage:ImageNamed(@"logo_launch")];
+    self.label_name.text = [user stringForKey:@"name"];
+    self.label_bio.text = [user stringForKey:@"bio"];
     
-    self.label_title.text = @"钢琴课基础指法练习";
-    self.label_name.text = @"张天一";
-    self.label_bio.text = @"钢琴家 教育家";
-    self.label_price.text = @"¥20000";
-    self.label_price_fake.text = [data stringForKey:@"price_fake"];
+    self.label_title.text = [NSString stringWithFormat:@"%@", [data stringForKey:@"title"]];
+    self.label_price.text = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"price"]];
+    
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥39999" attributes:attribtDic];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@", [data stringForKey:@"oprice"]] attributes:attribtDic];
     self.label_price_fake.attributedText = attribtStr;
 }
 

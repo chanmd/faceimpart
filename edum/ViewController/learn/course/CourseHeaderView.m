@@ -153,9 +153,10 @@
 
 - (void)bindCourseHeader:(NSDictionary *)data
 {
+    NSDictionary *user = [data dictionaryForKey:@"user"];
     self.label_price.text = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"price"]];
     NSString *oprice = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"oprice"]];
-    self.label_appiontment.text = [NSString stringWithFormat:@"%@人已约课", [data stringForKey:@"reserveCount"]];
+//    self.label_appiontment.text = [NSString stringWithFormat:@"%@人已约课", [data stringForKey:@"reserveCount"]];
     self.label_price.width = 100;
     [self.label_price sizeToFit];
     self.label_price_fake.left = self.label_price.right + 5;
@@ -163,13 +164,13 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:oprice attributes:attribtDic];
     self.label_price_fake.attributedText = attribtStr;
-    self.label_price_fake.top = self.label_price.bottom - 19;
+    self.label_price_fake.top = self.label_price.bottom - 22;
     self.label_appiontment.top = self.label_price.bottom - 20;
     
-    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[data stringForKey:@"teacherUrl"]] placeholderImage:ImageNamed(@"logo_launch")];
-    self.label_name.text = [data stringForKey:@"teacherName"];
+    [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[user stringForKey:@"avatar"]] placeholderImage:ImageNamed(@"logo_launch")];
+    self.label_name.text = [user stringForKey:@"name"];
     self.label_bio.text = @"暂无简介";
-    self.label_title.text = [data stringForKey:@"name"];
+    self.label_title.text = [data stringForKey:@"title"];
     self.label_title.width = APPScreenWidth - 30;
     [self.label_title sizeToFit];
 }

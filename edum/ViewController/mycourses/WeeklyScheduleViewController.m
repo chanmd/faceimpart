@@ -18,7 +18,6 @@
 @property (nonatomic, strong) WeeklyScheduleHeaderView *header;
 @property (nonatomic, strong) UIView *emptyView;
 @property (nonatomic, strong) UIButton *button_login;
-
 @property (nonatomic, strong) UIView *view_empty_data;
 
 
@@ -51,14 +50,13 @@
     // For UITest
     self.calendar.accessibilityIdentifier = @"calendar";
     
-    [self simulate_data];
 //    self.emptyView.hidden = NO;
     
 //    self.tableView.hidden = YES;
 //    self.header.hidden = YES;
 //    self.calendar.hidden = YES;
     
-    [self.tableView reloadData];
+    
 }
 
 - (void)dealloc
@@ -72,6 +70,11 @@
     [super viewWillAppear:animated];
 //    self.navigationController.navigationBar.hidden = YES;
     [self.button_b setImage:ImageNamed(@"calendar_highlight") forState:UIControlStateNormal];
+    
+    self.current_date = [self.dateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"today---------%@--------------", self.current_date);
+    
+    [self fetch_weekly_calendar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -85,7 +88,7 @@
 {
     if (!_dateFormatter) {
         _dateFormatter = [[NSDateFormatter alloc] init];
-        _dateFormatter.dateFormat = @"yyyy/MM/dd";
+        _dateFormatter.dateFormat = @"yyyy-MM-dd";
     }
     return _dateFormatter;
 }
@@ -186,12 +189,12 @@
     return _tableView;
 }
 
-- (NSMutableArray *)array_data
+- (NSMutableDictionary *)dictionary_data
 {
-    if (!_array_data) {
-        _array_data = [[NSMutableArray alloc] init];
+    if (!_dictionary_data) {
+        _dictionary_data = [[NSMutableDictionary alloc] init];
     }
-    return _array_data;
+    return _dictionary_data;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -242,6 +245,8 @@
     if (monthPosition == FSCalendarMonthPositionNext || monthPosition == FSCalendarMonthPositionPrevious) {
         [calendar setCurrentPage:date animated:YES];
     }
+    self.current_date = [self.dateFormatter stringFromDate:date];
+    [self.tableView reloadData];
 }
 
 - (void)calendarCurrentPageDidChange:(FSCalendar *)calendar
@@ -251,7 +256,9 @@
 
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
-    NSLog(@"did select date %@",[self.dateFormatter stringFromDate:date]);
+//    NSLog(@"============did select date============= %@",[self.dateFormatter stringFromDate:date]);
+//    self.current_date = [self.dateFormatter stringFromDate:date];
+//    [self.tableView reloadData];
 }
 
 #pragma mark calendar appearance
@@ -279,7 +286,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.array_data count];
+    return [[self.dictionary_data arrayForKey:self.current_date] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -299,8 +306,12 @@
     if (!cell) {
         cell = [[DailyScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSDictionary *daily = [self.array_data objectAtIndex:indexPath.row];
-    [cell bindDailyData:daily];
+    NSLog(@"cell---------------%@------------", self.current_date);
+    NSArray *array = [self.dictionary_data arrayForKey:self.current_date];
+    if (array) {
+        NSDictionary *daily = [array objectAtIndex:indexPath.row];
+        [cell bindDailyData:daily];
+    }
     return cell;
 }
 
@@ -327,62 +338,24 @@
     return [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
 }
 
-- (void)___fetch_category
+- (void)fetch_weekly_calendar
 {
-    
-//    WeakSelf;
-//    [AFR requestWithUrl:REQUEST_LANDING_LIST
-//             httpmethod:@"POST"
-//                 params:[NSMutableDictionary dictionary]
-//          finishedBlock:^(id responseObject){
-//        NSLog(@"");
-//        NSDictionary *tempDic = (NSDictionary *)responseObject;
-//        [tempDic dictionaryForKey:@"data"];
-//        [weakSelf.tableview_right.mj_header endRefreshing];
-//        if ([[tempDic objectForKey:@"code"] integerValue] == 0) {
-//
-//            NSDictionary *data = [tempDic dictionaryForKey:@"data"];
-//            [weakSelf.bannerview bindData:data];
-//            weakSelf.tableview_right.tableHeaderView = nil;
-//            weakSelf.tableview_right.tableHeaderView = weakSelf.bannerview;
-//            weakSelf.array_filter = [data arrayForKey:@"titles"];
-//            weakSelf.array_data_right = [data arrayForKey:@"contents"];
-//            [weakSelf.tableview_right reloadData];
-//        }
-//        [weakSelf.tableview_right reloadData];
-//    }
-//            failedBlock:^(NSError *errorInfo){
-//        NSLog(@"");
-//        [weakSelf.tableview_right.mj_header endRefreshing];
-//        [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
-//    }];
-    
-}
-
-- (void)simulate_data
-{
-    NSArray * array  = @[
-            @{
-                @"id": @"13",
-                @"title": @"大提琴基础练习大提琴基础练习",
-                @"time": @"10:00 - 11:00",
-                @"status": @"3",
-              },
-            @{
-              @"id": @"13",
-              @"title": @"大提琴基础练习大提琴基础练习",
-              @"time": @"12:00 - 13:00",
-              @"status": @"2",
-            },
-            @{
-              @"id": @"13",
-              @"title": @"大提琴基础练习大提琴基础练习",
-              @"time": @"15:00 - 16:00",
-              @"status": @"1",
-            },
-    ];
-    
-    self.array_data = [[NSMutableArray alloc] initWithArray:array];
+    NSDictionary *parms = @{@"token": @"", @"user_id": @"user_id"};
+    WeakSelf;
+    [AFR requestWithUrl:REQUEST_CALENDAR_LIST
+             httpmethod:@"POST"
+                 params:[NSMutableDictionary dictionaryWithDictionary:parms]
+          finishedBlock:^(id responseObject){
+            NSDictionary *tempDic = (NSDictionary *)responseObject;
+            if (![[tempDic objectForKey:@"error"] boolValue]) {
+                NSDictionary *data = [tempDic dictionaryForKey:@"data"];
+                weakSelf.dictionary_data = [NSMutableDictionary dictionaryWithDictionary:data];
+                [weakSelf.tableView reloadData];
+            }
+        }
+            failedBlock:^(NSError *errorInfo){
+        [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
+    }];
 }
 
 @end

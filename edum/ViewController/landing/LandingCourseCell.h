@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *label_price;
 @property (nonatomic, strong) UILabel *label_price_fake;
 
-- (void)bindElementWithData:(NSDictionary *)data;
+- (void)bindCourseWithData:(NSDictionary *)data;
 
 @end
 

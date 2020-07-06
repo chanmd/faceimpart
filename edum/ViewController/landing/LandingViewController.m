@@ -19,8 +19,9 @@
 #import "LandingTeacherCell.h"
 #import "LandingCourseCell.h"
 #import "BannerView.h"
-
+#import "TeacherViewController.h"
 #import "CourseViewController.h"
+#import "NSObject+YYAdditions.h"
 
 #define MAIN_HEIGHT APPScreenHeight - BASE_VIEW_Y - 20 - 49 - SafeAreaBottomHeight - 40
 
@@ -66,7 +67,7 @@
     [self.view addSubview:self.segmentedControl];
     [self.view addSubview:self.scrollview];
     self.array_header_titles = [NSMutableArray arrayWithArray:@[@"推荐老师", @"精选课程"]];
-    [self ___fetch_category];
+    [self fetch_landing];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -251,11 +252,6 @@
     return _tableview_violincello;
 }
 
-- (void)action_refresh
-{
-    
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat index = scrollView.contentOffset.x / APPScreenWidth;
@@ -274,7 +270,7 @@
         return 0;
     }
     if (section == SECTION_TYPE_TEACHER) {
-        return [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_TEACHER] count];
+        return 1;
     } else if (section == SECTION_TYPE_COURSE) {
         return [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_COURSE] count];
     }
@@ -338,12 +334,15 @@
         if (indexPath.section == SECTION_TYPE_TEACHER) {
             
         } else if (indexPath.section == SECTION_TYPE_COURSE) {
-            
             NSDictionary *course_dictionary = [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_COURSE] objectAtIndex:indexPath.row];
             CourseViewController *courseview = [[CourseViewController alloc] init];
-            courseview.course_id = [course_dictionary stringIntForKey:@"id"];
-            [self.navigationController pushViewController:courseview animated:YES];
-            
+            NSString *course_id = [course_dictionary stringIntForKey:@"course_id"];
+            if (course_id) {
+                courseview.course_id = course_id;
+                [self.navigationController pushViewController:courseview animated:YES];
+            } else {
+                //DO NOTHING
+            }
         }
     }
 }
@@ -355,9 +354,23 @@
     if (!cell) {
         cell = [[LandingTeacherCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSDictionary *dictionary = [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_TEACHER] objectAtIndex:indexPath.row];
-    [cell bindElementWithData:dictionary];
+    NSArray *array = [[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_TEACHER];
+    if ([array count] >= 2) {
+        [cell.button_left addTarget:self action:@selector(action_top_teacher:) forControlEvents:UIControlEventTouchUpInside];
+        DYY_setYYUserInfo(cell.button_left, [array[0] stringForKey:@"user_id"]);
+        DYY_setYYUserInfo(cell.button_right, [array[1] stringForKey:@"user_id"]);
+        [cell.button_right addTarget:self action:@selector(action_top_teacher:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [cell bindTeacherWithData:array];
     return cell;
+}
+
+- (void)action_top_teacher:(UIButton *)button
+{
+    NSString *user_id = DYY_getYYUserInfo(button);
+    TeacherViewController *teacher = [[TeacherViewController alloc] init];
+    teacher.user_id = user_id;
+    [self.navigationController pushViewController:teacher animated:YES];
 }
 
 - (LandingCourseCell *)tableView:(UITableView *)tableView _courseCellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -368,7 +381,7 @@
         cell = [[LandingCourseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     NSDictionary *dictionary = [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_COURSE] objectAtIndex:indexPath.row];
-    [cell bindElementWithData:dictionary];
+    [cell bindCourseWithData:dictionary];
     return cell;
 }
 
@@ -407,64 +420,50 @@
 
 #pragma mark - actions
 
-- (void)___action_sight_detail:(NSInteger)index withSection:(NSInteger)section
-{
-    NSLog(@"第%ld列:第%ld行", section, index);
-//    if (section == SECTION_TYPE_TEACHER) {
-//        [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_TEACHER] objectAtIndex:index];
-//    } else if (section == SECTION_TYPE_COURSE) {
-//        [[[self dictionary_data:tableView.tag] arrayForKey:SECTION_KEY_COURSE] objectAtIndex:index];
-//    }
-}
-
 - (void)___action_header_readall:(UIButton *)button
 {
     NSInteger tag = button.tag;
     if (tag == SECTION_TYPE_TEACHER) {
         TopTeacherViewController *topteacher = [[TopTeacherViewController alloc] init];
+        topteacher.category = self.segmentedControl.selectedSegmentIndex;
         [self.navigationController pushViewController:topteacher animated:YES];
     } else if (tag == SECTION_TYPE_COURSE) {
         TopCourseViewController *topcourse = [[TopCourseViewController alloc] init];
+        topcourse.category = self.segmentedControl.selectedSegmentIndex;
         [self.navigationController pushViewController:topcourse animated:YES];
     }
 }
 
-- (void)___action_refresh
+- (void)action_refresh
 {
-    [self ___fetch_category];
+    [self fetch_landing];
 }
 
-- (void)action_button:(UIButton *)button
-{
-//    NSInteger index = button.tag;
-//    NSDictionary *dic = [self.array_filter objectAtIndex:index];
-//    NSString *collection_id = [dic stringForKey:@"collection_id"];
-//    CityCollectionViewController *collectionvc = [[CityCollectionViewController alloc] init];
-//    collectionvc.collection_id = collection_id;
-//    collectionvc.title = [dic stringForKey:@"name"];
-//    [self.navigationController pushViewController:collectionvc animated:YES];
-}
-
-- (void)___fetch_category
+- (void)fetch_landing
 {
     WeakSelf;
     [AFR requestWithUrl:REQUEST_LANDING_LIST
              httpmethod:@"POST"
                  params:[NSMutableDictionary dictionary]
           finishedBlock:^(id responseObject){
-        NSLog(@"");
         NSDictionary *tempDic = (NSDictionary *)responseObject;
         [weakSelf.tableview_selected.mj_header endRefreshing];
-        if ([[tempDic objectForKey:@"code"] integerValue] == 200) {
+        if (![[tempDic objectForKey:@"error"] boolValue]) {
             
             NSDictionary *data = [tempDic dictionaryForKey:@"data"];
-            [weakSelf.bannerview bindData:[data arrayForKey:SECTION_KEY_BANNER]];
+            NSDictionary *top = [data dictionaryForKey:@"top"];
+            NSDictionary *piano = [data dictionaryForKey:@"piano"];
+            NSDictionary *violin = [data dictionaryForKey:@"violin"];
+            NSDictionary *violincello = [data dictionaryForKey:@"violincello"];
+            
+            [weakSelf.bannerview bindData:[top arrayForKey:SECTION_KEY_BANNER]];
             weakSelf.tableview_selected.tableHeaderView = nil;
             weakSelf.tableview_selected.tableHeaderView = weakSelf.bannerview;
-            weakSelf.dictionary_selected_data = [NSMutableDictionary dictionaryWithDictionary:data];
-            weakSelf.dictionary_piano_data = [NSMutableDictionary dictionaryWithDictionary:data];
-            weakSelf.dictionary_violin_data = [NSMutableDictionary dictionaryWithDictionary:data];
-            weakSelf.dictionary_violincello_data = [NSMutableDictionary dictionaryWithDictionary:data];
+            
+            weakSelf.dictionary_selected_data = [NSMutableDictionary dictionaryWithDictionary:top];
+            weakSelf.dictionary_piano_data = [NSMutableDictionary dictionaryWithDictionary:piano];
+            weakSelf.dictionary_violin_data = [NSMutableDictionary dictionaryWithDictionary:violin];
+            weakSelf.dictionary_violincello_data = [NSMutableDictionary dictionaryWithDictionary:violincello];
             
             [weakSelf.tableview_selected reloadData];
             [weakSelf.tableview_piano reloadData];

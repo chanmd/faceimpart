@@ -78,7 +78,7 @@
     for (int i = 0; i < array_data.count; i ++) {
         
         NSDictionary *dic = [array_data objectAtIndex:i];
-        NSString *url = [dic stringForKey:@"url"];
+        NSString *url = [dic stringForKey:@"cover_image"];
         NSString *title = [dic stringForKey:@"title"];
         CategoryView *category = [[CategoryView alloc] initWithFrame:CGRectMake(APPScreenWidth * i, 0, APPScreenWidth, BANNER_HEIGHT)];
         category.label_title.text = title;
