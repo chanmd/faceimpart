@@ -97,6 +97,7 @@
 #define RESPONSE_NONE @"没有更多了"
 
 
+
 #define __LOGIN @"login"
 #define __LOGOUT @"logout"
 

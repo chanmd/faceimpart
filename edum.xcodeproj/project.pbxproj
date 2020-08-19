@@ -182,6 +182,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A02B2C524ED4F840067C182 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0A15197023F1153C00692178 /* 音湃.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "音湃.entitlements"; sourceTree = "<group>"; };
 		0A15197123F2644200692178 /* ZhenCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhenCell.h; sourceTree = "<group>"; };
 		0A15197223F2644200692178 /* ZhenCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhenCell.m; sourceTree = "<group>"; };
@@ -666,6 +667,7 @@
 				0A7625512109A8AF0054C4A4 /* Info.plist */,
 				0A7625522109A8AF0054C4A4 /* main.m */,
 				0A7F92A423DC264200557E4D /* keychain.plist */,
+				0A02B2C524ED4F840067C182 /* PrefixHeader.pch */,
 			);
 			path = edum;
 			sourceTree = "<group>";
