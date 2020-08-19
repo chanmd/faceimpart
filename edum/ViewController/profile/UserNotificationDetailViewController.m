@@ -37,7 +37,7 @@
         _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPFullScreenHeight + 44)];
         [_scrollview addSubview:self.label_title];
         [_scrollview addSubview:self.label_content];
-        [_scrollview addSubview:self.label_time];
+//        [_scrollview addSubview:self.label_time];
     }
     return _scrollview;
 }
@@ -85,11 +85,11 @@
     CGFloat title_height = [UILabel text:[data objectForKey:@"title"] font:__fontlight(18) width:APPScreenWidth - 30 lineSpacing:3];
     
     self.label_content.top = self.label_title.bottom + 15;
-    [self.label_content setText:[data objectForKey:@"subtitle"] lineSpacing:5];
+    [self.label_content setText:[data objectForKey:@"content"] lineSpacing:5];
     [self.label_content sizeToFit];
-    CGFloat height = [UILabel text:[data objectForKey:@"subtitle"] font:__fontlight(16) width:APPScreenWidth - 30 lineSpacing:5];
+    CGFloat height = [UILabel text:[data objectForKey:@"content"] font:__fontlight(16) width:APPScreenWidth - 30 lineSpacing:5];
     
-    self.label_time.text = [data objectForKey:@"time"];
+    self.label_time.text = [data objectForKey:@"created_at"];
     self.label_time.top = self.label_content.bottom + 15;
     self.scrollview.contentSize = CGSizeMake(APPScreenWidth, height + 44 + 30 + title_height + 40);
 }

@@ -9,6 +9,7 @@
 #import "WeeklyScheduleViewController.h"
 #import "DailyScheduleCell.h"
 #import "WeeklyScheduleHeaderView.h"
+#import "VideoCallViewController.h"
 
 @interface WeeklyScheduleViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 {
@@ -55,6 +56,8 @@
 //    self.tableView.hidden = YES;
 //    self.header.hidden = YES;
 //    self.calendar.hidden = YES;
+    self.current_date = [self.dateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"today---------%@--------------", self.current_date);
     
     
 }
@@ -68,19 +71,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
     [self.button_b setImage:ImageNamed(@"calendar_highlight") forState:UIControlStateNormal];
-    
-    self.current_date = [self.dateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"today---------%@--------------", self.current_date);
-    
     [self fetch_weekly_calendar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
 //    [MobClick endLogPageView:@"mainview"];
 }
 
@@ -306,11 +305,16 @@
     if (!cell) {
         cell = [[DailyScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSLog(@"cell---------------%@------------", self.current_date);
     NSArray *array = [self.dictionary_data arrayForKey:self.current_date];
     if (array) {
         NSDictionary *daily = [array objectAtIndex:indexPath.row];
-        [cell bindDailyData:daily];
+        WeakSelf;
+        cell.daily = daily;
+        cell.enteryCall = ^(NSDictionary *data) {
+            VideoCallViewController *call = [[VideoCallViewController alloc] init];
+            call.course_data = daily;
+            [weakSelf.navigationController pushViewController:call animated:YES];
+        };
     }
     return cell;
 }
@@ -321,6 +325,34 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray *array = [self.dictionary_data arrayForKey:self.current_date];
+    if (array) {
+        NSDictionary *daily = [array objectAtIndex:indexPath.row];
+        
+        NSString *start_time_string = [daily stringForKey:@"start_time"];
+        NSString *end_time_string = [daily stringForKey:@"end_time"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *start_time = [formatter dateFromString:start_time_string];
+        NSDate *end_time = [formatter dateFromString:end_time_string];
+        NSInteger status = 0;
+        NSDate *current_time = [NSDate date];
+        NSComparisonResult result_start = [start_time compare:current_time];
+        NSComparisonResult result_end = [end_time compare:current_time];
+        if (result_start == NSOrderedAscending && result_end == NSOrderedDescending) {
+                status = 2;
+        } else if (result_start == NSOrderedDescending) {
+                status = 1;
+        } else if (result_end == NSOrderedAscending) {
+                status = 3;
+        }
+        if (status < 3) {
+            VideoCallViewController *call = [[VideoCallViewController alloc] init];
+            call.course_data = daily;
+            self.navigationController.navigationBar.hidden = YES;
+            [self.navigationController pushViewController:call animated:NO];
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -340,11 +372,10 @@
 
 - (void)fetch_weekly_calendar
 {
-    NSDictionary *parms = @{@"token": @"", @"user_id": @"user_id"};
     WeakSelf;
     [AFR requestWithUrl:REQUEST_CALENDAR_LIST
              httpmethod:@"POST"
-                 params:[NSMutableDictionary dictionaryWithDictionary:parms]
+                 params:[NSMutableDictionary dictionary]
           finishedBlock:^(id responseObject){
             NSDictionary *tempDic = (NSDictionary *)responseObject;
             if (![[tempDic objectForKey:@"error"] boolValue]) {

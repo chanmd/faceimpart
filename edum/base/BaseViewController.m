@@ -31,8 +31,8 @@
 
 - (void)setupNavigation
 {
-////    self.navigationController.navigationBar.tintColor = [UIColor colorWithHEX:0xffffff];
-//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor], NSFontAttributeName: __fontlight(16)};
+//    self.navigationController.navigationBar.tintColor = [UIColor colorWithHEX:0xffffff];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __fontthin(18)};
 }
 
 - (void)clearBackBarButtonItemTitle

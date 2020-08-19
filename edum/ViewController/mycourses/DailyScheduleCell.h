@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *label_name;
 @property (nonatomic, strong) UILabel *label_bio;
 
-- (void)bindDailyData:(NSDictionary *)daily;
+@property (nonatomic, strong) NSDictionary *daily;
+
+@property (nonatomic,copy) void(^enteryCall)(NSDictionary *data);
 
 @end
 

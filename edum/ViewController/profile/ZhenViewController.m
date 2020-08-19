@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = __color_white;
-    if ([BASEUSER loginstatus]) {
+    if ([BASEUSER isLogin]) {
         self.title = BASEUSER.nickname;
     }
 //    [self setupSetting];
@@ -146,12 +146,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    CGRect frame = CGRectMake(0, 0, 0, CGFLOAT_MIN);
+    CGRect frame = CGRectMake(0, 0, 0, 15);
     UIView *view = [[UIView alloc] initWithFrame:frame];
     return view;
 }
@@ -166,7 +166,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.01;
+    return 15;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -214,9 +214,9 @@
     if (!_array_data) {
         NSArray *array = @[@[
                                @[@"musicnote", @"我的课程", @"action_course"],
-                               @[@"study", @"我的关注", @"action_following"],
+//                               @[@"study", @"我的关注", @"action_following"],
                                @[@"remainder", @"我的消息", @"action_message"],
-                               @[@"teacher", @"我是老师", @"action_teacher"],
+//                               @[@"teacher", @"我是老师", @"action_teacher"],
 //                               @[@"customer", @"客服中心", @"action_customer"],
                                @[@"setting", @"设置", @"action_setting"]
                              ]];
@@ -263,7 +263,7 @@
 
 - (void)action_avatar
 {
-    if ([BASEUSER loginstatus]) {
+    if ([BASEUSER isLogin]) {
         [self action_profile];
     } else {
         [self action_login];
@@ -325,7 +325,7 @@
 
 - (void)headview_status
 {
-    if ([BASEUSER loginstatus]) {
+    if ([BASEUSER isLogin]) {
         
         NSString *avatar_url = BASEUSER.headimgurl;
         WeakSelf;

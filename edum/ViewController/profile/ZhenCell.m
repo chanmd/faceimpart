@@ -24,7 +24,7 @@
 - (UIImageView *)imageview_cover
 {
     if (!_imageview_cover) {
-        _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(20, 17, 26, 26)];
+        _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 20, 20)];
     }
     return _imageview_cover;
 }
@@ -32,9 +32,9 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(59, 17, 200, 26)];
-        _label_title.font = __font(18);
-        _label_title.textColor = __color_font_title;
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(59, 15, 200, 20)];
+        _label_title.font = __fontthin(18);
+        _label_title.textColor = __color_font_subtitle;
         _label_title.textAlignment = NSTextAlignmentLeft;
     }
     return _label_title;

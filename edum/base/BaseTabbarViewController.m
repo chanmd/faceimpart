@@ -132,7 +132,7 @@
 - (void)___action_c
 {
     [self.tabBarController setSelectedIndex:2];
-//    if ([BASEUSER loginstatus]) {
+//    if ([BASEUSER isLogin]) {
 //        [self.tabBarController setSelectedIndex:2];
 //    } else {
 //        LoginViewController *login = [[LoginViewController alloc] init];
@@ -143,7 +143,7 @@
 - (void)___action_d
 {
     [self.tabBarController setSelectedIndex:3];
-//    if ([BASEUSER loginstatus]) {
+//    if ([BASEUSER isLogin]) {
 //        [self.tabBarController setSelectedIndex:3];
 //    } else {
 //        LoginViewController *login = [[LoginViewController alloc] init];

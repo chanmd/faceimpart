@@ -44,7 +44,7 @@
     if (!_label_title) {
         _label_title = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, APPScreenWidth - 60, 18)];
         _label_title.font = __fontlight(20);
-        _label_title.textColor = __color_font_subtitle;
+        _label_title.textColor = __color_font_title;
     }
     return _label_title;
 }
@@ -61,9 +61,9 @@
 - (UILabel *)label_time
 {
     if (!_label_time) {
-        _label_time = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_time.right + 10, self.label_title.bottom + 14, APPScreenWidth - 30, 15)];
-        _label_time.font = __fontlight(14);
-        _label_time.textColor = __color_font_placeholder;
+        _label_time = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_time.right + 5, self.label_title.bottom + 14, APPScreenWidth - 30, 15)];
+        _label_time.font = __fontthin(14);
+        _label_time.textColor = __color_font_subtitle;
     }
     return _label_time;
 }
@@ -73,7 +73,7 @@
     if (!_button_status) {
         _button_status = [UIButton buttonWithType:UIButtonTypeCustom];
         _button_status.frame = CGRectMake(APPScreenWidth - 45 - 40, 15, 40, 40);
-        [_button_status setBackgroundImage:ImageNamed(@"processing") forState:UIControlStateNormal];
+        [_button_status addTarget:self action:@selector(action_call:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button_status;
 }
@@ -105,7 +105,7 @@
 - (UILabel *)label_name
 {
     if (!_label_name) {
-        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, 10, APPScreenWidth - 100, 18)];
+        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, 12, APPScreenWidth - 100, 18)];
         _label_name.font = __fontthin(14);
         _label_name.textColor = __color_font_title;
     }
@@ -115,44 +115,55 @@
 - (UILabel *)label_bio
 {
     if (!_label_bio) {
-        _label_bio = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, self.label_name.bottom, APPScreenWidth - 100, 18)];
+        _label_bio = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, self.label_name.bottom + 2, APPScreenWidth - 100, 18)];
         _label_bio.font = __fontthin(12);
-        _label_bio.textColor = __color_font_placeholder;
+        _label_bio.textColor = __color_font_subtitle;
     }
     return _label_bio;
 }
 
-- (void)bindDailyData:(NSDictionary *)daily
+- (void)action_call:(UIButton *)button
 {
+    NSInteger status = button.tag;
+    if (status < 3) {
+        if (self.enteryCall) {
+            self.enteryCall(self.daily);
+        }
+    }
+}
+
+- (void)setDaily:(NSDictionary *)daily
+{
+    _daily = daily;
     NSDictionary *user = [daily dictionaryForKey:@"user"];
     NSDictionary *course = [daily dictionaryForKey:@"course"];
     self.label_time.text = [daily stringForKey:@"start_time"];
     self.label_title.text = [course stringForKey:@"title"];
-    
+        
     NSString *start_time_string = [daily stringForKey:@"start_time"];
+    NSString *end_time_string = [daily stringForKey:@"end_time"];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSDateFormatter *display_formatter = [[NSDateFormatter alloc] init];
-//    [display_formatter setDateFormat:@"HH:mm:ss"];
-    
     NSDate *start_time = [formatter dateFromString:start_time_string];
+    NSDate *end_time = [formatter dateFromString:end_time_string];
     NSInteger status = 0;
-    NSComparisonResult date_result = [start_time compare:[NSDate date]];
-    switch (date_result) {
-        case NSOrderedAscending:
+    NSDate *current_time = [NSDate date];
+    NSComparisonResult result_start = [start_time compare:current_time];
+    NSComparisonResult result_end = [end_time compare:current_time];
+    if (result_start == NSOrderedAscending && result_end == NSOrderedDescending) {
             status = 2;
-            break;
-        case NSOrderedDescending:
+    } else if (result_start == NSOrderedDescending) {
             status = 1;
-            break;
-        default:
-            break;
+    } else if (result_end == NSOrderedAscending) {
+            status = 3;
     }
-    [self bindScheduleStatus:status];
     
+    self.label_time.textColor = __color_font_subtitle;
+    [self bindScheduleStatus:status];
     [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[user stringForKey:@"avatar"]] placeholderImage:ImageNamed(@"logo_launch")];
     self.label_name.text = [user stringForKey:@"name"];
     self.label_bio.text = [user stringForKey:@"bio"];
+    self.button_status.tag = status;
 }
 
 - (void)awakeFromNib {
@@ -163,12 +174,19 @@
 - (void)bindScheduleStatus:(NSInteger )status
 {
     if (status == 1) {
+        self.button_status.tag = status;
         self.button_status.hidden = NO;
-        [self.button_status setBackgroundImage:ImageNamed(@"processing") forState:UIControlStateNormal];
+        [self.button_status setBackgroundImage:ImageNamed(@"waitingclass") forState:UIControlStateNormal];
         
     } else if (status == 2) {
         self.button_status.hidden = NO;
+        [self.button_status setBackgroundImage:ImageNamed(@"processing") forState:UIControlStateNormal];
+        self.label_time.textColor = __color_red;
+        
+    } else if (status == 3){
+        self.button_status.hidden = NO;
         [self.button_status setBackgroundImage:ImageNamed(@"ended") forState:UIControlStateNormal];
+        
     } else {
         self.button_status.hidden = YES;
     }

@@ -13,5 +13,6 @@ target 'edum' do
   pod 'FDFullscreenPopGesture'
   pod 'FSCalendar'
   pod 'WechatOpenSDK'
+  pod 'AgoraRtcEngine_iOS'
   
 end

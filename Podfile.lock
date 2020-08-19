@@ -14,17 +14,19 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AgoraRtcEngine_iOS (3.0.1.1)
   - FDFullscreenPopGesture (1.1)
   - FSCalendar (2.8.1)
   - MBProgressHUD (1.2.0)
-  - MJRefresh (3.3.1)
-  - SDWebImage (5.5.2):
-    - SDWebImage/Core (= 5.5.2)
-  - SDWebImage/Core (5.5.2)
-  - WechatOpenSDK (1.8.6)
+  - MJRefresh (3.4.3)
+  - SDWebImage (5.8.3):
+    - SDWebImage/Core (= 5.8.3)
+  - SDWebImage/Core (5.8.3)
+  - WechatOpenSDK (1.8.7.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - AgoraRtcEngine_iOS
   - FDFullscreenPopGesture
   - FSCalendar
   - MBProgressHUD
@@ -35,6 +37,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - AgoraRtcEngine_iOS
     - FDFullscreenPopGesture
     - FSCalendar
     - MBProgressHUD
@@ -44,13 +47,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AgoraRtcEngine_iOS: 8ccceaaecff2e80ab28fcd33f3dfd2b417eb5365
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
-  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
-  WechatOpenSDK: 368ae03b72ee3ea1328c4f11326fbb5d2721d118
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
 
-PODFILE CHECKSUM: e3d0790901725ecbda997812263ca5806a8a5efa
+PODFILE CHECKSUM: 2c4f59846853c304ecf0e823cd8fbc377f5a1246
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

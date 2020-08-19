@@ -31,9 +31,7 @@
 @property (nonatomic, copy) NSDictionary *user;
 @property (nonatomic, copy) NSDictionary *teacher;
 
-- (BOOL)loginstatus;
-
-- (NSString *)user_avatar;
+- (BOOL)isLogin;
 
 - (void)destory_all;
 

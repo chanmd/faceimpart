@@ -11,9 +11,9 @@
 @implementation UrlConstants
 
 //NSString *const BASE_URL = @"http://www.klavier.cn";
-//NSString *const BASE_URL = @"http://192.168.31.112";
-//NSString *const BASE_URL = @"http://192.168.31.112";
-NSString *const BASE_URL = @"http://localhost:8000";
+//NSString *const BASE_URL = @"http://192.168.109.34:8000";
+NSString *const BASE_URL = @"http://192.168.31.112:8000";
+//NSString *const BASE_URL = @"http://localhost:8000";
 NSString *const BASE_PLATFORM = @"ios";
 NSString *const BASE_VERSION = @"v0.0.1";
 
@@ -34,7 +34,7 @@ NSString *const REQUEST_COURSE = @"course";
 
 NSString *const REQUEST_LANDING_NEWS = @"landing/news";//新闻列表页
 
-NSString *const REQUEST_COURSE_DETAIL = @"data/getCourseById";
+NSString *const REQUEST_COURSE_DETAIL = @"getCourseById";
 
 
 NSString *const REQUEST_CALENDAR_LIST = @"weekly_calendar";//课程列表
@@ -43,6 +43,9 @@ NSString *const REQUEST_CALENDAR_WEEK = @"calendar/week";//课程一周列表
 NSString *const REQUEST_CALENDAR_DETAIL = @"calendar/detail";//课程详情
 NSString *const REQUEST_CALENDAR_ADD = @"calendar/add";//老师添加日历
 NSString *const REQUEST_CALENDAR_COURSE = @"calendar/add-course";//学生选课
+
+NSString *const REQUEST_USER_NOTIFICATION = @"notification";
+NSString *const REQUEST_ALL_COURESE = @"all_courses";
 
 NSString *const REQUEST_PROFILE = @"profile/user";//个人信息查看编辑
 NSString *const REQUEST_PROFILE_LIST = @"profile/list";//个人详情

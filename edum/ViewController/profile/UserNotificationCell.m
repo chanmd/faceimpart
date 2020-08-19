@@ -8,6 +8,7 @@
 
 #import "UserNotificationCell.h"
 #import "UILabel+LineSpace.h"
+#import "NSDate+Category.h"
 
 @implementation UserNotificationCell
 
@@ -21,6 +22,20 @@
         [self.contentView addSubview:self.view_container];
     }
     return self;
+}
+
+- (UILabel *)label_datetime
+{
+    if (!_label_datetime) {
+        _label_datetime = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 150, 22)];
+        _label_datetime.font = __font(11);
+        _label_datetime.textColor = __color_font_subtitle;
+        _label_datetime.centerX = APPScreenWidth / 2;
+        _label_datetime.textAlignment = NSTextAlignmentCenter;
+        _label_datetime.layer.cornerRadius = 11.f;
+        _label_datetime.layer.backgroundColor = [__color_gray_separator CGColor];
+    }
+    return _label_datetime;
 }
 
 -(UILabel *)newMessageLabel
@@ -38,7 +53,6 @@
     return _newMessageLabel;
 }
 
-
 -(UILabel *)label_title
 {
     if (!_label_title) {
@@ -48,6 +62,20 @@
         _label_title.numberOfLines = 0;
     }
     return _label_title;
+}
+
+- (UIView *)view_container {
+    if (!_view_container){
+        _view_container = [[UIView alloc] initWithFrame:CGRectMake(10, 62, APPScreenWidth - 20, 150)];
+        _view_container.backgroundColor = __color_white;
+        _view_container.layer.cornerRadius = 3;
+        _view_container.layer.masksToBounds = YES;
+        [_view_container addSubview:self.label_title];
+        [_view_container addSubview:self.imageview_accessroy];
+        [_view_container addSubview:self.view_border];
+        [_view_container addSubview:self.label_subtitle];
+    }
+    return _view_container;
 }
 
 - (UIView *)view_border
@@ -70,19 +98,7 @@
     return _label_subtitle;
 }
 
-- (UILabel *)label_datetime
-{
-    if (!_label_datetime) {
-        _label_datetime = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 150, 22)];
-        _label_datetime.font = __font(11);
-        _label_datetime.textColor = __color_font_subtitle;
-        _label_datetime.centerX = APPScreenWidth / 2;
-        _label_datetime.textAlignment = NSTextAlignmentCenter;
-        _label_datetime.layer.cornerRadius = 11.f;
-        _label_datetime.layer.backgroundColor = [__color_gray_separator CGColor];
-    }
-    return _label_datetime;
-}
+
 
 - (UIImageView *)imageview_accessroy
 {
@@ -93,26 +109,20 @@
     return _imageview_accessroy;
 }
 
-- (UIView *)view_container {
-    if (!_view_container){
-        _view_container = [[UIView alloc] initWithFrame:CGRectMake(10, 50, APPScreenWidth - 20, 150)];
-        _view_container.backgroundColor = __color_white;
-        _view_container.layer.cornerRadius = 3;
-        _view_container.layer.masksToBounds = YES;
-        [_view_container addSubview:self.label_title];
-        [_view_container addSubview:self.imageview_accessroy];
-        [_view_container addSubview:self.view_border];
-        [_view_container addSubview:self.label_subtitle];
-    }
-    return _view_container;
-}
-
 - (void)bindUserNotification:(NSDictionary *)message
 {
-    self.label_datetime.text = [message stringForKey:@"time"];
+//    NSDate *date = [NSDate dateFromString:((NSString *)[message stringForKey:@"created_at"]) dateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//    self.label_datetime.text = [NSDate stringWithDescending:date];
+    self.label_datetime.text = [message stringForKey:@"created_at"];
+    [self.label_datetime sizeToFit];
+    self.label_datetime.width = self.label_datetime.width + 26;
+    self.label_datetime.height = 22;
+    self.label_datetime.centerX = APPScreenWidth / 2;
+    
+    
     self.label_title.text = [message stringForKey:@"title"];
     self.label_subtitle.width = APPScreenWidth - 40;
-    [self.label_subtitle setText:[message stringForKey:@"subtitle"] lineSpacing:5];
+    [self.label_subtitle setText:[message stringForKey:@"content"] lineSpacing:5];
     [self.label_subtitle sizeToFit];
     self.view_container.height = self.label_subtitle.bottom + 10;
 }

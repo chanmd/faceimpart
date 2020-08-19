@@ -66,7 +66,7 @@
 {
     if (!_label_name) {
         _label_name = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageview_avatar.bottom + 20, APPScreenWidth, 20)];
-        _label_name.font = __font(20);
+        _label_name.font = __fontthin(18);
         _label_name.textColor = __color_font_title;
         _label_name.textAlignment = NSTextAlignmentCenter;
     }

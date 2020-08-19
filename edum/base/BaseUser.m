@@ -10,9 +10,10 @@
 
 @implementation BaseUser
 
+static BaseUser *_instance;
+
 + (BaseUser *)instance
 {
-    static BaseUser *_instance;
     static dispatch_once_t token;
     
     dispatch_once(&token, ^{
@@ -23,6 +24,16 @@
     
     return _instance;
 }
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        _instance = [super allocWithZone:zone];
+    });
+    return _instance;
+}
+
 
 - (NSString *)sex
 {
@@ -216,9 +227,9 @@
     return [BTKeychain loadKeychain:@"status"];
 }
 
-- (BOOL)loginstatus
+- (BOOL)isLogin
 {
-    if (self.user_id.length > 0 && self.token.length > 0 && self.mobile_phone.length > 0) {
+    if (self.user_id.length > 0 && self.token.length > 0) {
         return YES;
     }
     return NO;

@@ -64,7 +64,7 @@
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _tableView.separatorColor = [UIColor colorWithHEX:0xe5e5e5];
 //        _tableView.tableHeaderView = self.header;
-        if (![BASEUSER loginstatus]) {
+        if ([BASEUSER isLogin]) {
             _tableView.tableFooterView = self.footer;
         }
     }

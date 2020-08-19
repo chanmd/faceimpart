@@ -18,6 +18,8 @@
 #import "NSString+BFExtension.h"
 #import "BTKeychain.h"
 
+#define DATA_STAMP @"f97ce70eb9f96d44179e6391437b1cd3"
+
 @interface AFRequest()
 
 @end
@@ -28,7 +30,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
-    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", nil];
+    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
     manager.responseSerializer = responseSerializer;
     return manager;
 }
@@ -39,19 +41,26 @@
         finishedBlock:(RequestFinishBlock) finishedBlock
           failedBlock:(RequestFailBlock) faildedBlock
 {
-    
     AFHTTPRequestOperationManager *manager = [self createRequestManager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",nil];
-    NSString* urlString = [NSString stringWithFormat:@"%@/%@/", BASE_URL, url];
+    NSString* urlString = [NSString stringWithFormat:@"%@/%@/%@", BASE_URL, @"api", url];
     if ([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"]) {
         urlString = url;
     }
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[BTKeychain readUUID] forKey:@"deviceidentifier"];
+    [paramsDic setObject:[BTKeychain getUUID] forKey:@"deviceidentifier"];
     [paramsDic setObject:APPVERSION forKey:@"appversion"];
     [paramsDic setObject:APPTYPE forKey:@"apptype"];
+    if (![BASEUSER isLogin]) {
+//        [paramsDic setObject:BASEUSER.user_id forKey:@"user_id"];
+//        [paramsDic setObject:BASEUSER.token forKey:@"token"];
+        [paramsDic setObject:@"user_id" forKey:@"user_id"];
+        [paramsDic setObject:@"123" forKey:@"token"];
+    }
+    
+    paramsDic = [self parmarsSignWithDic:paramsDic Secret:DATA_STAMP];
     if (params) {
         NSArray *allKey=[params allKeys];
         for (int i=0; i<params.count; i++) {
@@ -60,14 +69,16 @@
             [paramsDic setObject:value forKey:key];
         }
     }
+    
+    NSLog(@"%@", paramsDic);
      
     if ([httpMethod isEqualToString:@"POST"]) {
         [manager POST:urlString parameters:paramsDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dic = responseObject;
-//            NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);
+            NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);
             NSString *code = [dic stringIntForKey:@"code"];
-            NSString *msg = [dic stringForKey:@"message"];
-            NSLog(@"responseCode: [%@]", msg);
+            NSString *message = [dic stringForKey:@"message"];
+            NSLog(@"responseMsg: [%@]", message);
             if ([code isEqualToString:@"1000"] || [code isEqualToString:@"500"] || [code isEqualToString:@"401"]) {
                 NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);
                 return;
@@ -80,7 +91,7 @@
         [manager GET:urlString parameters:paramsDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dic = responseObject;
             NSString *code = [dic stringIntForKey:@"code"];
-            NSString *msg = [dic stringForKey:@"msg"];
+            NSString *msg = [dic stringForKey:@"message"];
             NSLog(@"msg: %@", msg);
             if ([code isEqualToString:@"1000"] || [code isEqualToString:@"500"] || [code isEqualToString:@"401"]) {
                 NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);
@@ -112,7 +123,7 @@
 - (NSMutableURLRequest *)requestUrlWithGET:(NSString *)url
                    httpParms:(NSDictionary *)parms
 {
-    NSString* urlString = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
+    NSString* urlString = [NSString stringWithFormat:@"%@/%@/%@",BASE_URL, @"api", url];
     if ([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"]) {
         urlString = url;
     }
@@ -141,6 +152,7 @@
     [paramsDic setObject:[BTKeychain readUUID] forKey:@"deviceidentifier"];
     [paramsDic setObject:APPVERSION forKey:@"appversion"];
     [paramsDic setObject:APPTYPE forKey:@"apptype"];
+    paramsDic = [self parmarsSignWithDic:paramsDic Secret:DATA_STAMP];
     if (parms && parms.allKeys.count > 0) {
         [paramsDic setValuesForKeysWithDictionary:parms];
     }
@@ -213,6 +225,23 @@ static NSString *urlEncode(id object) {
     
     [operation start];
     
+}
+
+- (NSMutableDictionary *)parmarsSignWithDic:(NSMutableDictionary *)dics Secret:(NSString *)secret{
+    //将参数键值对以字典序生序排列
+    NSArray *params=[dics.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    //把前面排序好的参数集拼接在一起，
+    NSString *parStrs = @"";
+    for (NSString *key in params) {
+        parStrs=[parStrs stringByAppendingString:[NSString stringWithFormat:@"%@=%@",key,dics[key]]];
+    }
+    //在拼接好的字符串末尾加上seesion_secret参数
+    parStrs=[parStrs stringByAppendingString:secret];
+    //获取MD5值
+    NSString *signStr=[parStrs toMD5];
+    //将sign值添加到参数中
+    [dics setObject:signStr forKey:@"dataAuth"];
+    return dics;
 }
 
 - (void)dealloc

@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIView *footer;
 @property (nonatomic, strong) UIButton *button_dismiss;
 
+
 @end
 
 @implementation TeacherViewController

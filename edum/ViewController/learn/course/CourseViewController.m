@@ -442,7 +442,7 @@
 
 - (void)action_buy
 {
-    if (![BASEUSER loginstatus]) {
+    if ([BASEUSER isLogin]) {
         PaymentViewController *payment = [[PaymentViewController alloc] init];
         payment.course_id = self.course_id;
         [self.navigationController pushViewController:payment animated:YES];

@@ -231,7 +231,7 @@
 
 - (void)headview_status
 {
-    if ([BASEUSER loginstatus]) {
+    if ([BASEUSER isLogin]) {
         
         NSString *avatar_url = @"";
         WeakSelf;

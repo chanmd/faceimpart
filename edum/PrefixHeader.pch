@@ -23,6 +23,7 @@
 #define APPVERSION @"0.1"
 #define APPTYPE @"1"
 #define WEIXIN_APP_ID @"wxe251cfa16f299736"
+#define WXKEY @"wx24eb81f07e93f4a1"
 #define UNIVERSAL_LINK @"https://www.faceimpart.com/"
 
 #define APPFullScreenFrame  [[UIScreen mainScreen] bounds]
@@ -87,8 +88,6 @@
 //#import "SDImageCache.h"
 #import "UIImageView+WebCache.h"
 
-#define WXKEY @"wx24eb81f07e93f4a1"
-
 
 #define BASEUSER [BaseUser instance]
 #define SERVER_DOMAIN @"http://localhost:8000"
@@ -96,6 +95,8 @@
 
 #define RESPONSE_ERROR_MESSAGE @"服务无响应"
 #define RESPONSE_NONE @"没有更多了"
+
+
 #define __LOGIN @"login"
 #define __LOGOUT @"logout"
 
