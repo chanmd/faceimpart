@@ -13,6 +13,7 @@
 #import "BaseUser.h"
 #import "BTKeychain.h"
 #import "LoginViewController.h"
+#import "TeacherCalendarViewController.h"
 #import "AvatarView.h"
 #import "LandingSectionHeaderView.h"
 #import "PlainTextCell.h"
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) AvatarView *header;
 @property (nonatomic, strong) UIView *footer;
 @property (nonatomic, strong) UIButton *button_dismiss;
+@property (nonatomic, strong) UIButton *button_calendar;
 
 
 @end
@@ -37,7 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = __color_white;
-    [self.view addSubview:self.tableView];
+    [self.view insertSubview:self.tableView atIndex:99];
+    [self.view insertSubview:self.button_calendar atIndex:100];
     [self fetch_user];
 }
 
@@ -64,7 +67,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -(AdaptNaviHeight + BASE_VIEW_Y), APPScreenWidth, APPScreenHeight - BASE_VIEW_Y - SafeAreaBottomHeight - 49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - BASE_VIEW_Y - AdaptNaviHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = __color_white;
@@ -77,19 +80,25 @@
     return _tableView;
 }
 
-- (void)setupSetting
+- (UIButton *)button_calendar
 {
-    UIButton *button_cal = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [button_cal setImage:ImageNamed(@"icon_setting") forState:UIControlStateNormal];
-//    [button_cal addTarget:self action:@selector(action_setting) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barbutton = [[UIBarButtonItem alloc] initWithCustomView:button_cal];
-    self.navigationItem.rightBarButtonItem = barbutton;
+    if (!_button_calendar) {
+        _button_calendar = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button_calendar.frame = CGRectMake((APPScreenWidth - 150) / 2, APPScreenHeight - 65, 150, 44);
+        _button_calendar.layer.cornerRadius = 22;
+        _button_calendar.layer.masksToBounds = YES;
+        [_button_calendar setTitle:@"预约上课" forState:UIControlStateNormal];
+        [_button_calendar addTarget:self action:@selector(action_calendar) forControlEvents:UIControlEventTouchUpInside];
+        [_button_calendar setTitleColor:__color_white forState:UIControlStateNormal];
+        _button_calendar.layer.backgroundColor = [__color_main CGColor];
+    }
+    return _button_calendar;
 }
 
 - (AvatarView *)header
 {
     if (!_header) {
-        _header = [[AvatarView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth / 2)];
+        _header = [[AvatarView alloc] initWithFrame:CGRectMake(0, -AdaptNaviHeight, APPScreenWidth, APPScreenWidth / 2)];
         [_header.button addTarget:self action:@selector(action_avatar) forControlEvents:UIControlEventTouchUpInside];
         [_header addSubview:self.button_dismiss];
     }
@@ -99,10 +108,11 @@
 - (UIView *)footer
 {
     if (!_footer) {
-        _footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 20)];
+        _footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 60)];
     }
     return _footer;
 }
+
 
 #pragma mark - tableiview delegate
 
@@ -119,7 +129,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *data = [self.array_data objectAtIndex:indexPath.section];
-    return [UILabel text:[data stringForKey:@"subtitle"] font:__font(18) width:APPScreenWidth - 30 lineSpacing:5] + 10;
+    NSString *ori_text = [data stringForKey:@"subtitle"];
+    NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    return [UILabel text:text font:__font(18) width:APPScreenWidth - 30 lineSpacing:5];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -141,7 +153,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    CGRect frame = CGRectMake(0, 0, 0, 10);
+    CGRect frame = CGRectMake(0, 0, 0, 0.1);
     UIView *view = [[UIView alloc] initWithFrame:frame];
     view.backgroundColor = __color_white;
     return view;
@@ -154,7 +166,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return 0.1;
 }
 
 - (void)viewDidLayoutSubviews
@@ -181,7 +193,9 @@
     }
     NSDictionary *data = [self.array_data objectAtIndex:indexPath.section];
     cell.label_text.width = APPScreenWidth - 30;
-    [cell.label_text setText:[data stringForKey:@"subtitle"] lineSpacing:5];
+    NSString *ori_text = [data stringForKey:@"subtitle"];
+    NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    [cell.label_text setText:text lineSpacing:5];
     [cell.label_text sizeToFit];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -221,6 +235,12 @@
 - (void)action_avatar
 {
     
+}
+
+- (void)action_calendar
+{
+    TeacherCalendarViewController *calendar = [[TeacherCalendarViewController alloc] init];
+    [self.navigationController pushViewController:calendar animated:YES];
 }
 
 - (void)action_login
@@ -286,7 +306,6 @@
         }
     }
             failedBlock:^(NSError *errorInfo){
-//        [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
     }];
     

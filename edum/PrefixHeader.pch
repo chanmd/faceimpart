@@ -63,7 +63,7 @@
 #define APPSystemVersion    [[[UIDevice currentDevice] systemVersion] intValue]
 #define ImageNamed(name)    [UIImage imageNamed:name]
 #define ImageContentOfFile(name) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"png"]]
-//#define ImageNamedWithRenderMode(name) [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+#define ImageNamedWithRenderMode(name) [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
 #define SHORTSTR(...)          [NSString stringWithFormat:__VA_ARGS__]
 #define SHORTURL(str)          [NSURL URLWithString:str]
 #define WeakSelf            __weak typeof(self) weakSelf = self

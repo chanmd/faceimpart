@@ -1,39 +1,32 @@
 //
-//  WeeklyScheduleViewController.m
+//  TeacherCalendarViewController.m
 //  edum
 //
-//  Created by Kevin Chan on 3/2/2020.
+//  Created by Md Chen on 26/8/2020.
 //  Copyright © 2020 MD Chen. All rights reserved.
 //
 
-#import "WeeklyScheduleViewController.h"
-#import "DailyScheduleCell.h"
-#import "WeeklyScheduleHeaderView.h"
-#import "VideoCallViewController.h"
-#import "LoginViewController.h"
+#import "TeacherCalendarViewController.h"
+#import "TeacherCalendarCell.h"
 
-@interface WeeklyScheduleViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
+@interface TeacherCalendarViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 {
     void * _KVOContext;
 }
 
-@property (nonatomic, strong) WeeklyScheduleHeaderView *header;
-@property (nonatomic, strong) UIView *emptyView;
-@property (nonatomic, strong) UIButton *button_login;
 @property (nonatomic, strong) UIView *view_empty_data;
 @property (nonatomic, strong) UILabel *label_empty;
 
-
 @end
 
-@implementation WeeklyScheduleViewController
+@implementation TeacherCalendarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的课程表";
-    [self.view insertSubview:self.header atIndex:998];
+    self.title = @"预约";
+    [self.view addSubview:self.calendar];
     [self.view insertSubview:self.tableView atIndex:999];
-    [self.view insertSubview:self.emptyView atIndex:1000];
+    self.teacher_id = @"user_id_4";
     
 //    [self.view addGestureRecognizer:self.scopeGesture];
 //    [self.tableView.panGestureRecognizer requireGestureRecognizerToFail:self.scopeGesture];
@@ -61,7 +54,6 @@
     self.current_date = [self.dateFormatter stringFromDate:[NSDate date]];
     NSLog(@"today---------%@--------------", self.current_date);
     
-    
 }
 
 - (void)dealloc
@@ -73,15 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [self.button_b setImage:ImageNamed(@"calendar_highlight") forState:UIControlStateNormal];
-    if (![BASEUSER isLogin]) {
-        self.tableView.hidden = NO;
-        self.emptyView.hidden = YES;
-    } else {
-        self.tableView.hidden = YES;
-        self.emptyView.hidden = NO;
-    }
+    self.navigationController.navigationBar.hidden = NO;
     [self fetch_weekly_calendar];
     
 }
@@ -89,8 +73,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-//    [MobClick endLogPageView:@"mainview"];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (NSDateFormatter *)dateFormatter
@@ -113,19 +96,10 @@
     return _scopeGesture;
 }
 
-- (WeeklyScheduleHeaderView *)header
-{
-    if (!_header) {
-        _header = [[WeeklyScheduleHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidthHalf + 200)];
-        [_header addSubview:self.calendar];
-    }
-    return _header;
-}
-
 - (FSCalendar *)calendar
 {
     if (!_calendar) {
-        _calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, APPScreenWidthHalf, APPScreenWidth, 200)];
+        _calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, NAVIHEIGHT, APPScreenWidth, 200)];
         _calendar.dataSource = self;
         _calendar.delegate = self;
         _calendar.tintColor = __color_red_main;
@@ -149,7 +123,7 @@
 {
     if (!_label_empty) {
         _label_empty = [[UILabel alloc] initWithFrame:self.view_empty_data.frame];
-        _label_empty.text = @"还没有约课记录";
+        _label_empty.text = @"今天不上课";
         _label_empty.font = __fontthin(16);
         _label_empty.textColor = __color_font_subtitle;
         _label_empty.textAlignment = NSTextAlignmentCenter;
@@ -157,58 +131,15 @@
     return _label_empty;
 }
 
--(UIView *)emptyView
-{
-    if (!_emptyView)
-    {
-        _emptyView = [[UIView alloc] initWithFrame:self.tableView.frame];
-        _emptyView.backgroundColor = self.view.backgroundColor;
-        
-        UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(15, 160, self.view.width - 30, 22)];
-        tips.backgroundColor = self.view.backgroundColor;
-        tips.textAlignment = NSTextAlignmentCenter;
-        tips.font = __font(18);
-        tips.textColor = __color_font_placeholder;
-        tips.text = @"登录后查看课程";
-        [_emptyView addSubview:tips];
-        self.button_login.top = tips.bottom + 40;
-        [_emptyView addSubview:self.button_login];
-        
-        _emptyView.hidden = YES;
-    }
-    return _emptyView;
-}
-
-- (UIButton *)button_login
-{
-    if (!_button_login) {
-        _button_login = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button_login.frame = CGRectMake((APPScreenWidth - 150) / 2, 60, 150, 44);
-        _button_login.layer.cornerRadius = 22;
-        _button_login.layer.masksToBounds = YES;
-        [_button_login setTitle:@"登陆/注册" forState:UIControlStateNormal];
-        [_button_login addTarget:self action:@selector(action_login) forControlEvents:UIControlEventTouchUpInside];
-        [_button_login setTitleColor:__color_white forState:UIControlStateNormal];
-        _button_login.layer.backgroundColor = [__color_main CGColor];
-    }
-    return _button_login;
-}
-
-- (void)action_login
-{
-    LoginViewController *login = [[LoginViewController alloc] init];
-    [self.navigationController presentViewController:login animated:YES completion:nil];
-}
-
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, APPScreenWidthHalf + 90, APPScreenWidth, APPScreenHeight - 64 - APPScreenWidthHalf - 90 - BASE_VIEW_Y) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIHEIGHT + 80, APPScreenWidth, APPScreenHeight - NAVIHEIGHT - 80 - SafeAreaBottomHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        _tableView.separatorColor = __color_gray_separator;
-        _tableView.backgroundColor = __color_white;
+        _tableView.backgroundColor = __color_gray_background;
         _tableView.backgroundView = self.view_empty_data;
     }
     return _tableView;
@@ -316,7 +247,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return WEEKLY_CELL_HEIGHT + 15;
+    return 65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -324,24 +255,15 @@
     return [self tableView:tableView _articleCellForRowAtIndexPath:indexPath];
 }
 
-- (DailyScheduleCell *)tableView:(UITableView *)tableView _articleCellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (TeacherCalendarCell *)tableView:(UITableView *)tableView _articleCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"daily_cell";
-    DailyScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TeacherCalendarCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[DailyScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[TeacherCalendarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     NSArray *array = [self.dictionary_data arrayForKey:self.current_date];
-    if (array) {
-        NSDictionary *daily = [array objectAtIndex:indexPath.row];
-        WeakSelf;
-        cell.daily = daily;
-        cell.enteryCall = ^(NSDictionary *data) {
-            VideoCallViewController *call = [[VideoCallViewController alloc] init];
-            call.course_data = daily;
-            [weakSelf.navigationController pushViewController:call animated:YES];
-        };
-    }
+    [cell bindTeacherCalendar:[array objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -351,34 +273,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSArray *array = [self.dictionary_data arrayForKey:self.current_date];
-    if (array) {
-        NSDictionary *daily = [array objectAtIndex:indexPath.row];
-        
-        NSString *start_time_string = [daily stringForKey:@"start_time"];
-        NSString *end_time_string = [daily stringForKey:@"end_time"];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *start_time = [formatter dateFromString:start_time_string];
-        NSDate *end_time = [formatter dateFromString:end_time_string];
-        NSInteger status = 0;
-        NSDate *current_time = [NSDate date];
-        NSComparisonResult result_start = [start_time compare:current_time];
-        NSComparisonResult result_end = [end_time compare:current_time];
-        if (result_start == NSOrderedAscending && result_end == NSOrderedDescending) {
-                status = 2;
-        } else if (result_start == NSOrderedDescending) {
-                status = 1;
-        } else if (result_end == NSOrderedAscending) {
-                status = 3;
-        }
-        if (status < 3) {
-            VideoCallViewController *call = [[VideoCallViewController alloc] init];
-            call.course_data = daily;
-            self.navigationController.navigationBar.hidden = YES;
-            [self.navigationController pushViewController:call animated:NO];
-        }
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -398,13 +292,14 @@
 
 - (void)fetch_weekly_calendar
 {
+    NSDictionary *params = @{@"teacher_id": self.teacher_id};
     WeakSelf;
-    [AFR requestWithUrl:REQUEST_CALENDAR_LIST
+    [AFR requestWithUrl:REQUEST_TEACHER_CALENDAR
              httpmethod:@"POST"
-                 params:[NSMutableDictionary dictionary]
+                 params:[NSMutableDictionary dictionaryWithDictionary:params]
           finishedBlock:^(id responseObject){
             NSDictionary *tempDic = (NSDictionary *)responseObject;
-            if ([[tempDic objectForKey:@"code"] integerValue] == 0) {
+            if (![[tempDic objectForKey:@"code"] boolValue]) {
                 NSDictionary *data = [tempDic dictionaryForKey:@"data"];
                 weakSelf.dictionary_data = [NSMutableDictionary dictionaryWithDictionary:data];
                 NSArray *array = [weakSelf.dictionary_data arrayForKey:weakSelf.current_date];
@@ -413,7 +308,6 @@
                 } else {
                     self.view_empty_data.hidden = YES;
                 }
-                
                 [weakSelf.tableView reloadData];
             }
         }
@@ -421,5 +315,6 @@
         [weakSelf hud_textonly:RESPONSE_ERROR_MESSAGE];
     }];
 }
+
 
 @end

@@ -11,8 +11,8 @@
 @implementation UrlConstants
 
 //NSString *const BASE_URL = @"http://www.klavier.cn";
-//NSString *const BASE_URL = @"http://192.168.109.34:8000";
-NSString *const BASE_URL = @"http://192.168.31.112:8000";
+NSString *const BASE_URL = @"http://192.168.109.24:8000";
+//NSString *const BASE_URL = @"http://192.168.31.112:8000";
 //NSString *const BASE_URL = @"http://localhost:8000";
 NSString *const BASE_PLATFORM = @"ios";
 NSString *const BASE_VERSION = @"v0.0.1";
@@ -43,6 +43,7 @@ NSString *const REQUEST_CALENDAR_WEEK = @"calendar/week";//课程一周列表
 NSString *const REQUEST_CALENDAR_DETAIL = @"calendar/detail";//课程详情
 NSString *const REQUEST_CALENDAR_ADD = @"calendar/add";//老师添加日历
 NSString *const REQUEST_CALENDAR_COURSE = @"calendar/add-course";//学生选课
+NSString *const REQUEST_TEACHER_CALENDAR = @"teacher_calendar";
 
 NSString *const REQUEST_USER_NOTIFICATION = @"notification";
 NSString *const REQUEST_ALL_COURESE = @"all_courses";

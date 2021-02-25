@@ -65,6 +65,8 @@
 		0A7F92B123E476A700557E4D /* LandingArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F92B023E476A600557E4D /* LandingArticleCell.m */; };
 		0A7F92B423E5745400557E4D /* NSTimer+UnretainCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F92B323E5745400557E4D /* NSTimer+UnretainCircle.m */; };
 		0A7F92B723E8457700557E4D /* WeeklyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F92B623E8457700557E4D /* WeeklyScheduleViewController.m */; };
+		0A95D5CF24F660B60079A237 /* TeacherCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */; };
+		0A95D5D324F7A3350079A237 /* TeacherCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */; };
 		0A96B1102138D4500015A625 /* CategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */; };
 		0A96B1112138D4500015A625 /* LandingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0F92138D44E0015A625 /* LandingHeaderView.m */; };
 		0A96B1122138D4500015A625 /* LandingSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0FA2138D44E0015A625 /* LandingSectionHeaderView.m */; };
@@ -291,6 +293,10 @@
 		0A7F92B323E5745400557E4D /* NSTimer+UnretainCircle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+UnretainCircle.m"; sourceTree = "<group>"; };
 		0A7F92B523E8457700557E4D /* WeeklyScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeeklyScheduleViewController.h; sourceTree = "<group>"; };
 		0A7F92B623E8457700557E4D /* WeeklyScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeeklyScheduleViewController.m; sourceTree = "<group>"; };
+		0A95D5CD24F660B60079A237 /* TeacherCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherCalendarViewController.h; sourceTree = "<group>"; };
+		0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherCalendarViewController.m; sourceTree = "<group>"; };
+		0A95D5D124F7A3350079A237 /* TeacherCalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherCalendarCell.h; sourceTree = "<group>"; };
+		0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherCalendarCell.m; sourceTree = "<group>"; };
 		0A96B0F72138D44E0015A625 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHeaderView.m; sourceTree = "<group>"; };
 		0A96B0F92138D44E0015A625 /* LandingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingHeaderView.m; sourceTree = "<group>"; };
@@ -773,6 +779,19 @@
 			path = analytics_ios_6.1.0;
 			sourceTree = "<group>";
 		};
+		0A95D5D024F663260079A237 /* teacher */ = {
+			isa = PBXGroup;
+			children = (
+				0AAF6B24247E4EEB00D3519A /* TeacherViewController.h */,
+				0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */,
+				0A95D5CD24F660B60079A237 /* TeacherCalendarViewController.h */,
+				0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */,
+				0A95D5D124F7A3350079A237 /* TeacherCalendarCell.h */,
+				0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */,
+			);
+			path = teacher;
+			sourceTree = "<group>";
+		};
 		0A96B0CB2135253C0015A625 /* landing */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +839,7 @@
 		0AA71389213D7A7100C6D038 /* profile */ = {
 			isa = PBXGroup;
 			children = (
+				0A95D5D024F663260079A237 /* teacher */,
 				0AA713F5213D97C300C6D038 /* guide */,
 				0AA713F3213D843C00C6D038 /* SightOrderInputCell.h */,
 				0AA713F2213D843C00C6D038 /* SightOrderInputCell.m */,
@@ -859,8 +879,6 @@
 				0AB7C4EF2407C728000F013E /* FollowingCell.m */,
 				0AB7C4F4240E6368000F013E /* AllCoursesViewController.h */,
 				0AB7C4F5240E6368000F013E /* AllCoursesViewController.m */,
-				0AAF6B24247E4EEB00D3519A /* TeacherViewController.h */,
-				0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -1361,6 +1379,7 @@
 				0A15ECC6247BE1890031B642 /* SendMessageToWXReq+requestWithTextOrMediaMessage.mm in Sources */,
 				0AA71415213D97D600C6D038 /* GuideLanguageViewController.m in Sources */,
 				0A7F92B423E5745400557E4D /* NSTimer+UnretainCircle.m in Sources */,
+				0A95D5CF24F660B60079A237 /* TeacherCalendarViewController.m in Sources */,
 				0AA71414213D97D600C6D038 /* GuideViewController.m in Sources */,
 				0A96B1112138D4500015A625 /* LandingHeaderView.m in Sources */,
 				0A7625452109A8AD0054C4A4 /* AppDelegate.m in Sources */,
@@ -1427,6 +1446,7 @@
 				0A74411B242EE9C30042F7E9 /* PaymentViewController.m in Sources */,
 				0A4F562F23BB31EE003CB439 /* FileHash.m in Sources */,
 				0ABBCD81216F6C970033F0A2 /* CourseContentCell.m in Sources */,
+				0A95D5D324F7A3350079A237 /* TeacherCalendarCell.m in Sources */,
 				0AC38A1A212FDA0E0083E24F /* BTKeychain.m in Sources */,
 				0AC38A43212FDA780083E24F /* BaseTabbarViewController.m in Sources */,
 				0AB7C4E72406B723000F013E /* GeneralHeaderView.m in Sources */,
