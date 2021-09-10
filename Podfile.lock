@@ -14,47 +14,67 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AgoraRtcEngine_iOS (3.0.1.1)
   - FDFullscreenPopGesture (1.1)
   - FSCalendar (2.8.1)
+  - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.4.3)
+  - MMLayout (0.3.0)
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
+  - SuperPlayer (3.2.2):
+    - AFNetworking
+    - Masonry
+    - MMLayout
+    - SDWebImage
+    - SuperPlayer/Player (= 3.2.2)
+  - SuperPlayer/Player (3.2.2):
+    - AFNetworking
+    - Masonry
+    - MMLayout
+    - SDWebImage
+    - TXLiteAVSDK_Player (= 7.1.8775)
+  - TXLiteAVSDK_Player (7.1.8775)
   - WechatOpenSDK (1.8.7.1)
 
 DEPENDENCIES:
   - AFNetworking
-  - AgoraRtcEngine_iOS
   - FDFullscreenPopGesture
   - FSCalendar
   - MBProgressHUD
   - MJRefresh
   - SDWebImage
+  - SuperPlayer
   - WechatOpenSDK
 
 SPEC REPOS:
   trunk:
     - AFNetworking
-    - AgoraRtcEngine_iOS
     - FDFullscreenPopGesture
     - FSCalendar
+    - Masonry
     - MBProgressHUD
     - MJRefresh
+    - MMLayout
     - SDWebImage
+    - SuperPlayer
+    - TXLiteAVSDK_Player
     - WechatOpenSDK
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AgoraRtcEngine_iOS: 8ccceaaecff2e80ab28fcd33f3dfd2b417eb5365
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  MMLayout: d559edecd69fbcb348368ba90917e047ab1c544e
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  SuperPlayer: 8572ea30d64c5cbb476177992527fec0a234271e
+  TXLiteAVSDK_Player: 66ec5d2007064e4ff6205e5bd2b9e1cc1dc5f643
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
 
-PODFILE CHECKSUM: 2c4f59846853c304ecf0e823cd8fbc377f5a1246
+PODFILE CHECKSUM: d624918c1a45067f6ed6e216d656abaa866c9233
 
 COCOAPODS: 1.9.3

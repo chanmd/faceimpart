@@ -7,9 +7,8 @@
 //
 
 #import "CourseHeaderView.h"
-#import "UIView+BFExtension.h"
-#import "UIColor+ColorExtension.h"
-#import "NSDictionary+JSONExtern.h"
+
+#define BOX_WIDTH (APPScreenWidth - 40) / 3
 
 @implementation CourseHeaderView
 
@@ -18,11 +17,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.label_title];
-        [self addSubview:self.label_price];
-        [self addSubview:self.label_price_fake];
-        [self addSubview:self.label_appiontment];
-        [self addSubview:self.view_contact];
-        [self addSubview:self.segmentedControl];
+        [self addSubview:self.label_subtitle];
+        [self addSubview:self.button_more];
+        [self addSubview:self.view_box];
         [self addSubview:self.view_border];
     }
     return self;
@@ -31,8 +28,8 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(15, 23, APPScreenWidth - 30, 30)];
-        _label_title.font = __font(22);
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 30)];
+        _label_title.font = __fontmedium(22);
         _label_title.textColor = __color_font_title;
         _label_title.numberOfLines = 0;
         _label_title.lineBreakMode = NSLineBreakByWordWrapping;
@@ -40,47 +37,78 @@
     return _label_title;
 }
 
-- (UILabel *)label_price
+- (UIView *)view_box
 {
-    if (!_label_price) {
-        _label_price = [[UILabel alloc] initWithFrame:CGRectMake(15, self.label_title.bottom + 15, 120, 30)];
-        _label_price.textColor = __color_main;
-        _label_price.font = __font(20);
+    if (!_view_box) {
+        _view_box = [[UIView alloc] initWithFrame:CGRectMake(0, 50, APPScreenWidth, 220)];
+        
+        [_view_box addSubview:self.intensitybox];
+        [_view_box addSubview:self.calbox];
+        [_view_box addSubview:self.durationbox];
+        
+        [_view_box addSubview:self.view_contact];
+    
     }
-    return _label_price;
+    return _view_box;
 }
 
-- (UILabel *)label_price_fake
+- (UILabel *)label_subtitle
 {
-    if (!_label_price_fake) {
-        _label_price_fake = [[UILabel alloc] initWithFrame:CGRectMake(15 - 120, 68, 120, 20)];
-        _label_price_fake.textColor = __color_font_subtitle;
-        _label_price_fake.font = __font(16);
+    if (!_label_subtitle) {
+        _label_subtitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, APPScreenWidth - 20, 30)];
+        _label_subtitle.textColor = __color_font_subtitle;
+        _label_subtitle.font = __font(14);
+        _label_subtitle.numberOfLines = 4;
     }
-    return _label_price_fake;
+    return _label_subtitle;
 }
 
-- (UILabel *)label_appiontment
+- (UIButton *)button_more
 {
-    if (!_label_appiontment) {
-        _label_appiontment = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 150, 68, 150, 20)];
-        _label_appiontment.textAlignment = NSTextAlignmentRight;
-        _label_appiontment.textColor = __color_font_subtitle;
-        _label_appiontment.font = __font(12);
+    if (!_button_more) {
+        _button_more = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button_more.frame = CGRectMake(10, 30, 80, 16);
+        [_button_more setTitle:@"全部内容" forState:UIControlStateNormal];
+        [_button_more setTitleColor:__color_main forState:UIControlStateNormal];
+        _button_more.titleLabel.font = __font(14);
+        _button_more.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
-    return _label_appiontment;
+    return _button_more;
+}
+
+- (CourseHeadBox *)durationbox
+{
+    if (!_durationbox) {
+        _durationbox = [[CourseHeadBox alloc] initWithFrame:CGRectMake(20 + BOX_WIDTH, 10, BOX_WIDTH, 70)];
+    }
+    return _durationbox;
+}
+
+- (CourseHeadBox *)intensitybox
+{
+    if (!_intensitybox) {
+        _intensitybox = [[CourseHeadBox alloc] initWithFrame:CGRectMake(APPScreenWidth - BOX_WIDTH - 10, 10, BOX_WIDTH, 70)];
+    }
+    return _intensitybox;
+}
+
+- (CourseHeadBox *)calbox
+{
+    if (!_calbox) {
+        _calbox = [[CourseHeadBox alloc] initWithFrame:CGRectMake(10, 10, BOX_WIDTH, 70)];
+    }
+    return _calbox;
 }
 
 - (UIView *)view_contact
 {
     if (!_view_contact) {
-        _view_contact = [[UIView alloc] initWithFrame:CGRectMake(15, 100, APPScreenWidth - 30, 64)];
-        _view_contact.backgroundColor = __color_gray_background;
-        _view_contact.layer.masksToBounds = YES;
-        _view_contact.layer.cornerRadius = 4.f;
+        _view_contact = [[UIView alloc] initWithFrame:CGRectMake(0, 130, APPScreenWidth, 54)];
         [_view_contact addSubview:self.imageview_avatar];
         [_view_contact addSubview:self.label_name];
         [_view_contact addSubview:self.label_bio];
+        [_view_contact addSubview:self.button_teacher];
+//        [_view_contact addSubview:self.button_follow];
     }
     return _view_contact;
 }
@@ -88,7 +116,7 @@
 - (UIImageView *)imageview_avatar
 {
     if (!_imageview_avatar) {
-        _imageview_avatar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 34, 34)];
+        _imageview_avatar = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 34, 34)];
         _imageview_avatar.layer.masksToBounds = YES;
         _imageview_avatar.layer.cornerRadius = 17.f;
     }
@@ -98,7 +126,7 @@
 - (UILabel *)label_name
 {
     if (!_label_name) {
-        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, 10, APPScreenWidth - 100, 18)];
+        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, 10, 200, 18)];
         _label_name.font = __fontthin(14);
         _label_name.textColor = __color_font_title;
     }
@@ -108,71 +136,96 @@
 - (UILabel *)label_bio
 {
     if (!_label_bio) {
-        _label_bio = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, self.label_name.bottom, APPScreenWidth - 100, 18)];
+        _label_bio = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_avatar.right + 10, self.label_name.bottom, 200, 18)];
         _label_bio.font = __fontthin(12);
         _label_bio.textColor = __color_font_placeholder;
     }
     return _label_bio;
 }
 
+- (UIButton *)button_teacher
+{
+    if (!_button_teacher) {
+        _button_teacher = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button_teacher.clipsToBounds = YES;
+        _button_teacher.frame = CGRectMake(0, 15, 200, 44);
+        [_button_teacher addTarget:self action:@selector(action_teacher) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _button_teacher;
+}
+
+- (UIButton *)button_follow
+{
+    if (!_button_follow) {
+        _button_follow = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button_follow.clipsToBounds = YES;
+        _button_follow.frame = CGRectMake(APPScreenWidth - 70, 15, 55, 24);
+        _button_follow.layer.backgroundColor = [__color_main CGColor];
+        _button_follow.layer.cornerRadius = CORNERRADIUS;
+        [_button_follow setTitle:@"关注" forState:UIControlStateNormal];
+        [_button_follow setTitleColor:__color_white forState:UIControlStateNormal];
+        _button_follow.titleLabel.font = __font(12);
+    }
+    return _button_follow;
+}
+
 - (UIView *)view_border
 {
     if (!_view_border) {
-        _view_border = [[UIView alloc] initWithFrame:CGRectMake(0, 184 + 40, APPScreenWidth, 0.5)];
+        _view_border = [[UIView alloc] initWithFrame:CGRectMake(10, 299, APPScreenWidth - 20, 0.5)];
         _view_border.backgroundColor = __color_gray_separator;
     }
     return _view_border;
 }
 
-- (HMSegmentedControl *)segmentedControl
+- (void)action_teacher
 {
-    if(!_segmentedControl) {
-        _segmentedControl = [[HMSegmentedControl alloc] init];
-        _segmentedControl.sectionTitles = @[@"课程简介", @"课程目录"];
-        _segmentedControl.frame = CGRectMake(15, 184, APPScreenWidth - 30, 40);
-        _segmentedControl.backgroundColor = __color_white;
-        _segmentedControl.selectionIndicatorHeight = 2.f;
-        _segmentedControl.selectionIndicatorColor = __color_main;
-        _segmentedControl.shouldAnimateUserSelection = YES;
-        _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
-        _segmentedControl.selectedSegmentIndex = 0;
-        _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        _segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjects:
-                                                         [NSArray arrayWithObjects:__color_main, __fontthin(18), nil]
-                                                                                    forKeys:
-                                                         [NSArray arrayWithObjects:NSForegroundColorAttributeName, NSFontAttributeName, nil]];
-        
-        _segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjects:
-                                                 [NSArray arrayWithObjects:__color_font_title,
-                                                  __fontthin(18), nil]
-                                                                            forKeys:
-                                                 [NSArray arrayWithObjects:NSForegroundColorAttributeName,NSFontAttributeName, nil]];
+    if (self.block) {
+        self.block(self.teacher_id);
     }
-    return _segmentedControl;
 }
 
 - (void)bindCourseHeader:(NSDictionary *)data
 {
     NSDictionary *user = [data dictionaryForKey:@"user"];
-    self.label_price.text = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"price"]];
-    NSString *oprice = [NSString stringWithFormat:@"¥%@", [data stringForKey:@"oprice"]];
-//    self.label_appiontment.text = [NSString stringWithFormat:@"%@人已约课", [data stringForKey:@"reserveCount"]];
-    self.label_price.width = 100;
-    [self.label_price sizeToFit];
-    self.label_price_fake.left = self.label_price.right + 5;
     
-    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:oprice attributes:attribtDic];
-    self.label_price_fake.attributedText = attribtStr;
-    self.label_price_fake.top = self.label_price.bottom - 22;
-    self.label_appiontment.top = self.label_price.bottom - 20;
+//    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+//    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:oprice attributes:attribtDic];
+//    self.label_price_fake.attributedText = attribtStr;
     
     [self.imageview_avatar sd_setImageWithURL:[NSURL URLWithString:[user stringForKey:@"avatar"]] placeholderImage:ImageNamed(@"logo_launch")];
+    self.teacher_id = [user stringForKey:@"user_id"];
     self.label_name.text = [user stringForKey:@"name"];
     self.label_bio.text = @"暂无简介";
     self.label_title.text = [data stringForKey:@"title"];
-    self.label_title.width = APPScreenWidth - 30;
+    self.label_title.width = APPScreenWidth - 20;
     [self.label_title sizeToFit];
+    
+    self.label_subtitle.top = self.label_title.bottom + 10;
+    
+    
+    
+    self.label_subtitle.text = [data stringForKey:@"desc"];
+    self.label_subtitle.width = APPScreenWidth - 20;
+    [self.label_subtitle sizeToFit];
+    
+    self.button_more.top = self.label_subtitle.bottom + 15;
+    
+    self.view_box.top = self.button_more.bottom + 10;
+    
+    self.durationbox.icon.image = ImageNamed(@"course_duration");
+    self.durationbox.label_name.text = @"训练时间";
+    self.durationbox.label_bio.text = @"20 分钟";
+    
+    self.calbox.icon.image = ImageNamed(@"course_cal");
+    self.calbox.label_name.text = @"练习频次";
+    self.calbox.label_bio.text = @"每天";
+    
+    self.intensitybox.icon.image = ImageNamed(@"course_intensity");
+    self.intensitybox.label_name.text = @"练习强度";
+    self.intensitybox.label_bio.text = @"中";
+    
+    self.view_contact.top = 90;
 }
 
 @end

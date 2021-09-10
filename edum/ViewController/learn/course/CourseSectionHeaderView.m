@@ -23,7 +23,7 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview:self.label_title];
-        self.contentView.backgroundColor = __color_gray_background;
+        self.contentView.backgroundColor = __color_white;
     }
     return self;
 }
@@ -31,8 +31,8 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(20, 12, APPScreenWidth - 40, 20)];
-        _label_title.font = __font(18);
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(10, 17, APPScreenWidth - 40, 20)];
+        _label_title.font = __fontmedium(18);
         _label_title.textColor = __color_font_title;
         _label_title.preferredMaxLayoutWidth = APPScreenWidth - 40;
     }

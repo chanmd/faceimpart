@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UILabel *label_title;
 
+@property (nonatomic, strong) UILabel *label_left;
+@property (nonatomic, strong) UILabel *label_right;
+@property (nonatomic, strong) UIView *view_line;
+@property (nonatomic, strong) UIImageView *imageview_bank;
+@property (nonatomic, strong) UILabel *label_middle;
+
 @end
 
 NS_ASSUME_NONNULL_END

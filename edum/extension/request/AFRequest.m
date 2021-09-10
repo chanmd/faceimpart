@@ -73,6 +73,7 @@
     NSLog(@"%@", paramsDic);
      
     if ([httpMethod isEqualToString:@"POST"]) {
+        NSLog(@"requestUrl-------[%@]-------\n",urlString);
         [manager POST:urlString parameters:paramsDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dic = responseObject;
             NSLog(@"requestUrl-------[%@]\n responseObject-------%@",urlString,responseObject);

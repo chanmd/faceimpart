@@ -24,8 +24,8 @@
 - (UILabel *)label_text
 {
     if (!_label_text) {
-        _label_text = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, APPScreenWidth - 30, 20)];
-        _label_text.font = __font(18);
+        _label_text = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, APPScreenWidth - 30, 20)];
+        _label_text.font = __font(16);
         _label_text.textColor = __color_font_subtitle;
         _label_text.numberOfLines = 0;
         _label_text.lineBreakMode = NSLineBreakByWordWrapping;

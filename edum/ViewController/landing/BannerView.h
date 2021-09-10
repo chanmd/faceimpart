@@ -13,11 +13,11 @@ typedef void (^didSelectCategory)(NSInteger selectCategory);
 @interface BannerView : UIView
 
 @property (nonatomic, strong) UIScrollView *scrollview;
+@property (nonatomic, strong) UILabel *label_title;
 @property (nonatomic, strong) UIPageControl *pagecontrol;
 @property (nonatomic, strong) NSMutableArray *array_data;
-@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) didSelectCategory block;
 
-- (void)bindData:(NSMutableArray *)array_data;
+- (void)bindData:(NSArray *)data;
 
 @end

@@ -7,23 +7,40 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HMSegmentedControl.h"
+#import "UIView+BFExtension.h"
+#import "UIColor+ColorExtension.h"
+#import "NSDictionary+JSONExtern.h"
+#import "CourseHeadBox.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CourseHeaderView : UIView
 
 @property (nonatomic, strong) UILabel *label_title;
-@property (nonatomic, strong) UILabel *label_price;
-@property (nonatomic, strong) UILabel *label_price_fake;
-@property (nonatomic, strong) UILabel *label_appiontment;
 
+@property (nonatomic, strong) UIView *view_box;
 @property (nonatomic, strong) UIView *view_contact;
+
+@property (nonatomic, strong) UILabel *label_subtitle;
+@property (nonatomic, strong) UIButton *button_more;
+
+@property (nonatomic, strong) CourseHeadBox *durationbox;
+@property (nonatomic, strong) CourseHeadBox *intensitybox;
+@property (nonatomic, strong) CourseHeadBox *calbox;
+
 @property (nonatomic, strong) UIImageView *imageview_avatar;
 @property (nonatomic, strong) UILabel *label_name;
 @property (nonatomic, strong) UILabel *label_bio;
-@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+
+@property (nonatomic, strong) UIButton *button_teacher;
+
+@property (nonatomic, strong) UIButton *button_follow;
 @property (nonatomic, strong) UIView *view_border;
+@property (nonatomic, strong) NSString *teacher_id;
+
+typedef void (^Teacher_TouchUpInside_Block)(NSString *teacher_id);
+
+@property (nonatomic, copy) Teacher_TouchUpInside_Block block;
 
 - (void)bindCourseHeader:(NSDictionary *)dic;
 

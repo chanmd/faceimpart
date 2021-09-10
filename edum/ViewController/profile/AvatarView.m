@@ -31,11 +31,10 @@
 - (UIView *)view_avatar
 {
     if (!_view_avatar) {
-        _view_avatar = [[UIView alloc] initWithFrame:CGRectMake((APPScreenWidth - 74) / 2, 3, 74, 74)];
+        _view_avatar = [[UIView alloc] initWithFrame:CGRectMake((APPScreenWidth - 74) / 2, 73, 74, 74)];
         _view_avatar.backgroundColor = __color_white;
         _view_avatar.clipsToBounds = YES;
         _view_avatar.layer.cornerRadius = 37;
-        _view_avatar.centerY = self.imageview_bg.centerY;
     }
     return _view_avatar;
 }
@@ -43,10 +42,9 @@
 - (UIImageView *)imageview_avatar
 {
     if (!_imageview_avatar) {
-        _imageview_avatar = [[UIImageView alloc] initWithFrame:CGRectMake((APPScreenWidth - 70) / 2, 5, 70, 70)];
+        _imageview_avatar = [[UIImageView alloc] initWithFrame:CGRectMake((APPScreenWidth - 70) / 2, 75, 70, 70)];
         _imageview_avatar.clipsToBounds = YES;
         _imageview_avatar.layer.cornerRadius = 35.f;
-        _imageview_avatar.centerY = self.imageview_bg.centerY;
         _imageview_avatar.hidden = YES;
         _imageview_avatar.image = ImageNamed(@"logo_avatar");
     }
@@ -65,7 +63,7 @@
 - (UILabel *)label_name
 {
     if (!_label_name) {
-        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageview_avatar.bottom + 20, APPScreenWidth, 20)];
+        _label_name = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageview_avatar.bottom + 10, APPScreenWidth, 20)];
         _label_name.font = __fontthin(18);
         _label_name.textColor = __color_font_title;
         _label_name.textAlignment = NSTextAlignmentCenter;

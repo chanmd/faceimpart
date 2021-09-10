@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *button;
 @property (nonatomic, strong) UIImageView *image_accessory;
+@property (nonatomic, strong) UILabel *label_more;
 
 @end

@@ -13,6 +13,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFRequest.h"
 #import "UrlConstants.h"
+#import "UINavigationBar+Awesome.h"
 
 @interface BaseViewController : UIViewController
 

@@ -67,7 +67,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - BASE_VIEW_Y - AdaptNaviHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -50, APPScreenWidth, APPScreenHeight - BASE_VIEW_Y - AdaptNaviHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = __color_white;
@@ -80,25 +80,25 @@
     return _tableView;
 }
 
-- (UIButton *)button_calendar
-{
-    if (!_button_calendar) {
-        _button_calendar = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button_calendar.frame = CGRectMake((APPScreenWidth - 150) / 2, APPScreenHeight - 65, 150, 44);
-        _button_calendar.layer.cornerRadius = 22;
-        _button_calendar.layer.masksToBounds = YES;
-        [_button_calendar setTitle:@"预约上课" forState:UIControlStateNormal];
-        [_button_calendar addTarget:self action:@selector(action_calendar) forControlEvents:UIControlEventTouchUpInside];
-        [_button_calendar setTitleColor:__color_white forState:UIControlStateNormal];
-        _button_calendar.layer.backgroundColor = [__color_main CGColor];
-    }
-    return _button_calendar;
-}
+//- (UIButton *)button_calendar
+//{
+//    if (!_button_calendar) {
+//        _button_calendar = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _button_calendar.frame = CGRectMake((APPScreenWidth - 150) / 2, APPScreenHeight - 65, 150, 44);
+//        _button_calendar.layer.cornerRadius = 22;
+//        _button_calendar.layer.masksToBounds = YES;
+//        [_button_calendar setTitle:@"预约上课" forState:UIControlStateNormal];
+//        [_button_calendar addTarget:self action:@selector(action_calendar) forControlEvents:UIControlEventTouchUpInside];
+//        [_button_calendar setTitleColor:__color_white forState:UIControlStateNormal];
+//        _button_calendar.layer.backgroundColor = [__color_main CGColor];
+//    }
+//    return _button_calendar;
+//}
 
 - (AvatarView *)header
 {
     if (!_header) {
-        _header = [[AvatarView alloc] initWithFrame:CGRectMake(0, -AdaptNaviHeight, APPScreenWidth, APPScreenWidth / 2)];
+        _header = [[AvatarView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth / 2)];
         [_header.button addTarget:self action:@selector(action_avatar) forControlEvents:UIControlEventTouchUpInside];
         [_header addSubview:self.button_dismiss];
     }
@@ -131,22 +131,22 @@
     NSDictionary *data = [self.array_data objectAtIndex:indexPath.section];
     NSString *ori_text = [data stringForKey:@"subtitle"];
     NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
-    return [UILabel text:text font:__font(18) width:APPScreenWidth - 30 lineSpacing:5];
+    return [UILabel text:text font:__font(16) width:APPScreenWidth - 30 lineSpacing:5] + 10;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    static NSString *headerIdentifier = @"headviewIdentifier";
-    LandingSectionHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
-    if (!view) {
-        view = [[LandingSectionHeaderView alloc] initWithReuseIdentifier:headerIdentifier];
-        view.frame = CGRectMake(0, 0, APPScreenWidth, SECTION_HEIGHT);
-    }
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 44)];
+    view.backgroundColor = __color_white;
+    
     NSDictionary *data = [self.array_data objectAtIndex:section];
     NSString *string = [data stringForKey:@"title"];
-    view.label.text = [NSString stringWithFormat:@"%@", string];
-    view.button.hidden = YES;
-    view.image_accessory.hidden = YES;
+    
+    UILabel *title_label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, APPScreenWidth - 30, 44)];
+    title_label.font = __fontmedium(16);
+    title_label.textColor = __color_font_title;
+    title_label.text = string;
+    [view addSubview:title_label];
     return view;
 }
 
@@ -161,7 +161,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return SECTION_HEIGHT;
+    return 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -287,11 +287,11 @@
                 [weakSelf.array_data addObject:brief];
             }
             if ([data stringForKey:@"education"]) {
-                NSDictionary *brief = @{@"title": @"教育背景", @"subtitle": [data stringForKey:@"brief"]};
+                NSDictionary *brief = @{@"title": @"教育背景", @"subtitle": [data stringForKey:@"education"]};
                 [weakSelf.array_data addObject:brief];
             }
             if ([data stringForKey:@"experience"]) {
-                NSDictionary *brief = @{@"title": @"经历", @"subtitle": [data stringForKey:@"brief"]};
+                NSDictionary *brief = @{@"title": @"经历", @"subtitle": [data stringForKey:@"experience"]};
                 [weakSelf.array_data addObject:brief];
             }
             if ([weakSelf.array_data count] == 0) {

@@ -23,7 +23,8 @@
 #import "ProfileViewController.h"
 #import "FollowingViewController.h"
 #import "AllCoursesViewController.h"
-
+#import "TransferTestViewController.h"
+#import "TransferTTTTViewController.h"
 
 @interface ZhenViewController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
@@ -241,7 +242,8 @@
 
 - (void)action_teacher
 {
-    
+    TransferTTTTViewController *transter = [[TransferTTTTViewController alloc] init];
+    [self.navigationController pushViewController:transter animated:YES];
 }
 
 - (void)action_following

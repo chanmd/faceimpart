@@ -12,7 +12,6 @@
 #import "NSDictionary+JSONExtern.h"
 #import "UIButton+WebCache.h"
 #import "CategoryView.h"
-#import "NSTimer+UnretainCircle.h"
 
 @interface BannerView() <UIScrollViewDelegate>
 
@@ -25,25 +24,30 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = __color_white;
+        [self addSubview:self.label_title];
         [self addSubview:self.scrollview];
         [self addSubview:self.pagecontrol];
-        
+//        [self addSubview:self.filterview];
     }
     return self;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (UILabel *)label_title
 {
-    CGFloat index = scrollView.contentOffset.x / APPScreenWidth;
-    self.pagecontrol.currentPage = (int)floor(index);
+    if (!_label_title) {
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, APPScreenWidth, 20)];
+        _label_title.font = __fontmedium(18);
+        _label_title.text = @"乐器";
+    }
+    return _label_title;
 }
 
 - (UIScrollView *)scrollview
 {
     if (!_scrollview) {
-        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 15, APPScreenWidth, APPScreenWidth / 2)];
+        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, APPScreenWidth, APPScreenWidth / 2)];
         _scrollview.delegate = self;
-        _scrollview.pagingEnabled = YES;
+//        _scrollview.pagingEnabled = YES;
         _scrollview.showsHorizontalScrollIndicator = NO;
         _scrollview.showsVerticalScrollIndicator = NO;
     }
@@ -53,58 +57,56 @@
 - (UIPageControl *)pagecontrol
 {
     if (!_pagecontrol) {
-        _pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(0, BANNER_HEIGHT - 20, 80, 20)];
+        _pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(0, APPScreenWidth / 2 - 25, 80, 20)];
         _pagecontrol.centerX = self.centerX;
-        _pagecontrol.currentPage = 0;
     }
     return _pagecontrol;
 }
 
-- (void)bindData:(NSMutableArray *)array_data
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    CGFloat pageWidth = self.scrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
+//    float fractionalPage = self.scrollview.contentOffset.x / pageWidth;
+//    NSInteger page = lround(fractionalPage);
+//    self.pagecontrol.currentPage = page; // you need to have a **iVar** with getter for pageControl
+//}
+
+- (void)bindData:(NSArray *)data
 {
-    self.scrollview.contentSize = CGSizeMake(APPScreenWidth * array_data.count, BANNER_HEIGHT);
+    NSArray *array_filter = data;
+    self.scrollview.contentSize = CGSizeMake((CATEGORY_WIDTH + 10) * array_filter.count + 10, CATEGORY_HEIGHT + 5);
     
     for (UIView *subview in [self.scrollview subviews]) {
+        
         [subview removeFromSuperview];
+        
     }
-    self.pagecontrol.numberOfPages = array_data.count;
+    self.pagecontrol.numberOfPages = array_filter.count;
     self.pagecontrol.currentPage = 0;
     
+    
     for (UIView *subview in [self.scrollview subviews]) {
         
         [subview removeFromSuperview];
     }
     
-    for (int i = 0; i < array_data.count; i ++) {
+    for (int i = 0; i < array_filter.count; i ++) {
         
-        NSDictionary *dic = [array_data objectAtIndex:i];
-        NSString *url = [dic stringForKey:@"cover_image"];
-        NSString *title = [dic stringForKey:@"title"];
-        CategoryView *category = [[CategoryView alloc] initWithFrame:CGRectMake(APPScreenWidth * i, 0, APPScreenWidth, BANNER_HEIGHT)];
+        NSDictionary *dic = [array_filter objectAtIndex:i];
+        NSString *url = [dic stringForKey:@"imageurl"];
+        NSString *title = [dic stringForKey:@"name"];
+        CategoryView *category = [[CategoryView alloc] initWithFrame:CGRectMake((CATEGORY_WIDTH + 10) * i + 10, 0, CATEGORY_WIDTH, CATEGORY_HEIGHT)];
         category.label_title.text = title;
         [category.imageview_cover sd_setImageWithURL:[NSURL URLWithString:url]];
         category.button.tag = i;
         [category.button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollview addSubview:category];
     }
-    self.pagecontrol.currentPage = 0;
-    WeakSelf;
-    self.timer = [NSTimer proxyScheduledTimerWithTimeInterval:5.f repeats:YES block:^(NSTimer *timer){
-        if (weakSelf.pagecontrol.currentPage < [array_data count] - 1) {
-//            NSLog(@"%ld", weakSelf.pagecontrol.currentPage);
-            weakSelf.pagecontrol.currentPage ++;
-            [weakSelf.scrollview setContentOffset:CGPointMake(weakSelf.pagecontrol.currentPage * APPScreenWidth, 0) animated:YES];
-        } else {
-            weakSelf.pagecontrol.currentPage = 0;
-            [weakSelf.scrollview setContentOffset:CGPointMake(0, 0) animated:YES];
-        }
-    }];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)action_button:(UIButton *)button
 {
-    NSLog(@"click%ld", button.tag);
+    NSLog(@"click:%ld", button.tag);
     if (self.block) {
         self.block(button.tag);
     }

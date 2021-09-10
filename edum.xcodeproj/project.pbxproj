@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A04CEE2267EE32600FFCC85 /* TransferTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A04CEE1267EE32600FFCC85 /* TransferTestViewController.m */; };
+		0A04CEE62681947E00FFCC85 /* TransferTTTTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A04CEE52681947E00FFCC85 /* TransferTTTTViewController.m */; };
 		0A15197323F2644200692178 /* ZhenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A15197223F2644200692178 /* ZhenCell.m */; };
 		0A15197623F2B04300692178 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A15197523F2B04300692178 /* SettingCell.m */; };
 		0A15197923F3B44000692178 /* UserNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A15197823F3B44000692178 /* UserNotificationViewController.m */; };
@@ -99,6 +101,11 @@
 		0AA91EFB24B4432800B691D6 /* VideoCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA91EFA24B4432800B691D6 /* VideoCallViewController.m */; };
 		0AAF6B23247E38F400D3519A /* LandingTeacherListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */; };
 		0AAF6B26247E4EEB00D3519A /* TeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */; };
+		0AB649F426D7E9B8006BA9C0 /* CourseRectangleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB649F326D7E9B8006BA9C0 /* CourseRectangleCell.m */; };
+		0AB649F826D854D9006BA9C0 /* CourseListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB649F726D854D9006BA9C0 /* CourseListController.m */; };
+		0AB649FC26D9FCA1006BA9C0 /* SearchCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB649FB26D9FCA1006BA9C0 /* SearchCourseViewController.m */; };
+		0AB64A0026DB7315006BA9C0 /* CourseHeadBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB649FF26DB7315006BA9C0 /* CourseHeadBox.m */; };
+		0AB64A0426DCCF0B006BA9C0 /* CourseVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB64A0326DCCF0B006BA9C0 /* CourseVideoCell.m */; };
 		0AB7C4E123FA4B98000F013E /* DailyScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4E023FA4B98000F013E /* DailyScheduleCell.m */; };
 		0AB7C4E424068B27000F013E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4E324068B26000F013E /* ProfileViewController.m */; };
 		0AB7C4E72406B723000F013E /* GeneralHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7C4E62406B723000F013E /* GeneralHeaderView.m */; };
@@ -180,11 +187,18 @@
 		0AE646A7229B686000E3A370 /* CalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE646A6229B686000E3A370 /* CalHeader.m */; };
 		0AE646AA229C175A00E3A370 /* CalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE646A9229C175A00E3A370 /* CalCell.m */; };
 		0AFAAFC923DBEB66007C91C6 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFAAFC723DBEB66007C91C6 /* KeychainItemWrapper.m */; };
+		0AFD392B26D4B4FF00322A74 /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD392A26D4B4FF00322A74 /* ExploreViewController.m */; };
+		0AFD393A26D4F1EF00322A74 /* SightScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD393926D4F1EF00322A74 /* SightScrollCell.m */; };
+		0AFD393E26D731E600322A74 /* SightCubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD393C26D731E500322A74 /* SightCubeView.m */; };
 		DA950129E9A6A42D535B51B9 /* libPods-edum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE052C3913611266F1DEFE3 /* libPods-edum.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A02B2C524ED4F840067C182 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0A04CEE0267EE32600FFCC85 /* TransferTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferTestViewController.h; sourceTree = "<group>"; };
+		0A04CEE1267EE32600FFCC85 /* TransferTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferTestViewController.m; sourceTree = "<group>"; };
+		0A04CEE42681947E00FFCC85 /* TransferTTTTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferTTTTViewController.h; sourceTree = "<group>"; };
+		0A04CEE52681947E00FFCC85 /* TransferTTTTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferTTTTViewController.m; sourceTree = "<group>"; };
 		0A15197023F1153C00692178 /* 音湃.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "音湃.entitlements"; sourceTree = "<group>"; };
 		0A15197123F2644200692178 /* ZhenCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhenCell.h; sourceTree = "<group>"; };
 		0A15197223F2644200692178 /* ZhenCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhenCell.m; sourceTree = "<group>"; };
@@ -361,6 +375,16 @@
 		0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandingTeacherListCell.m; sourceTree = "<group>"; };
 		0AAF6B24247E4EEB00D3519A /* TeacherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherViewController.h; sourceTree = "<group>"; };
 		0AAF6B25247E4EEB00D3519A /* TeacherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherViewController.m; sourceTree = "<group>"; };
+		0AB649F226D7E9B8006BA9C0 /* CourseRectangleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseRectangleCell.h; sourceTree = "<group>"; };
+		0AB649F326D7E9B8006BA9C0 /* CourseRectangleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseRectangleCell.m; sourceTree = "<group>"; };
+		0AB649F626D854D9006BA9C0 /* CourseListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseListController.h; sourceTree = "<group>"; };
+		0AB649F726D854D9006BA9C0 /* CourseListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseListController.m; sourceTree = "<group>"; };
+		0AB649FA26D9FCA1006BA9C0 /* SearchCourseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCourseViewController.h; sourceTree = "<group>"; };
+		0AB649FB26D9FCA1006BA9C0 /* SearchCourseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCourseViewController.m; sourceTree = "<group>"; };
+		0AB649FE26DB7315006BA9C0 /* CourseHeadBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseHeadBox.h; sourceTree = "<group>"; };
+		0AB649FF26DB7315006BA9C0 /* CourseHeadBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseHeadBox.m; sourceTree = "<group>"; };
+		0AB64A0226DCCF0B006BA9C0 /* CourseVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseVideoCell.h; sourceTree = "<group>"; };
+		0AB64A0326DCCF0B006BA9C0 /* CourseVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseVideoCell.m; sourceTree = "<group>"; };
 		0AB7C4DF23FA4B98000F013E /* DailyScheduleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyScheduleCell.h; sourceTree = "<group>"; };
 		0AB7C4E023FA4B98000F013E /* DailyScheduleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyScheduleCell.m; sourceTree = "<group>"; };
 		0AB7C4E224068B26000F013E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -499,6 +523,12 @@
 		0AE646A9229C175A00E3A370 /* CalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalCell.m; sourceTree = "<group>"; };
 		0AFAAFC723DBEB66007C91C6 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		0AFAAFC823DBEB66007C91C6 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		0AFD392926D4B4FF00322A74 /* ExploreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
+		0AFD392A26D4B4FF00322A74 /* ExploreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		0AFD393826D4F1EF00322A74 /* SightScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SightScrollCell.h; sourceTree = "<group>"; };
+		0AFD393926D4F1EF00322A74 /* SightScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SightScrollCell.m; sourceTree = "<group>"; };
+		0AFD393C26D731E500322A74 /* SightCubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SightCubeView.m; sourceTree = "<group>"; };
+		0AFD393D26D731E500322A74 /* SightCubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SightCubeView.h; sourceTree = "<group>"; };
 		2DE052C3913611266F1DEFE3 /* libPods-edum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-edum.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AE3C5BB0B84937A3C78CF5 /* Pods-edum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-edum/Pods-edum.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B3F2C5DA2D7AF1614D6320 /* Pods-edum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edum.release.xcconfig"; path = "Pods/Target Support Files/Pods-edum/Pods-edum.release.xcconfig"; sourceTree = "<group>"; };
@@ -616,6 +646,10 @@
 				0A744126243882590042F7E9 /* AppointmentViewController.m */,
 				0ADB1B40243F44DC00FAD8C5 /* AppointmentCell.h */,
 				0ADB1B41243F44DC00FAD8C5 /* AppointmentCell.m */,
+				0AB649FE26DB7315006BA9C0 /* CourseHeadBox.h */,
+				0AB649FF26DB7315006BA9C0 /* CourseHeadBox.m */,
+				0AB64A0226DCCF0B006BA9C0 /* CourseVideoCell.h */,
+				0AB64A0326DCCF0B006BA9C0 /* CourseVideoCell.m */,
 			);
 			path = course;
 			sourceTree = "<group>";
@@ -795,6 +829,10 @@
 		0A96B0CB2135253C0015A625 /* landing */ = {
 			isa = PBXGroup;
 			children = (
+				0AFD393D26D731E500322A74 /* SightCubeView.h */,
+				0AFD393C26D731E500322A74 /* SightCubeView.m */,
+				0AFD393826D4F1EF00322A74 /* SightScrollCell.h */,
+				0AFD393926D4F1EF00322A74 /* SightScrollCell.m */,
 				0A96B10F2138D4500015A625 /* BannerView.h */,
 				0A96B0FF2138D44F0015A625 /* BannerView.m */,
 				0A96B0F72138D44E0015A625 /* CategoryCell.h */,
@@ -823,6 +861,14 @@
 				0AA86FAE241F649A003A2AA8 /* LandingViewController.m */,
 				0AAF6B21247E38F400D3519A /* LandingTeacherListCell.h */,
 				0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */,
+				0AFD392926D4B4FF00322A74 /* ExploreViewController.h */,
+				0AFD392A26D4B4FF00322A74 /* ExploreViewController.m */,
+				0AB649F226D7E9B8006BA9C0 /* CourseRectangleCell.h */,
+				0AB649F326D7E9B8006BA9C0 /* CourseRectangleCell.m */,
+				0AB649F626D854D9006BA9C0 /* CourseListController.h */,
+				0AB649F726D854D9006BA9C0 /* CourseListController.m */,
+				0AB649FA26D9FCA1006BA9C0 /* SearchCourseViewController.h */,
+				0AB649FB26D9FCA1006BA9C0 /* SearchCourseViewController.m */,
 			);
 			path = landing;
 			sourceTree = "<group>";
@@ -879,6 +925,10 @@
 				0AB7C4EF2407C728000F013E /* FollowingCell.m */,
 				0AB7C4F4240E6368000F013E /* AllCoursesViewController.h */,
 				0AB7C4F5240E6368000F013E /* AllCoursesViewController.m */,
+				0A04CEE0267EE32600FFCC85 /* TransferTestViewController.h */,
+				0A04CEE1267EE32600FFCC85 /* TransferTestViewController.m */,
+				0A04CEE42681947E00FFCC85 /* TransferTTTTViewController.h */,
+				0A04CEE52681947E00FFCC85 /* TransferTTTTViewController.m */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -1197,7 +1247,6 @@
 				0A76253D2109A8AD0054C4A4 /* Frameworks */,
 				0A76253E2109A8AD0054C4A4 /* Resources */,
 				B3C2DF6223A9DC9DB682F8B0 /* [CP] Copy Pods Resources */,
-				D6AADD2ECD5E0A02F9725BEF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1296,23 +1345,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6AADD2ECD5E0A02F9725BEF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1321,6 +1353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AC38B78212FDABE0083E24F /* AFURLConnectionOperation.m in Sources */,
+				0AB649FC26D9FCA1006BA9C0 /* SearchCourseViewController.m in Sources */,
 				0AC38A20212FDA0E0083E24F /* UIButton+YYAdditions.m in Sources */,
 				0A96B1122138D4500015A625 /* LandingSectionHeaderView.m in Sources */,
 				0AB7C4F02407C728000F013E /* FollowingCell.m in Sources */,
@@ -1337,16 +1370,19 @@
 				0A15197323F2644200692178 /* ZhenCell.m in Sources */,
 				0A65975724583242000515F1 /* CourseSectionTopHeader.m in Sources */,
 				0AA713D8213D7A8500C6D038 /* ApplePayTestViewController.m in Sources */,
+				0AB649F426D7E9B8006BA9C0 /* CourseRectangleCell.m in Sources */,
 				0AC38A19212FDA0E0083E24F /* Base64.m in Sources */,
 				0AA713DD213D7A8500C6D038 /* MyOrderViewController.m in Sources */,
 				0AC38A25212FDA0E0083E24F /* UIColor+ColorExtension.m in Sources */,
 				0AC38A27212FDA0E0083E24F /* UIView+Prompting.m in Sources */,
+				0AB64A0426DCCF0B006BA9C0 /* CourseVideoCell.m in Sources */,
 				0AFAAFC923DBEB66007C91C6 /* KeychainItemWrapper.m in Sources */,
 				0AA7141D213D997100C6D038 /* HostQuestionHeaderView.m in Sources */,
 				0A96B1132138D4500015A625 /* CategoryCell.m in Sources */,
 				0AB7C4FF24114358000F013E /* UserNotificationDetailViewController.m in Sources */,
 				0AA713DA213D7A8500C6D038 /* AvatarView.m in Sources */,
 				0AE646A7229B686000E3A370 /* CalHeader.m in Sources */,
+				0A04CEE2267EE32600FFCC85 /* TransferTestViewController.m in Sources */,
 				0A15ECB8247BB5B80031B642 /* WXApiManager.mm in Sources */,
 				0A328783229383E3002B088D /* LunarFormatter.m in Sources */,
 				0A3AED58226DB3F600169900 /* CourseBannerCell.m in Sources */,
@@ -1355,6 +1391,7 @@
 				0AC38A22212FDA0E0083E24F /* NSDictionary+JSONEXtern.m in Sources */,
 				0AB7C4FC2410B251000F013E /* TopCourseViewController.m in Sources */,
 				0AC38A1B212FDA0E0083E24F /* UIView+BFExtension.m in Sources */,
+				0AB64A0026DB7315006BA9C0 /* CourseHeadBox.m in Sources */,
 				0AB7C4E424068B27000F013E /* ProfileViewController.m in Sources */,
 				0A1FE9D82152665B00B74453 /* StudyListCell.m in Sources */,
 				0A15ECC9247BE1890031B642 /* UIAlertView+WX.mm in Sources */,
@@ -1371,6 +1408,7 @@
 				0A96B1202138D4DB0015A625 /* HMSegmentedControl.m in Sources */,
 				0AC38A28212FDA0E0083E24F /* UIViewController+TitleView.m in Sources */,
 				0A7625532109A8AF0054C4A4 /* main.m in Sources */,
+				0AFD392B26D4B4FF00322A74 /* ExploreViewController.m in Sources */,
 				0AC38A4B212FDA780083E24F /* BaseViewController.m in Sources */,
 				0AC38B79212FDABE0083E24F /* AFHTTPRequestOperationManager.m in Sources */,
 				0AA713E7213D7AF900C6D038 /* FavoritesViewController.m in Sources */,
@@ -1395,6 +1433,7 @@
 				0AC38A48212FDA780083E24F /* SelectSlideContainerViewController.m in Sources */,
 				0AC38B7A212FDABE0083E24F /* AFHTTPRequestOperation.m in Sources */,
 				0A744124243724440042F7E9 /* PaymentDoneController.m in Sources */,
+				0A04CEE62681947E00FFCC85 /* TransferTTTTViewController.m in Sources */,
 				0AC38A2A212FDA0E0083E24F /* PaddingLabel.m in Sources */,
 				0AC38A2D212FDA0E0083E24F /* UITableView+YYAdditions.m in Sources */,
 				0A15197623F2B04300692178 /* SettingCell.m in Sources */,
@@ -1440,6 +1479,7 @@
 				0A5F369224BD99DE00F80337 /* CourseEntity.m in Sources */,
 				0AC38BB7212FE4690083E24F /* LoginViewController.m in Sources */,
 				0A6E5F2C22CC336700551733 /* BaseTableViewController.m in Sources */,
+				0AB649F826D854D9006BA9C0 /* CourseListController.m in Sources */,
 				0A96B1162138D4500015A625 /* BannerView.m in Sources */,
 				0AC38A47212FDA780083E24F /* BasePickerViewController.m in Sources */,
 				0A4F273C23F5328300D04BA5 /* TTTAttributedLabel.m in Sources */,
@@ -1455,6 +1495,8 @@
 				0A15ECBC247BE11B0031B642 /* WXApiRequestHandler.mm in Sources */,
 				0AA71419213D97D600C6D038 /* GuideHeaderView.m in Sources */,
 				0AA91EFB24B4432800B691D6 /* VideoCallViewController.m in Sources */,
+				0AFD393A26D4F1EF00322A74 /* SightScrollCell.m in Sources */,
+				0AFD393E26D731E600322A74 /* SightCubeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
