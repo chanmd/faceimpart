@@ -41,7 +41,7 @@
         _toolbar = [[UIView alloc] initWithFrame:CGRectMake(-0.5, APPFullScreenHeight - 49 - SafeAreaBottomHeight, APPScreenWidth + 1, 49 + SafeAreaBottomHeight)];
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _toolbar.backgroundColor = __color_white;
-        _toolbar.layer.borderColor = [__color_gray_separator CGColor];
+        _toolbar.layer.borderColor = [__color_gray_background CGColor];
         _toolbar.layer.borderWidth = 0.5f;
         _toolbar.clipsToBounds = YES;
         [_toolbar addSubview:self.button_a];

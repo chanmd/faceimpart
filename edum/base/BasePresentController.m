@@ -39,7 +39,7 @@
         _view_navigationbar.backgroundColor = __color_white;
         [_view_navigationbar addSubview:self.label_title];
         [_view_navigationbar addSubview:self.button_back];
-        [_view_navigationbar addSubview:self.view_navi_border];
+//        [_view_navigationbar addSubview:self.view_navi_border];
         
     }
     return _view_navigationbar;
@@ -60,9 +60,9 @@
 {
     if (!_button_back) {
         _button_back = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button_back.frame = CGRectMake(APPScreenWidth - 10 - 60, 30 + BASE_VIEW_Y, 60, 30);
+        _button_back.frame = CGRectMake(APPScreenWidth - 10 - 60, 15, 60, 30);
 //        [_button_back setImage:ImageNamed(@"icon_cancel") forState:UIControlStateNormal];
-        [_button_back setTitle:@"取消" forState:UIControlStateNormal];
+        [_button_back setTitle:@"关闭" forState:UIControlStateNormal];
         [_button_back setTitleColor:__color_main forState:UIControlStateNormal];
         [_button_back addTarget:self action:@selector(action_back) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -72,7 +72,7 @@
 - (UIView *)view_navi_border
 {
     if (!_view_navi_border) {
-        _view_navi_border = [[UIView alloc] initWithFrame:CGRectMake(0, 63.5 + BASE_VIEW_Y, APPScreenWidth, 0.5)];
+        _view_navi_border = [[UIView alloc] initWithFrame:CGRectMake(0, 43.5 + BASE_VIEW_Y, APPScreenWidth, 0.5)];
         _view_navi_border.backgroundColor = __color_gray_separator;
     }
     return _view_navi_border;

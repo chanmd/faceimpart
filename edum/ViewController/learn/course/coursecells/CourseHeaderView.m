@@ -72,6 +72,7 @@
         [_button_more setTitleColor:__color_main forState:UIControlStateNormal];
         _button_more.titleLabel.font = __font(14);
         _button_more.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_button_more addTarget:self action:@selector(action_readmore) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button_more;
 }
@@ -182,6 +183,13 @@
 {
     if (self.block) {
         self.block(self.teacher_id);
+    }
+}
+
+- (void)action_readmore
+{
+    if (self.readmore_block) {
+        self.readmore_block();
     }
 }
 

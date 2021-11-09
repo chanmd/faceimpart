@@ -7,14 +7,14 @@
 //
 
 #import "BaseViewController.h"
-#import <AgoraRtcKit/AgoraRtcEngineKit.h>
+//#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 FOUNDATION_EXPORT NSString *const appID;
 FOUNDATION_EXPORT NSString *const token;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VideoCallViewController : BaseViewController <AgoraRtcEngineDelegate>
+@interface VideoCallViewController : BaseViewController //<AgoraRtcEngineDelegate>
 
 @property (nonatomic, strong) NSDictionary *course_data;
 

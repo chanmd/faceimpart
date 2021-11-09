@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CourseSectionHeaderView : UITableViewHeaderFooterView
 
 @property (nonatomic, strong) UILabel *label_title;
+@property (nonatomic, strong) UIButton *button_more;
 
 @end
 

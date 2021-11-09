@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *label_title;
 @property (nonatomic, strong) UILabel *label_subtitle;
 
+- (void)bindVideoData:(NSDictionary *)data;
+
 @end
 
 NS_ASSUME_NONNULL_END

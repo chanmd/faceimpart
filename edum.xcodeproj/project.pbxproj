@@ -67,8 +67,10 @@
 		0A7F92B123E476A700557E4D /* LandingArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F92B023E476A600557E4D /* LandingArticleCell.m */; };
 		0A7F92B423E5745400557E4D /* NSTimer+UnretainCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F92B323E5745400557E4D /* NSTimer+UnretainCircle.m */; };
 		0A7F92B723E8457700557E4D /* WeeklyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F92B623E8457700557E4D /* WeeklyScheduleViewController.m */; };
+		0A93849C272586F600A0CA5A /* CourseVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A93849B272586F600A0CA5A /* CourseVideoListViewController.m */; };
 		0A95D5CF24F660B60079A237 /* TeacherCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */; };
 		0A95D5D324F7A3350079A237 /* TeacherCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */; };
+		0A9603CD26ECC732007A58C0 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9603CC26ECC732007A58C0 /* VideoPlayerViewController.m */; };
 		0A96B1102138D4500015A625 /* CategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */; };
 		0A96B1112138D4500015A625 /* LandingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0F92138D44E0015A625 /* LandingHeaderView.m */; };
 		0A96B1122138D4500015A625 /* LandingSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0FA2138D44E0015A625 /* LandingSectionHeaderView.m */; };
@@ -307,10 +309,14 @@
 		0A7F92B323E5745400557E4D /* NSTimer+UnretainCircle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+UnretainCircle.m"; sourceTree = "<group>"; };
 		0A7F92B523E8457700557E4D /* WeeklyScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeeklyScheduleViewController.h; sourceTree = "<group>"; };
 		0A7F92B623E8457700557E4D /* WeeklyScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeeklyScheduleViewController.m; sourceTree = "<group>"; };
+		0A93849A272586F600A0CA5A /* CourseVideoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseVideoListViewController.h; sourceTree = "<group>"; };
+		0A93849B272586F600A0CA5A /* CourseVideoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseVideoListViewController.m; sourceTree = "<group>"; };
 		0A95D5CD24F660B60079A237 /* TeacherCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherCalendarViewController.h; sourceTree = "<group>"; };
 		0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherCalendarViewController.m; sourceTree = "<group>"; };
 		0A95D5D124F7A3350079A237 /* TeacherCalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherCalendarCell.h; sourceTree = "<group>"; };
 		0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherCalendarCell.m; sourceTree = "<group>"; };
+		0A9603CB26ECC732007A58C0 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
+		0A9603CC26ECC732007A58C0 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
 		0A96B0F72138D44E0015A625 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHeaderView.m; sourceTree = "<group>"; };
 		0A96B0F92138D44E0015A625 /* LandingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingHeaderView.m; sourceTree = "<group>"; };
@@ -620,36 +626,13 @@
 			children = (
 				0A1FE9E7215B7D6600B74453 /* CourseViewController.h */,
 				0A1FE9E8215B7D6600B74453 /* CourseViewController.m */,
-				0A744113242A3BBD0042F7E9 /* CourseHeaderView.h */,
-				0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */,
-				0A744116242A5E340042F7E9 /* CourseBriefCell.h */,
-				0A744117242A5E340042F7E9 /* CourseBriefCell.m */,
-				0A65975524583242000515F1 /* CourseSectionTopHeader.h */,
-				0A65975624583242000515F1 /* CourseSectionTopHeader.m */,
-				0A6597522456EA3D000515F1 /* CourseSectionHeaderView.h */,
-				0A6597532456EA3D000515F1 /* CourseSectionHeaderView.m */,
-				0A65974F2456B996000515F1 /* CourseSectionCell.h */,
-				0A6597502456B996000515F1 /* CourseSectionCell.m */,
-				0ABBCD7F216F6C970033F0A2 /* CourseContentCell.h */,
-				0ABBCD80216F6C970033F0A2 /* CourseContentCell.m */,
+				0A93849A272586F600A0CA5A /* CourseVideoListViewController.h */,
+				0A93849B272586F600A0CA5A /* CourseVideoListViewController.m */,
 				0ABD3C22217658A500A5C130 /* CourseBriefDetailViewController.h */,
 				0ABD3C23217658A500A5C130 /* CourseBriefDetailViewController.m */,
-				0A744119242EE9C30042F7E9 /* PaymentViewController.h */,
-				0A74411A242EE9C30042F7E9 /* PaymentViewController.m */,
-				0A74411C242EEC590042F7E9 /* PaymentHeader.h */,
-				0A74411D242EEC590042F7E9 /* PaymentHeader.m */,
-				0A74411F243380800042F7E9 /* PaymentCell.h */,
-				0A744120243380800042F7E9 /* PaymentCell.m */,
-				0A744122243724440042F7E9 /* PaymentDoneController.h */,
-				0A744123243724440042F7E9 /* PaymentDoneController.m */,
-				0A744125243882590042F7E9 /* AppointmentViewController.h */,
-				0A744126243882590042F7E9 /* AppointmentViewController.m */,
-				0ADB1B40243F44DC00FAD8C5 /* AppointmentCell.h */,
-				0ADB1B41243F44DC00FAD8C5 /* AppointmentCell.m */,
-				0AB649FE26DB7315006BA9C0 /* CourseHeadBox.h */,
-				0AB649FF26DB7315006BA9C0 /* CourseHeadBox.m */,
-				0AB64A0226DCCF0B006BA9C0 /* CourseVideoCell.h */,
-				0AB64A0326DCCF0B006BA9C0 /* CourseVideoCell.m */,
+				0A93849E2725871200A0CA5A /* coursecells */,
+				0A9384A02725886300A0CA5A /* payment */,
+				0A9384A42725888800A0CA5A /* appointment */,
 			);
 			path = course;
 			sourceTree = "<group>";
@@ -813,6 +796,55 @@
 			path = analytics_ios_6.1.0;
 			sourceTree = "<group>";
 		};
+		0A93849E2725871200A0CA5A /* coursecells */ = {
+			isa = PBXGroup;
+			children = (
+				0AB649FE26DB7315006BA9C0 /* CourseHeadBox.h */,
+				0AB649FF26DB7315006BA9C0 /* CourseHeadBox.m */,
+				0AB64A0226DCCF0B006BA9C0 /* CourseVideoCell.h */,
+				0AB64A0326DCCF0B006BA9C0 /* CourseVideoCell.m */,
+				0A744117242A5E340042F7E9 /* CourseBriefCell.m */,
+				0A65975524583242000515F1 /* CourseSectionTopHeader.h */,
+				0A65975624583242000515F1 /* CourseSectionTopHeader.m */,
+				0A6597522456EA3D000515F1 /* CourseSectionHeaderView.h */,
+				0A6597532456EA3D000515F1 /* CourseSectionHeaderView.m */,
+				0A65974F2456B996000515F1 /* CourseSectionCell.h */,
+				0A6597502456B996000515F1 /* CourseSectionCell.m */,
+				0ABBCD7F216F6C970033F0A2 /* CourseContentCell.h */,
+				0ABBCD80216F6C970033F0A2 /* CourseContentCell.m */,
+				0A744113242A3BBD0042F7E9 /* CourseHeaderView.h */,
+				0A744114242A3BBD0042F7E9 /* CourseHeaderView.m */,
+				0A744116242A5E340042F7E9 /* CourseBriefCell.h */,
+			);
+			path = coursecells;
+			sourceTree = "<group>";
+		};
+		0A9384A02725886300A0CA5A /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				0A744119242EE9C30042F7E9 /* PaymentViewController.h */,
+				0A74411A242EE9C30042F7E9 /* PaymentViewController.m */,
+				0A74411C242EEC590042F7E9 /* PaymentHeader.h */,
+				0A74411D242EEC590042F7E9 /* PaymentHeader.m */,
+				0A74411F243380800042F7E9 /* PaymentCell.h */,
+				0A744120243380800042F7E9 /* PaymentCell.m */,
+				0A744122243724440042F7E9 /* PaymentDoneController.h */,
+				0A744123243724440042F7E9 /* PaymentDoneController.m */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		0A9384A42725888800A0CA5A /* appointment */ = {
+			isa = PBXGroup;
+			children = (
+				0A744125243882590042F7E9 /* AppointmentViewController.h */,
+				0A744126243882590042F7E9 /* AppointmentViewController.m */,
+				0ADB1B40243F44DC00FAD8C5 /* AppointmentCell.h */,
+				0ADB1B41243F44DC00FAD8C5 /* AppointmentCell.m */,
+			);
+			path = appointment;
+			sourceTree = "<group>";
+		};
 		0A95D5D024F663260079A237 /* teacher */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,6 +989,8 @@
 				0A3AED5D226E16EE00169900 /* SightBriefViewController.m */,
 				0A3AED5A226E168000169900 /* SightBriefCell.h */,
 				0A3AED59226E168000169900 /* SightBriefCell.m */,
+				0A9603CB26ECC732007A58C0 /* VideoPlayerViewController.h */,
+				0A9603CC26ECC732007A58C0 /* VideoPlayerViewController.m */,
 			);
 			path = learn;
 			sourceTree = "<group>";
@@ -1376,6 +1410,7 @@
 				0AC38A25212FDA0E0083E24F /* UIColor+ColorExtension.m in Sources */,
 				0AC38A27212FDA0E0083E24F /* UIView+Prompting.m in Sources */,
 				0AB64A0426DCCF0B006BA9C0 /* CourseVideoCell.m in Sources */,
+				0A93849C272586F600A0CA5A /* CourseVideoListViewController.m in Sources */,
 				0AFAAFC923DBEB66007C91C6 /* KeychainItemWrapper.m in Sources */,
 				0AA7141D213D997100C6D038 /* HostQuestionHeaderView.m in Sources */,
 				0A96B1132138D4500015A625 /* CategoryCell.m in Sources */,
@@ -1425,6 +1460,7 @@
 				0AC38A44212FDA780083E24F /* BaseUser.m in Sources */,
 				0AE646A4229A39E300E3A370 /* TouchEventsTestViewController.m in Sources */,
 				0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */,
+				0A9603CD26ECC732007A58C0 /* VideoPlayerViewController.m in Sources */,
 				0A6597512456B996000515F1 /* CourseSectionCell.m in Sources */,
 				0A74411E242EEC590042F7E9 /* PaymentHeader.m in Sources */,
 				0AC38A1E212FDA0E0083E24F /* NSString+IsValidate.m in Sources */,

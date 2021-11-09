@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.imageview];
+//    [self.view addSubview:self.imageview];
     [self.view addSubview:self.scrollview];
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(___action_back)];
     [self.view addGestureRecognizer:tapgesture];
@@ -45,7 +45,7 @@
 - (UIScrollView *)scrollview
 {
     if (!_scrollview) {
-        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, BASE_TABLEVIEW_Y, APPScreenWidth, APPFullScreenHeight - BASE_TABLEVIEW_Y)];
+        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, APPScreenWidth, APPFullScreenHeight - BASE_TABLEVIEW_Y)];
         [_scrollview addSubview:self.label];
         //        [_scrollview addSubview:self.button_cancel];
     }
@@ -56,8 +56,8 @@
 {
     if (!_label) {
         _label = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, APPScreenWidth - 30, 20)];
-        _label.font = __font(18);
-        _label.textColor = __color_font_title;
+        _label.font = __font(16);
+        _label.textColor = __color_font_subtitle;
         _label.numberOfLines = 0;
         _label.lineBreakMode = NSLineBreakByCharWrapping;
     }
@@ -77,9 +77,9 @@
 
 - (void)bindData:(NSString *)string
 {
-    [self.label setText:string lineSpacing:SIGHT_DETAIL_LINESPACE];
+    [self.label setText:string lineSpacing:5];
     [self.label sizeToFit];
-    CGFloat height = [UILabel text:string font:__font(18) width:APPScreenWidth - 30 lineSpacing:SIGHT_DETAIL_LINESPACE];
+    CGFloat height = [UILabel text:string font:__font(16) width:APPScreenWidth - 30 lineSpacing:5];
     if (height + 60 > APPScreenHeight) {
         self.scrollview.contentSize = CGSizeMake(APPScreenWidth, height + 60);
     }

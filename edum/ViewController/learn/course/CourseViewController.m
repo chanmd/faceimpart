@@ -22,12 +22,14 @@
 #import "CourseSectionHeaderView.h"
 #import "CourseContentCell.h"
 #import "CourseVideoCell.h"
-#import "CourseSectionCell.h"
+#import "CourseRectangleCell.h"
 #import "CourseBriefDetailViewController.h"
 #import "PaymentViewController.h"
 #import "AppointmentViewController.h"
 #import <SuperPlayer/SuperPlayer.h>
 #import "TeacherViewController.h"
+#import "VideoPlayerViewController.h"
+#import "CourseVideoListViewController.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define PADDING_OFFSET_X -50
@@ -36,8 +38,10 @@
 @interface CourseViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *array_course_catlog;
 @property (nonatomic, strong) NSMutableDictionary *dict_course;
-@property (nonatomic, strong) NSMutableArray *array_data_content;
+@property (nonatomic, strong) NSMutableArray *array_recommend;
+@property (nonatomic, strong) NSMutableDictionary *dictionary_catlogs;
 @property (nonatomic, assign) CGFloat content_height;
 
 @property (nonatomic, strong) CourseHeaderView *header;
@@ -55,8 +59,9 @@
 @property (nonatomic, strong) UIView *view_arrange;
 @property (nonatomic, strong) UILabel *label_status;
 @property (nonatomic, strong) UIButton *button_arrangement;
-@property (nonatomic, strong) SuperPlayerView *playerview;
-@property (nonatomic, strong) SuperPlayerModel *playermodel;
+
+@property (nonatomic, strong) UIButton *button_more_video;
+
  
 @end
 
@@ -76,15 +81,7 @@
     [self action_course_detail];
 }
 
-- (SuperPlayerView *)playerview
-{
-    if (!_playerview) {
-        _playerview = [[SuperPlayerView alloc] init];
-        _playerview.fatherView = self.view;
-        _playerview.layoutStyle = SuperPlayerLayoutStyleFullScreen;
-    }
-    return _playerview;
-}
+
 
 - (UITableView *)tableView
 {
@@ -106,6 +103,9 @@
         _header.block = ^(NSString *teacher_id) {
             [weakSelf action_teacher:teacher_id];
         };
+        _header.readmore_block  = ^(void) {
+            [weakSelf action_readmore];
+        };
     }
     return _header;
 }
@@ -115,6 +115,13 @@
     TeacherViewController *teacher = [[TeacherViewController alloc] init];
     teacher.user_id = teacher_id;
     [self.navigationController pushViewController:teacher animated:YES];
+}
+
+- (void)action_readmore
+{
+    CourseBriefDetailViewController *detail = [[CourseBriefDetailViewController alloc] init];
+    [detail bindData:[self.dict_course stringForKey:@"desc"]];
+    [self presentViewController:detail animated:YES completion:nil];
 }
 
 - (UIView *)briefview
@@ -161,9 +168,9 @@
         _view_buy = [[UIView alloc] initWithFrame:CGRectMake(0, APPScreenHeight - 55 - SafeAreaBottomHeight, APPScreenWidth, 55 + SafeAreaBottomHeight)];
         _view_buy.backgroundColor = __color_white;
 //        [_view_buy addSubview:self.view_ceil];
-        [_view_buy addSubview:self.imageview_calendar];
-        [_view_buy addSubview:self.label_calendar];
-        [_view_buy addSubview:self.button_calendar];
+//        [_view_buy addSubview:self.imageview_calendar];
+//        [_view_buy addSubview:self.label_calendar];
+//        [_view_buy addSubview:self.button_calendar];
         [_view_buy addSubview:self.button_buy];
     }
     return _view_buy;
@@ -173,8 +180,8 @@
 - (UIButton *)button_buy
 {
     if (!_button_buy) {
-        _button_buy = [[UIButton alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 200, 7, 200, 40)];
-        [_button_buy setTitle:@"开始训练" forState:UIControlStateNormal];
+        _button_buy = [[UIButton alloc] initWithFrame:CGRectMake(15, 7, APPScreenWidth - 30, 40)];
+        [_button_buy setTitle:@"开始练习" forState:UIControlStateNormal];
         _button_buy.layer.masksToBounds = YES;
         _button_buy.layer.backgroundColor = [__color_main CGColor];
         _button_buy.layer.cornerRadius = CORNERRADIUS;
@@ -253,6 +260,19 @@
     return _button_arrangement;
 }
 
+
+- (UIButton *)button_more_video
+{
+    if (!_button_more_video) {
+        _button_more_video = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, APPScreenWidth, 44)];
+        _button_more_video.titleLabel.font = __font(14);
+        [_button_more_video setTitleColor:__color_font_subtitle forState:UIControlStateNormal];
+        [_button_more_video addTarget:self action:@selector(action_all_video) forControlEvents:UIControlEventTouchUpInside];
+        _button_more_video.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    }
+    return _button_more_video;
+}
+
 - (void)action_calendar
 {
     
@@ -308,12 +328,28 @@
     return _dict_course;
 }
 
-- (NSMutableArray *)array_data_content
+- (NSMutableArray *)array_recommend
 {
-    if (!_array_data_content) {
-        _array_data_content = [NSMutableArray array];
+    if (!_array_recommend) {
+        _array_recommend = [NSMutableArray array];
     }
-    return _array_data_content;
+    return _array_recommend;
+}
+
+- (NSMutableArray *)array_course_catlog
+{
+    if (!_array_course_catlog) {
+        _array_course_catlog = [NSMutableArray array];
+    }
+    return _array_course_catlog;
+}
+
+- (NSMutableDictionary *)dictionary_catlogs
+{
+    if (!_dictionary_catlogs) {
+        _dictionary_catlogs = [NSMutableDictionary dictionary];
+    }
+    return _dictionary_catlogs;
 }
 
 #pragma mark - scrolling view
@@ -338,32 +374,57 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    if (section == 0) {
+        return [self.array_course_catlog count] + 1;
+    } else if (section == 1) {
+        return [self.array_recommend count];
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self __cell_category:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        if (indexPath.row == [self.array_course_catlog count]) {
+            return [self __cell_more:tableView cellForRowAtIndexPath:indexPath];
+        }
+        return [self __cell_category:tableView cellForRowAtIndexPath:indexPath];
+    } else if (indexPath.section == 1) {
+        return [self __cell_recommend:tableView cellForRowAtIndexPath:indexPath];
+    }
+    return nil;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == [self.array_course_catlog count]) {
+            return 44;
+        }
+        return 70;
+        
+    } else if (indexPath.section == 1) {
+        
+        return COURSE_LIST_HEIGHT + 10;
+    }
     return 70;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 54.f;
+    return 44.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.01f;
+    return 15;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -380,10 +441,21 @@
     if (!header) {
         header = [[CourseSectionHeaderView alloc] initWithReuseIdentifier:reuseIdentifier];
     }
-//    NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"title"];
-    NSString *chapter_name = @"课程内容";
     header.label_title.width = APPScreenWidth - 40;
-    header.label_title.text = chapter_name;
+    [header.button_more addTarget:self action:@selector(action_all_video) forControlEvents:UIControlEventTouchUpInside];
+    if (section == 0) {
+        if ([self.array_course_catlog count] > 0) {
+            header.label_title.text = @"课程内容";
+            header.button_more.hidden = NO;
+        }
+    } else if (section == 1) {
+        if ([self.array_recommend count] > 0) {
+            header.label_title.text = @"推荐课程";
+            header.button_more.hidden = YES;
+        }
+    }
+    
+//    NSString *chapter_name = [[self.array_data_content objectAtIndex:section] stringForKey:@"title"];
     return header;
     
     
@@ -410,32 +482,43 @@
 
 #pragma mark heights
 
-- (CGFloat)__calculate_height_brief:(NSString *)brief
-{
-    CGFloat height = [UILabel text:brief font:__fontlight(16) width:APPScreenWidth - 40 lineSpacing:5];
-    return height + 70;
-}
+//- (CGFloat)__calculate_height_brief:(NSString *)brief
+//{
+//    CGFloat height = [UILabel text:brief font:__fontlight(16) width:APPScreenWidth - 40 lineSpacing:5];
+//    return height + 70;
+//}
 
-- (CGFloat)__calculate_height_content:(NSIndexPath *)indexPath
-{
-    NSDictionary *data = [self.array_data_content objectAtIndex:indexPath.section];
-    NSString *ori_text = [data stringForKey:@"subtitle"];
-    NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
-    CGFloat label_height = [UILabel text:text font:__fontthin(16) width:APPScreenWidth - 30 lineSpacing:5];
-    CGFloat height = label_height + 21;
-    return height;
-}
+//- (CGFloat)__calculate_height_content:(NSIndexPath *)indexPath
+//{
+//    NSDictionary *data = [self.array_data_content objectAtIndex:indexPath.section];
+//    NSString *ori_text = [data stringForKey:@"subtitle"];
+//    NSString *text = [ori_text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+//    CGFloat label_height = [UILabel text:text font:__fontthin(16) width:APPScreenWidth - 30 lineSpacing:5];
+//    CGFloat height = label_height + 21;
+//    return height;
+//}
 
 #pragma mark cells
 
-- (UITableViewCell *)__cell_brief:(UITableView *)tableView
+- (UITableViewCell *)__cell_more:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *detailcell = @"briefcell";
-    CourseBriefCell *cell = [tableView dequeueReusableCellWithIdentifier:detailcell];
+    static NSString *more_cell = @"all_video";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:more_cell];
     if (!cell) {
-        cell = [[CourseBriefCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:more_cell];
     }
-    [cell bindCourseBrief:self.dict_course];
+    [cell.contentView addSubview:self.button_more_video];
+    return cell;
+}
+
+- (CourseRectangleCell *)__cell_recommend:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *detailcell = @"recommend";
+    CourseRectangleCell *cell = [tableView dequeueReusableCellWithIdentifier:detailcell];
+    if (!cell) {
+        cell = [[CourseRectangleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
+    }
+    [cell bindData:[self.array_recommend objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -446,26 +529,34 @@
     if (!cell) {
         cell = [[CourseVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailcell];
     }
-//    NSDictionary *data = [self.array_data_content objectAtIndex:indexPath.row];
+    NSDictionary *data = [self.array_course_catlog objectAtIndex:indexPath.row];
+    [cell bindVideoData:data];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        
+        NSDictionary *video = [self.array_course_catlog objectAtIndex:indexPath.row];
+        VideoPlayerViewController *player = [[VideoPlayerViewController alloc] init];
+        player.data = video;
+        [self.navigationController pushViewController:player animated:YES];
+        
+    }
+    if (indexPath.section == 1) {
+        NSDictionary *course = [self.array_recommend objectAtIndex:indexPath.row];
+        CourseViewController *courseview = [[CourseViewController alloc] init];
+        courseview.course_id = [course objectForKey:@"course_id"];
+        [self.navigationController pushViewController:courseview animated:YES];
+    }
 }
 
-#pragma mark - webview delegates
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-{
-    self.content_height = webView.scrollView.contentSize.height;
-    [self.tableView reloadData];
-    
-}
+
 
 #pragma mark - actions
-
 
 - (void)action_buy
 {
@@ -496,6 +587,14 @@
 
 #pragma mark - network
 
+- (void)action_all_video
+{
+    CourseVideoListViewController *list = [[CourseVideoListViewController alloc] init];
+    list.array_data = [NSMutableArray arrayWithArray:[self.dictionary_catlogs allValues]];
+    list.array_data_titles = [NSMutableArray arrayWithArray:[self.dictionary_catlogs allKeys]];
+    [self.navigationController pushViewController:list animated:YES];
+}
+
 - (void)action_course_detail
 {
     NSDictionary *parms = @{
@@ -514,22 +613,21 @@
             NSDictionary *data = [tempDic dictionaryForKey:@"data"];
             
             weakSelf.dict_course = [NSMutableDictionary dictionaryWithDictionary:data];
-            weakSelf.array_data_content = [NSMutableArray arrayWithArray:[data arrayForKey:@"catlog"]];
             
-//            weakSelf.label_brief.text = [NSString stringWithFormat:@"共%ld节课程", [weakSelf.array_data_content count]];
+            NSMutableDictionary *catlog = [NSMutableDictionary dictionaryWithDictionary:[data dictionaryForKey:@"catlog"]];
+            self.dictionary_catlogs = catlog;
+            
+            NSArray *catlog_keys = [catlog allKeys];
+            if ([catlog_keys count] > 0) {
+                weakSelf.array_course_catlog = [NSMutableArray arrayWithArray:[catlog arrayForKey:catlog_keys[0]]];
+            }
+            weakSelf.array_recommend = [NSMutableArray arrayWithArray:[data arrayForKey:@"recommend"]];
+            NSString *video_count = [data stringForKey:@"video_count"];
+            [weakSelf.button_more_video setTitle:video_count forState:UIControlStateNormal];
             
             weakSelf.tableView.tableHeaderView = nil;
             weakSelf.tableView.tableHeaderView = weakSelf.header;
             [weakSelf.header bindCourseHeader:weakSelf.dict_course];
-            
-//            weakSelf.label_price.text = [NSString stringWithFormat:@"¥%@", [weakSelf.dict_course stringIntForKey:@"price"]];
-//            [weakSelf.label_price sizeToFit];
-//            weakSelf.label_price_fake.centerY = weakSelf.label_price.centerY;
-//
-//            NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-//            NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@", [weakSelf.dict_course stringIntForKey:@"oprice"]] attributes:attribtDic];
-//            weakSelf.label_price_fake.attributedText = attribtStr;
-//            weakSelf.label_price_fake.left = self.label_price.right + 5;
             weakSelf.view_buy.hidden = NO;
             weakSelf.view_arrange.hidden = YES;
             

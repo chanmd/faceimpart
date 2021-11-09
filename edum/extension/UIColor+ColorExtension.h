@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 //colors
-#define __color_gray_background [UIColor colorWithHEX:0xf1f1f1]
+#define __color_gray_background [UIColor colorWithHEX:0xf9f9f9]
 #define __color_gray_separator [UIColor colorWithHEX:0xe5e5e5]
 #define __color_gray_light [UIColor colorWithHEX:0xdcdcdc]
 #define __color_red_main [UIColor colorWithHEX:0xeb5c4a]

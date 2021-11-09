@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^Teacher_TouchUpInside_Block)(NSString *teacher_id);
 
+typedef void (^ReadMore_Block)();
+
+@property (nonatomic, copy) ReadMore_Block readmore_block;
 @property (nonatomic, copy) Teacher_TouchUpInside_Block block;
 
 - (void)bindCourseHeader:(NSDictionary *)dic;

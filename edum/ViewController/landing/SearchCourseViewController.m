@@ -40,7 +40,7 @@
         _searchTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 //        NSMutableAttributedString *placeholderString = [[NSMutableAttributedString alloc] initWithString:@"搜索股票/组合/主题" attributes:@{NSForegroundColorAttributeName : [[TKHqSkin instance]getSkinColor:@"PRICE_TOP_SEARCH_PLACEHOLDER"], NSFontAttributeName : [UIFont systemFontOfSize:14.0f ]}];
 //        _searchTextField.attributedPlaceholder = placeholderString;
-        _searchTextField.placeholder = @"想学什么乐器，一搜即可！";
+        _searchTextField.placeholder = @"想学什么课程，一搜即可！";
         _searchTextField.font = __font(14);
         _searchTextField.textColor = __color_font_title;
         _searchTextField.userInteractionEnabled = YES;
@@ -117,7 +117,7 @@
 
 - (UIView *)search_view
 {
-    UIView *topSearchContain = [[UIView alloc] initWithFrame:CGRectMake(0, 50, APPScreenWidth, 30)];
+    UIView *topSearchContain = [[UIView alloc] initWithFrame:CGRectMake(0, BASE_VIEW_Y + 30, APPScreenWidth, 30)];
     
     //顶部搜索框容器
     UIView *topSearch = [[UIView alloc] initWithFrame:CGRectMake(10, 0, APPScreenWidth - 70, 30)];

@@ -58,8 +58,8 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_photo.right + 10, LABEL_PADDING, 200, 20)];
-        _label_title.font = __font(14);
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_photo.right + 10, LABEL_PADDING  + 8, 200, 20)];
+        _label_title.font = __font(16);
         _label_title.textColor = __color_font_title;
         _label_title.numberOfLines = 0;
         _label_title.text = @"一弓一拍";
@@ -70,32 +70,21 @@
 - (UILabel *)label_subtitle
 {
     if (!_label_subtitle) {
-        _label_subtitle = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_photo.right + 10, self.label_title.bottom + 2, 200, 16)];
-        _label_subtitle.font = __font(12);
+        _label_subtitle = [[UILabel alloc] initWithFrame:CGRectMake(self.imageview_photo.right + 10, self.label_title.bottom + 4, 200, 16)];
+        _label_subtitle.font = __font(14);
         _label_subtitle.textColor = __color_font_subtitle;
         _label_subtitle.numberOfLines = 0;
-        _label_subtitle.text = @"时长 01:20";
         
     }
     return _label_subtitle;
 }
 
-
-
-- (void)bindData:(NSDictionary *)dic
+- (void)bindVideoData:(NSDictionary *)data
 {
-//    [self.imageview_photo sd_setImageWithURL:[NSURL URLWithString:[dic stringForKey:@"url"]] placeholderImage:ImageNamed(@"city_placeholder") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
-//        if (image && cacheType != SDImageCacheTypeDisk) {
-//            self.imageview_photo.alpha = 0.0;
-//            [UIView animateWithDuration:0.618
-//                             animations:^{
-//                                 self.imageview_photo.alpha = 1.0;
-//                             }];
-//        }
-//    }];
-    [self.imageview_photo sd_setImageWithURL:[NSURL URLWithString:[dic stringForKey:@"cover_image"]] placeholderImage:ImageNamed(@"city_placeholder") completed:nil];
-    
-    self.label_title.text = [dic stringForKey:@"title"];
+    NSDictionary *video = [data dictionaryForKey:@"video"];
+    [self.imageview_photo sd_setImageWithURL:[NSURL URLWithString:[video stringForKey:@"cover_image"]] placeholderImage:ImageNamed(@"city_placeholder") completed:nil];
+    self.label_title.text = [video stringForKey:@"title"];
+    self.label_subtitle.text = [video stringForKey:@"subtitle"];
 }
 
 @end

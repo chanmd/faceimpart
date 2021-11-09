@@ -27,7 +27,7 @@
 {
     if (!_imageview_cover) {
         _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        _imageview_cover.layer.cornerRadius = CORNERRADIUS;
+        _imageview_cover.layer.cornerRadius = 3.f;
         _imageview_cover.clipsToBounds = YES;
     }
     return _imageview_cover;
@@ -37,9 +37,11 @@
 {
     if (!_view_shadow) {
         _view_shadow = [[UIView alloc] initWithFrame:self.imageview_cover.frame];
-        _view_shadow.layer.cornerRadius = CORNERRADIUS;
+        _view_shadow.layer.cornerRadius = 3.f;
         _view_shadow.clipsToBounds = YES;
-        _view_shadow.backgroundColor = [UIColor colorWithHEX:0x666666 Alpha:0.15];
+        _view_shadow.backgroundColor = __color_white;
+        _view_shadow.layer.borderColor = [__color_main CGColor];
+        _view_shadow.layer.borderWidth = 0.5f;
     }
     return _view_shadow;
 }
@@ -48,8 +50,8 @@
 {
     if (!_label_title) {
         _label_title = [[UILabel alloc] initWithFrame:self.imageview_cover.frame];
-        _label_title.font = __font(18);
-        _label_title.textColor = __color_black;
+        _label_title.font = __fontthin(18);
+        _label_title.textColor = __color_main;
         _label_title.textAlignment = NSTextAlignmentCenter;
     }
     return _label_title;
