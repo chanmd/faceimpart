@@ -12,8 +12,8 @@
 
 //NSString *const BASE_URL = @"http://www.klavier.cn";
 //NSString *const BASE_URL = @"http://192.168.109.24:8000";
-//NSString *const BASE_URL = @"http://192.168.31.112:8000";
-NSString *const BASE_URL = @"http://localhost:8000";
+NSString *const BASE_URL = @"http://192.168.31.75:8000";
+//NSString *const BASE_URL = @"http://localhost:8000";
 NSString *const BASE_PLATFORM = @"ios";
 NSString *const BASE_VERSION = @"v0.0.1";
 

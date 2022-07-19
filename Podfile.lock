@@ -1,41 +1,26 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - FDFullscreenPopGesture (1.1)
-  - FSCalendar (2.8.2)
-  - Masonry (1.1.0)
+  - FSCalendar (2.8.4)
   - MBProgressHUD (1.2.0)
-  - MJRefresh (3.5.0)
-  - MMLayout (0.3.0)
-  - SDWebImage (5.9.5):
-    - SDWebImage/Core (= 5.9.5)
-  - SDWebImage/Core (5.9.5)
-  - SuperPlayer (3.2.2):
-    - AFNetworking
-    - Masonry
-    - MMLayout
-    - SDWebImage
-    - SuperPlayer/Player (= 3.2.2)
-  - SuperPlayer/Player (3.2.2):
-    - AFNetworking
-    - Masonry
-    - MMLayout
-    - SDWebImage
-    - TXLiteAVSDK_Player (= 7.1.8775)
-  - TXLiteAVSDK_Player (7.1.8775)
+  - MJRefresh (3.7.5)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
   - WechatOpenSDK (1.8.7.1)
 
 DEPENDENCIES:
@@ -45,7 +30,6 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJRefresh
   - SDWebImage
-  - SuperPlayer
   - WechatOpenSDK
 
 SPEC REPOS:
@@ -53,28 +37,20 @@ SPEC REPOS:
     - AFNetworking
     - FDFullscreenPopGesture
     - FSCalendar
-    - Masonry
     - MBProgressHUD
     - MJRefresh
-    - MMLayout
     - SDWebImage
-    - SuperPlayer
-    - TXLiteAVSDK_Player
     - WechatOpenSDK
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
-  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
-  MMLayout: d559edecd69fbcb348368ba90917e047ab1c544e
-  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
-  SuperPlayer: 8572ea30d64c5cbb476177992527fec0a234271e
-  TXLiteAVSDK_Player: 66ec5d2007064e4ff6205e5bd2b9e1cc1dc5f643
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
 
-PODFILE CHECKSUM: d624918c1a45067f6ed6e216d656abaa866c9233
+PODFILE CHECKSUM: 3eca4160616606943e3fbf7269a2d5bb64ea2d09
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.11.2

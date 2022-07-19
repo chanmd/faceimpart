@@ -7,7 +7,7 @@
 //
 
 #import "VideoPlayerViewController.h"
-#import <SuperPlayer/SuperPlayer.h>
+//#import <SuperPlayer/SuperPlayer.h>
 #import "NSDictionary+JSONExtern.h"
 
 @interface VideoPlayerViewController () <SuperPlayerDelegate>

@@ -70,7 +70,6 @@
 		0A93849C272586F600A0CA5A /* CourseVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A93849B272586F600A0CA5A /* CourseVideoListViewController.m */; };
 		0A95D5CF24F660B60079A237 /* TeacherCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */; };
 		0A95D5D324F7A3350079A237 /* TeacherCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */; };
-		0A9603CD26ECC732007A58C0 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9603CC26ECC732007A58C0 /* VideoPlayerViewController.m */; };
 		0A96B1102138D4500015A625 /* CategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */; };
 		0A96B1112138D4500015A625 /* LandingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0F92138D44E0015A625 /* LandingHeaderView.m */; };
 		0A96B1122138D4500015A625 /* LandingSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B0FA2138D44E0015A625 /* LandingSectionHeaderView.m */; };
@@ -192,6 +191,10 @@
 		0AFD392B26D4B4FF00322A74 /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD392A26D4B4FF00322A74 /* ExploreViewController.m */; };
 		0AFD393A26D4F1EF00322A74 /* SightScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD393926D4F1EF00322A74 /* SightScrollCell.m */; };
 		0AFD393E26D731E600322A74 /* SightCubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD393C26D731E500322A74 /* SightCubeView.m */; };
+		B2123FB62849F07B006100D2 /* ExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2123FB52849F07B006100D2 /* ExploreCell.m */; };
+		B2123FB92849F268006100D2 /* ExploreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2123FB82849F268006100D2 /* ExploreHeaderView.m */; };
+		B2123FBC284A0367006100D2 /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2123FBB284A0367006100D2 /* BaseCollectionViewCell.m */; };
+		B294FFAC2855E4D10075A18C /* ExploreCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B294FFAB2855E4D10075A18C /* ExploreCourseCell.m */; };
 		DA950129E9A6A42D535B51B9 /* libPods-edum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE052C3913611266F1DEFE3 /* libPods-edum.a */; };
 /* End PBXBuildFile section */
 
@@ -315,8 +318,6 @@
 		0A95D5CE24F660B60079A237 /* TeacherCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherCalendarViewController.m; sourceTree = "<group>"; };
 		0A95D5D124F7A3350079A237 /* TeacherCalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherCalendarCell.h; sourceTree = "<group>"; };
 		0A95D5D224F7A3350079A237 /* TeacherCalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherCalendarCell.m; sourceTree = "<group>"; };
-		0A9603CB26ECC732007A58C0 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
-		0A9603CC26ECC732007A58C0 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
 		0A96B0F72138D44E0015A625 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHeaderView.m; sourceTree = "<group>"; };
 		0A96B0F92138D44E0015A625 /* LandingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingHeaderView.m; sourceTree = "<group>"; };
@@ -537,6 +538,14 @@
 		0AFD393D26D731E500322A74 /* SightCubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SightCubeView.h; sourceTree = "<group>"; };
 		2DE052C3913611266F1DEFE3 /* libPods-edum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-edum.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AE3C5BB0B84937A3C78CF5 /* Pods-edum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-edum/Pods-edum.debug.xcconfig"; sourceTree = "<group>"; };
+		B2123FB42849F07B006100D2 /* ExploreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreCell.h; sourceTree = "<group>"; };
+		B2123FB52849F07B006100D2 /* ExploreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreCell.m; sourceTree = "<group>"; };
+		B2123FB72849F268006100D2 /* ExploreHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreHeaderView.h; sourceTree = "<group>"; };
+		B2123FB82849F268006100D2 /* ExploreHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreHeaderView.m; sourceTree = "<group>"; };
+		B2123FBA284A0367006100D2 /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
+		B2123FBB284A0367006100D2 /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
+		B294FFAA2855E4D10075A18C /* ExploreCourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreCourseCell.h; sourceTree = "<group>"; };
+		B294FFAB2855E4D10075A18C /* ExploreCourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreCourseCell.m; sourceTree = "<group>"; };
 		C7B3F2C5DA2D7AF1614D6320 /* Pods-edum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edum.release.xcconfig"; path = "Pods/Target Support Files/Pods-edum/Pods-edum.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -861,46 +870,8 @@
 		0A96B0CB2135253C0015A625 /* landing */ = {
 			isa = PBXGroup;
 			children = (
-				0AFD393D26D731E500322A74 /* SightCubeView.h */,
-				0AFD393C26D731E500322A74 /* SightCubeView.m */,
-				0AFD393826D4F1EF00322A74 /* SightScrollCell.h */,
-				0AFD393926D4F1EF00322A74 /* SightScrollCell.m */,
-				0A96B10F2138D4500015A625 /* BannerView.h */,
-				0A96B0FF2138D44F0015A625 /* BannerView.m */,
-				0A96B0F72138D44E0015A625 /* CategoryCell.h */,
-				0A96B0FB2138D44E0015A625 /* CategoryCell.m */,
-				0A96B1002138D44F0015A625 /* CategoryDetailViewController.h */,
-				0A96B1092138D44F0015A625 /* CategoryDetailViewController.m */,
-				0A96B1012138D44F0015A625 /* CategoryHeaderView.h */,
-				0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */,
-				0A96B1042138D44F0015A625 /* CategoryView.h */,
-				0A96B1062138D44F0015A625 /* CategoryView.m */,
-				0A96B1082138D44F0015A625 /* LandingHeaderView.h */,
-				0A96B0F92138D44E0015A625 /* LandingHeaderView.m */,
-				0A96B1072138D44F0015A625 /* LandingSectionHeaderView.h */,
-				0A96B0FA2138D44E0015A625 /* LandingSectionHeaderView.m */,
-				0A7F92A623E2978500557E4D /* LandingTeacherCell.h */,
-				0A7F92A723E2978500557E4D /* LandingTeacherCell.m */,
-				0A7F92A923E33F4100557E4D /* LandingCourseCell.h */,
-				0A7F92AA23E33F4100557E4D /* LandingCourseCell.m */,
-				0A7F92AF23E476A600557E4D /* LandingArticleCell.h */,
-				0A7F92B023E476A600557E4D /* LandingArticleCell.m */,
-				0AB7C4F72410ABDE000F013E /* TopTeacherViewController.h */,
-				0AB7C4F82410ABDE000F013E /* TopTeacherViewController.m */,
-				0AB7C4FA2410B251000F013E /* TopCourseViewController.h */,
-				0AB7C4FB2410B251000F013E /* TopCourseViewController.m */,
-				0AA86FAD241F649A003A2AA8 /* LandingViewController.h */,
-				0AA86FAE241F649A003A2AA8 /* LandingViewController.m */,
-				0AAF6B21247E38F400D3519A /* LandingTeacherListCell.h */,
-				0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */,
-				0AFD392926D4B4FF00322A74 /* ExploreViewController.h */,
-				0AFD392A26D4B4FF00322A74 /* ExploreViewController.m */,
-				0AB649F226D7E9B8006BA9C0 /* CourseRectangleCell.h */,
-				0AB649F326D7E9B8006BA9C0 /* CourseRectangleCell.m */,
-				0AB649F626D854D9006BA9C0 /* CourseListController.h */,
-				0AB649F726D854D9006BA9C0 /* CourseListController.m */,
-				0AB649FA26D9FCA1006BA9C0 /* SearchCourseViewController.h */,
-				0AB649FB26D9FCA1006BA9C0 /* SearchCourseViewController.m */,
+				B2123FB22849EE57006100D2 /* View */,
+				B2123FB12849EE2A006100D2 /* Controller */,
 			);
 			path = landing;
 			sourceTree = "<group>";
@@ -989,8 +960,6 @@
 				0A3AED5D226E16EE00169900 /* SightBriefViewController.m */,
 				0A3AED5A226E168000169900 /* SightBriefCell.h */,
 				0A3AED59226E168000169900 /* SightBriefCell.m */,
-				0A9603CB26ECC732007A58C0 /* VideoPlayerViewController.h */,
-				0A9603CC26ECC732007A58C0 /* VideoPlayerViewController.m */,
 			);
 			path = learn;
 			sourceTree = "<group>";
@@ -1088,6 +1057,8 @@
 				0AC38A3B212FDA770083E24F /* SelectSlideContainerViewController.m */,
 				0A6E5F2A22CC336700551733 /* BaseTableViewController.h */,
 				0A6E5F2B22CC336700551733 /* BaseTableViewController.m */,
+				B2123FBA284A0367006100D2 /* BaseCollectionViewCell.h */,
+				B2123FBB284A0367006100D2 /* BaseCollectionViewCell.m */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -1260,6 +1231,74 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B2123FB12849EE2A006100D2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD392926D4B4FF00322A74 /* ExploreViewController.h */,
+				0AFD392A26D4B4FF00322A74 /* ExploreViewController.m */,
+				0AB649F626D854D9006BA9C0 /* CourseListController.h */,
+				0AB649F726D854D9006BA9C0 /* CourseListController.m */,
+				0A96B1002138D44F0015A625 /* CategoryDetailViewController.h */,
+				0A96B1092138D44F0015A625 /* CategoryDetailViewController.m */,
+				0AB7C4F72410ABDE000F013E /* TopTeacherViewController.h */,
+				0AB7C4F82410ABDE000F013E /* TopTeacherViewController.m */,
+				0AB7C4FA2410B251000F013E /* TopCourseViewController.h */,
+				0AB7C4FB2410B251000F013E /* TopCourseViewController.m */,
+				0AA86FAD241F649A003A2AA8 /* LandingViewController.h */,
+				0AA86FAE241F649A003A2AA8 /* LandingViewController.m */,
+				0AB649FA26D9FCA1006BA9C0 /* SearchCourseViewController.h */,
+				0AB649FB26D9FCA1006BA9C0 /* SearchCourseViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2123FB22849EE57006100D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B2123FB32849F03D006100D2 /* Explore */,
+				0AFD393D26D731E500322A74 /* SightCubeView.h */,
+				0AFD393C26D731E500322A74 /* SightCubeView.m */,
+				0AFD393826D4F1EF00322A74 /* SightScrollCell.h */,
+				0AFD393926D4F1EF00322A74 /* SightScrollCell.m */,
+				0A96B10F2138D4500015A625 /* BannerView.h */,
+				0A96B0FF2138D44F0015A625 /* BannerView.m */,
+				0A96B0F72138D44E0015A625 /* CategoryCell.h */,
+				0A96B0FB2138D44E0015A625 /* CategoryCell.m */,
+				0A96B1012138D44F0015A625 /* CategoryHeaderView.h */,
+				0A96B0F82138D44E0015A625 /* CategoryHeaderView.m */,
+				0A96B1042138D44F0015A625 /* CategoryView.h */,
+				0A96B1062138D44F0015A625 /* CategoryView.m */,
+				0A96B1082138D44F0015A625 /* LandingHeaderView.h */,
+				0A96B0F92138D44E0015A625 /* LandingHeaderView.m */,
+				0A96B1072138D44F0015A625 /* LandingSectionHeaderView.h */,
+				0A96B0FA2138D44E0015A625 /* LandingSectionHeaderView.m */,
+				0A7F92A623E2978500557E4D /* LandingTeacherCell.h */,
+				0A7F92A723E2978500557E4D /* LandingTeacherCell.m */,
+				0A7F92A923E33F4100557E4D /* LandingCourseCell.h */,
+				0A7F92AA23E33F4100557E4D /* LandingCourseCell.m */,
+				0A7F92AF23E476A600557E4D /* LandingArticleCell.h */,
+				0A7F92B023E476A600557E4D /* LandingArticleCell.m */,
+				0AAF6B21247E38F400D3519A /* LandingTeacherListCell.h */,
+				0AAF6B22247E38F400D3519A /* LandingTeacherListCell.m */,
+				0AB649F226D7E9B8006BA9C0 /* CourseRectangleCell.h */,
+				0AB649F326D7E9B8006BA9C0 /* CourseRectangleCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2123FB32849F03D006100D2 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				B2123FB42849F07B006100D2 /* ExploreCell.h */,
+				B2123FB52849F07B006100D2 /* ExploreCell.m */,
+				B2123FB72849F268006100D2 /* ExploreHeaderView.h */,
+				B2123FB82849F268006100D2 /* ExploreHeaderView.m */,
+				B294FFAA2855E4D10075A18C /* ExploreCourseCell.h */,
+				B294FFAB2855E4D10075A18C /* ExploreCourseCell.m */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
 		DAFBE0794D24458D131B5223 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1429,6 +1468,7 @@
 				0AB64A0026DB7315006BA9C0 /* CourseHeadBox.m in Sources */,
 				0AB7C4E424068B27000F013E /* ProfileViewController.m in Sources */,
 				0A1FE9D82152665B00B74453 /* StudyListCell.m in Sources */,
+				B2123FB92849F268006100D2 /* ExploreHeaderView.m in Sources */,
 				0A15ECC9247BE1890031B642 /* UIAlertView+WX.mm in Sources */,
 				0AC38A21212FDA0E0083E24F /* UIImage+initWithColor.m in Sources */,
 				0AE646A1229A355600E3A370 /* CalendarGridViewController.m in Sources */,
@@ -1458,9 +1498,9 @@
 				0A7625452109A8AD0054C4A4 /* AppDelegate.m in Sources */,
 				0AC38A1F212FDA0E0083E24F /* NSString+YYAdditions.m in Sources */,
 				0AC38A44212FDA780083E24F /* BaseUser.m in Sources */,
+				B2123FBC284A0367006100D2 /* BaseCollectionViewCell.m in Sources */,
 				0AE646A4229A39E300E3A370 /* TouchEventsTestViewController.m in Sources */,
 				0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */,
-				0A9603CD26ECC732007A58C0 /* VideoPlayerViewController.m in Sources */,
 				0A6597512456B996000515F1 /* CourseSectionCell.m in Sources */,
 				0A74411E242EEC590042F7E9 /* PaymentHeader.m in Sources */,
 				0AC38A1E212FDA0E0083E24F /* NSString+IsValidate.m in Sources */,
@@ -1469,6 +1509,7 @@
 				0AC38A48212FDA780083E24F /* SelectSlideContainerViewController.m in Sources */,
 				0AC38B7A212FDABE0083E24F /* AFHTTPRequestOperation.m in Sources */,
 				0A744124243724440042F7E9 /* PaymentDoneController.m in Sources */,
+				B2123FB62849F07B006100D2 /* ExploreCell.m in Sources */,
 				0A04CEE62681947E00FFCC85 /* TransferTTTTViewController.m in Sources */,
 				0AC38A2A212FDA0E0083E24F /* PaddingLabel.m in Sources */,
 				0AC38A2D212FDA0E0083E24F /* UITableView+YYAdditions.m in Sources */,
@@ -1524,6 +1565,7 @@
 				0ABBCD81216F6C970033F0A2 /* CourseContentCell.m in Sources */,
 				0A95D5D324F7A3350079A237 /* TeacherCalendarCell.m in Sources */,
 				0AC38A1A212FDA0E0083E24F /* BTKeychain.m in Sources */,
+				B294FFAC2855E4D10075A18C /* ExploreCourseCell.m in Sources */,
 				0AC38A43212FDA780083E24F /* BaseTabbarViewController.m in Sources */,
 				0AB7C4E72406B723000F013E /* GeneralHeaderView.m in Sources */,
 				0AA71418213D97D600C6D038 /* GuideEditViewController.m in Sources */,

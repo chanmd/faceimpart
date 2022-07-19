@@ -26,9 +26,9 @@
 #import "CourseBriefDetailViewController.h"
 #import "PaymentViewController.h"
 #import "AppointmentViewController.h"
-#import <SuperPlayer/SuperPlayer.h>
+//#import <SuperPlayer/SuperPlayer.h>
 #import "TeacherViewController.h"
-#import "VideoPlayerViewController.h"
+//#import "VideoPlayerViewController.h"
 #import "CourseVideoListViewController.h"
 
 #define NAVBAR_CHANGE_POINT 50
@@ -539,10 +539,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         
-        NSDictionary *video = [self.array_course_catlog objectAtIndex:indexPath.row];
-        VideoPlayerViewController *player = [[VideoPlayerViewController alloc] init];
-        player.data = video;
-        [self.navigationController pushViewController:player animated:YES];
+//        NSDictionary *video = [self.array_course_catlog objectAtIndex:indexPath.row];
+//        VideoPlayerViewController *player = [[VideoPlayerViewController alloc] init];
+//        player.data = video;
+//        [self.navigationController pushViewController:player animated:YES];
         
     }
     if (indexPath.section == 1) {
