@@ -33,7 +33,7 @@
 {
     if (!_label_title) {
         _label_title = [[UILabel alloc] initWithFrame:CGRectMake(59, 15, 200, 20)];
-        _label_title.font = __fontthin(18);
+        _label_title.font = __fontthin(16);
         _label_title.textColor = __color_font_subtitle;
         _label_title.textAlignment = NSTextAlignmentLeft;
     }

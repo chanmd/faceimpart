@@ -87,6 +87,7 @@
 //        _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
 //        _tableView.separatorColor = __color_gray_separator;
         _tableView.tableFooterView = self.footer;
+        [_tableView registerClass:[ZhenCell class] forCellReuseIdentifier:NSStringFromClass([ZhenCell class])];
     }
     return _tableView;
 }
@@ -191,12 +192,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"main_cell";
-    ZhenCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[ZhenCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+    ZhenCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZhenCell class])];
     NSArray *array = [[self.array_data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.imageview_cover.image = ImageNamed(array[0]);
     cell.label_title.text = [array objectAtIndex:1];
@@ -214,12 +210,12 @@
 {
     if (!_array_data) {
         NSArray *array = @[@[
-                               @[@"musicnote", @"我的课程", @"action_course"],
+                               @[@"musicnote", @"Courses", @"action_course"],
 //                               @[@"study", @"我的关注", @"action_following"],
-                               @[@"remainder", @"我的消息", @"action_message"],
+                               @[@"remainder", @"Message", @"action_message"],
 //                               @[@"teacher", @"我是老师", @"action_teacher"],
 //                               @[@"customer", @"客服中心", @"action_customer"],
-                               @[@"setting", @"设置", @"action_setting"]
+                               @[@"setting", @"Setting", @"action_setting"]
                              ]];
         _array_data = [[NSArray alloc] initWithArray:array];
     }
@@ -345,7 +341,7 @@
         if (BASEUSER.nickname) {
             self.header.label_name.text = BASEUSER.nickname;
         } else {
-            self.header.label_name.text = @"昵称";
+            self.header.label_name.text = @"Alias";
         }
         
         self.header.label_name.hidden = NO;
@@ -355,7 +351,7 @@
         self.header.view_avatar.hidden = NO;
         self.header.imageview_avatar.image = ImageNamed(@"logo_launch");
         self.header.label_name.hidden = NO;
-        self.header.label_name.text = @"请登陆";
+        self.header.label_name.text = @"Login";
         self.tableView.tableHeaderView = self.header;
         [self.tableView reloadData];
     }

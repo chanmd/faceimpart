@@ -39,8 +39,8 @@
 - (UILabel *)label_title {
     if (!_label_title) {
         _label_title = [[UILabel alloc] init];
-        _label_title.frame = CGRectMake(0, self.imageView.bottom + 10, 180, 16);
-        _label_title.font = __fontmedium(14);
+        _label_title.frame = CGRectMake(1, self.imageView.bottom + 10, 180, 16);
+        _label_title.font = __font(16);
         _label_title.textColor = __color_font_title;
         _label_title.textAlignment = NSTextAlignmentLeft;
     }
@@ -50,9 +50,9 @@
 - (UILabel *)label_teachername {
     if (!_label_teachername) {
         _label_teachername = [[UILabel alloc] init];
-        _label_teachername.frame = CGRectMake(0, self.label_title.bottom + 2, 180, 16);
+        _label_teachername.frame = CGRectMake(1, self.label_title.bottom + 5, 180, 16);
         _label_teachername.font = __font(14);
-        _label_teachername.textColor = __color_font_title;
+        _label_teachername.textColor = __color_font_subtitle;
         _label_teachername.textAlignment = NSTextAlignmentLeft;
     }
     return _label_teachername;

@@ -27,7 +27,7 @@
 - (UILabel *)title_label
 {
     if (!_title_label) {
-        _title_label = [[UILabel alloc] initWithFrame:CGRectMake(PADDING_LEFT, PADDING_TOP, APPScreenWidth - PADDING_LEFT * 2, 20)];
+        _title_label = [[UILabel alloc] initWithFrame:CGRectMake(PADDING_LEFT, 0, APPScreenWidth - PADDING_LEFT * 2, 20)];
         _title_label.font = __fontmedium(18);
         _title_label.textColor = __color_font_title;
         _title_label.textAlignment = NSTextAlignmentLeft;

@@ -15,8 +15,8 @@
 #import "SearchCourseViewController.h"
 #import "CourseViewController.h"
 
-#define SECTION_HEIGHT 60
-#define CELL_HEIGHT 240
+#define SECTION_HEIGHT 40
+#define CELL_HEIGHT 260
 #define GENERAL_CUBE_HEIGHT 80
 
 @interface ExploreViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UITextFieldDelegate>
@@ -35,6 +35,7 @@
 
 
 @property (nonatomic, strong) UITableView *tableview;
+@property (nonatomic, strong) MJRefreshNormalHeader *tableViewHeader;
 @property (nonatomic, assign) NSInteger selectedIndex;
 @property (nonatomic, strong) UITextField *searchTextField;
 
@@ -134,7 +135,7 @@
 - (NSMutableArray *)array_titles
 {
     if (!_array_titles) {
-        _array_titles = [[NSMutableArray alloc] initWithArray:@[@"Hot", @"YTes", @"YES"]];
+        _array_titles = [[NSMutableArray alloc] initWithArray:@[@"Popular Course", @"Just Added to favorites", @"Discovery our curated collections"]];
     }
     return _array_titles;
 }
@@ -207,12 +208,11 @@
 - (UILabel *)label_logo
 {
     if (!_label_logo) {
-        _label_logo = [[UILabel alloc] initWithFrame:CGRectMake(0, 10 , APPScreenWidth, 20)];
-        _label_logo.textColor = __color_main;
+        _label_logo = [[UILabel alloc] initWithFrame:CGRectMake(0, BASE_TABLEVIEW_Y - 30, APPScreenWidth, 20)];
+        _label_logo.textColor = __color_font_title;
         _label_logo.textAlignment = NSTextAlignmentCenter;
-        _label_logo.text = @"FACEIMPART";
-        _label_logo.numberOfLines = 2;
-        _label_logo.font = __fontlight(22);
+        _label_logo.text = @"Explore";
+        _label_logo.font = __fontlight(20);
     }
     return _label_logo;
 }
@@ -232,9 +232,30 @@
 //        [_tableview addSubview:self.label_logo];
         [_tableview registerClass:[ExploreHeaderView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([ExploreHeaderView class])];
         [_tableview registerClass:[ExploreCell class] forCellReuseIdentifier:NSStringFromClass([ExploreCell class])];
-        _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(___action_refresh)];
+        _tableview.mj_header = self.tableViewHeader;
     }
     return _tableview;
+}
+
+- (MJRefreshNormalHeader *)tableViewHeader {
+    if (!_tableViewHeader) {
+        _tableViewHeader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(___action_refresh)];
+        _tableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+        // Hide the status
+//        _tableViewHeader.stateLabel.hidden = YES;
+        [_tableViewHeader setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
+        [_tableViewHeader setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
+        [_tableViewHeader setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
+
+        // Set font
+        _tableViewHeader.stateLabel.font = __font(16);
+        _tableViewHeader.lastUpdatedTimeLabel.font = __font(16);
+
+        // Set textColor
+        _tableViewHeader.stateLabel.textColor = __color_font_subtitle;
+        _tableViewHeader.lastUpdatedTimeLabel.textColor = __color_font_subtitle;
+    }
+    return _tableViewHeader;
 }
 
 #pragma mark - tableiview delegate

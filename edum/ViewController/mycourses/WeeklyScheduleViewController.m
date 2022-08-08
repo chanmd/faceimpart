@@ -8,17 +8,15 @@
 
 #import "WeeklyScheduleViewController.h"
 #import "CourseRectangleCell.h"
-#import "WeeklyScheduleHeaderView.h"
-//#import "VideoCallViewController.h"
 #import "LoginViewController.h"
 #import "CourseViewController.h"
 
-@interface WeeklyScheduleViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
-{
-    void * _KVOContext;
-}
+@interface WeeklyScheduleViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) WeeklyScheduleHeaderView *header;
+@property (nonatomic, strong) UILabel *label_logo;
+@property (nonatomic, strong) NSMutableArray *array_date;
+@property (nonatomic, strong) NSMutableArray *array_week;
+@property (nonatomic, strong) NSMutableArray *array_day;
 @property (nonatomic, strong) UIView *emptyView;
 @property (nonatomic, strong) UIButton *button_login;
 @property (nonatomic, strong) UIView *view_empty_data;
@@ -31,51 +29,80 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的课程表";
-    [self.view insertSubview:self.calendar atIndex:998];
-    [self.view insertSubview:self.tableView atIndex:999];
-    [self.view insertSubview:self.emptyView atIndex:1000];
-    
-//    [self.view addGestureRecognizer:self.scopeGesture];
-//    [self.tableView.panGestureRecognizer requireGestureRecognizerToFail:self.scopeGesture];
-    
-    [self.calendar addObserver:self forKeyPath:@"scope" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:_KVOContext];
-    self.calendar.placeholderType = FSCalendarPlaceholderTypeNone;
-    self.calendar.scope = FSCalendarScopeWeek;
-    self.calendar.appearance.weekdayTextColor = __color_font_subtitle;
-    self.calendar.appearance.headerTitleColor = __color_main;
-    self.calendar.appearance.selectionColor = __color_main;
-    self.calendar.appearance.headerDateFormat = @"MMMM yy";
-    self.calendar.appearance.headerTitleColor = __color_white;
-    
-    self.calendar.appearance.todayColor = __color_main_alpha;
-    self.calendar.appearance.titleTodayColor = __color_white;
-    
-    self.calendar.appearance.headerTitleFont = __fontbold(14);
-    self.calendar.appearance.titleFont = __fontbold(14);
-//    self.calendar.appearance.weekdayFont = __fontbold(18);
-    self.calendar.appearance.weekdayTextColor = __color_font_subtitle;
-    
-    [self.calendar selectDate:[NSDate date] scrollToDate:YES];
-    
-    // For UITest
-    self.calendar.accessibilityIdentifier = @"calendar";
-    
-//    self.emptyView.hidden = NO;
-    
-//    self.tableView.hidden = YES;
-//    self.header.hidden = YES;
-//    self.calendar.hidden = YES;
+    [self.view addSubview:self.label_logo];
+    [self initSegments];
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.emptyView];
     self.current_date = [self.dateFormatter stringFromDate:[NSDate date]];
     NSLog(@"today---------%@--------------", self.current_date);
-    
+}
+
+- (UILabel *)label_logo
+{
+    if (!_label_logo) {
+        _label_logo = [[UILabel alloc] initWithFrame:CGRectMake(0, BASE_TABLEVIEW_Y - 30, APPScreenWidth, 20)];
+        _label_logo.textColor = __color_font_title;
+        _label_logo.textAlignment = NSTextAlignmentCenter;
+        _label_logo.text = @"Calendar";
+        _label_logo.font = __fontlight(20);
+    }
+    return _label_logo;
+}
+
+- (HMSegmentedControl *)segmentedControl
+{
+    if (!_segmentedControl) {
+        _segmentedControl = [[HMSegmentedControl alloc] init];
+        _segmentedControl.sectionTitles = self.array_week;
+        _segmentedControl.frame = CGRectMake(0, BASE_TABLEVIEW_Y, APPScreenWidth, 40);
+        [_segmentedControl addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
+        _segmentedControl.backgroundColor = [UIColor whiteColor];
+        _segmentedControl.selectionIndicatorColor = __color_main;
+        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(18)};
+        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(18)};
+        _segmentedControl.selectionIndicatorHeight = 2.f;
+        _segmentedControl.shouldAnimateUserSelection = YES;
+        _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
+        _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+    }
+    return _segmentedControl;
+}
+
+- (HMSegmentedControl *)segmentedControlCalendar
+{
+    if (!_segmentedControlCalendar) {
+        _segmentedControlCalendar = [[HMSegmentedControl alloc] init];
+        _segmentedControlCalendar.sectionTitles = self.array_day;
+        _segmentedControlCalendar.frame = CGRectMake(0, self.segmentedControl.bottom, APPScreenWidth, 40);
+        [_segmentedControlCalendar addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
+        _segmentedControlCalendar.backgroundColor = [UIColor whiteColor];
+        _segmentedControlCalendar.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __fontmedium(18)};
+        _segmentedControlCalendar.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: __color_main, NSFontAttributeName: __fontmedium(18)};
+        
+        _segmentedControlCalendar.selectionIndicatorColor = __color_main;
+        _segmentedControlCalendar.selectionIndicatorHeight = 2.f;
+        _segmentedControlCalendar.shouldAnimateUserSelection = YES;
+        _segmentedControlCalendar.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
+        _segmentedControlCalendar.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    }
+    return _segmentedControlCalendar;
+}
+
+- (void)initSegments {
+    [self initCalendarDate];
+    [self.view addSubview:self.segmentedControl];
+    [self.view addSubview:self.segmentedControlCalendar];
+}
+
+
+- (void)segmentSelected {
     
 }
 
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 130, APPScreenWidth, APPScreenHeight - 64 - 130 - BASE_VIEW_Y) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.segmentedControlCalendar.bottom, APPScreenWidth, APPScreenHeight - BASE_TABLEVIEW_Y - 64 - 80 - 20) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = __color_white;
@@ -88,7 +115,6 @@
 
 - (void)dealloc
 {
-    [self.calendar removeObserver:self forKeyPath:@"scope" context:_KVOContext];
     NSLog(@"%s",__FUNCTION__);
 }
 
@@ -108,6 +134,30 @@
     
 }
 
+- (void)initCalendarDate {
+    for (int i = 0; i < 7; i ++) {
+        NSDate *date = [self getDayOffset:i];
+        [self.array_date addObject:date];
+        
+        NSDateFormatter *formate = [[NSDateFormatter alloc] init];
+        formate.dateFormat = @"d";
+        NSString *day = [formate stringFromDate:date];
+        [self.array_day addObject:day];
+        
+        formate.dateFormat = @"EEE";
+        NSString *week = [formate stringFromDate:date];
+        [self.array_week addObject:week];
+    }
+}
+
+- (NSDate *)getDayOffset:(NSInteger)offset {
+    NSDate *nowdate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *component = [[NSDateComponents alloc] init];
+    [component setDay:offset];
+    return [calendar dateByAddingComponents:component toDate:nowdate options:0];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -124,39 +174,27 @@
     return _dateFormatter;
 }
 
-- (UIPanGestureRecognizer *)scopeGesture
-{
-    if (!_scopeGesture) {
-        _scopeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.calendar action:@selector(handleScopeGesture:)];
-        _scopeGesture.delegate = self;
-        _scopeGesture.minimumNumberOfTouches = 1;
-        _scopeGesture.maximumNumberOfTouches = 2;
+- (NSMutableArray *)array_day {
+    if (!_array_day) {
+        _array_day = [NSMutableArray array];
     }
-    return _scopeGesture;
+    return _array_day;
 }
 
-//- (WeeklyScheduleHeaderView *)header
-//{
-//    if (!_header) {
-//        _header = [[WeeklyScheduleHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidthHalf + 200)];
-//        [_header addSubview:self.calendar];
-//    }
-//    return _header;
-//}
-
-- (FSCalendar *)calendar
-{
-    if (!_calendar) {
-        _calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, BASE_VIEW_Y, APPScreenWidth, 250)];
-        _calendar.dataSource = self;
-        _calendar.delegate = self;
-        _calendar.tintColor = __color_red_main;
-        _calendar.scrollDirection = FSCalendarScrollDirectionVertical;
-//        _calendar.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh-CN"];
-        _calendar.backgroundColor = [UIColor whiteColor];
+- (NSMutableArray *)array_week {
+    if (!_array_week) {
+        _array_week = [NSMutableArray array];
     }
-    return _calendar;
+    return _array_week;
 }
+
+- (NSMutableArray *)array_date {
+    if (!_array_date) {
+        _array_date = [NSMutableArray array];
+    }
+    return _array_date;
+}
+
 
 - (UIView *)view_empty_data
 {
@@ -172,7 +210,7 @@
 {
     if (!_button_add) {
         _button_add = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button_add setTitle:@"+ 添加练习" forState:UIControlStateNormal];
+        [_button_add setTitle:@"Add Course" forState:UIControlStateNormal];
         _button_add.frame = CGRectMake((APPScreenWidth - 130) / 2, 90, 130, 40);
         _button_add.clipsToBounds = YES;
         _button_add.layer.cornerRadius = 20;
@@ -239,92 +277,6 @@
     }
     return _dictionary_data;
 }
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if (context == _KVOContext) {
-        FSCalendarScope oldScope = [change[NSKeyValueChangeOldKey] unsignedIntegerValue];
-        FSCalendarScope newScope = [change[NSKeyValueChangeNewKey] unsignedIntegerValue];
-        NSLog(@"From %@ to %@",(oldScope==FSCalendarScopeWeek?@"week":@"month"),(newScope==FSCalendarScopeWeek?@"week":@"month"));
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
-
-#pragma mark - <UIGestureRecognizerDelegate>
-
-// Whether scope gesture should begin
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    BOOL shouldBegin = self.tableView.contentOffset.y <= -self.tableView.contentInset.top;
-    if (shouldBegin) {
-        CGPoint velocity = [self.scopeGesture velocityInView:self.view];
-        switch (self.calendar.scope) {
-            case FSCalendarScopeMonth:
-                return velocity.y < 0;
-            case FSCalendarScopeWeek:
-                return velocity.y > 0;
-        }
-    }
-    return shouldBegin;
-}
-
-#pragma mark - <FSCalendarDelegate>
-
-- (void)calendar:(FSCalendar *)calendar boundingRectWillChange:(CGRect)bounds animated:(BOOL)animated
-{
-    [self.view layoutIfNeeded];
-}
-
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
-    NSLog(@"did select date %@",[self.dateFormatter stringFromDate:date]);
-    
-    NSMutableArray *selectedDates = [NSMutableArray arrayWithCapacity:calendar.selectedDates.count];
-    [calendar.selectedDates enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [selectedDates addObject:[self.dateFormatter stringFromDate:obj]];
-    }];
-    NSLog(@"selected dates is %@",selectedDates);
-    if (monthPosition == FSCalendarMonthPositionNext || monthPosition == FSCalendarMonthPositionPrevious) {
-        [calendar setCurrentPage:date animated:YES];
-    }
-    self.current_date = [self.dateFormatter stringFromDate:date];
-    NSArray *array = [self.dictionary_data arrayForKey:self.current_date];
-    if ([array count] == 0) {
-        self.view_empty_data.hidden = NO;
-    } else {
-        self.view_empty_data.hidden = YES;
-    }
-    [self.tableView reloadData];
-}
-
-- (void)calendarCurrentPageDidChange:(FSCalendar *)calendar
-{
-    NSLog(@"%s %@", __FUNCTION__, [self.dateFormatter stringFromDate:calendar.currentPage]);
-}
-
-- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
-//    NSLog(@"============did select date============= %@",[self.dateFormatter stringFromDate:date]);
-//    self.current_date = [self.dateFormatter stringFromDate:date];
-//    [self.tableView reloadData];
-}
-
-#pragma mark calendar appearance
-
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date
-{
-    if ([[self.dateFormatter stringFromDate:date] isEqualToString:[self.dateFormatter stringFromDate:[NSDate date]]]) {
-        return __color_white;
-    }
-    return __color_font_title;
-}
-
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleSelectionColorForDate:(NSDate *)date
-{
-    return __color_white;
-}
-
 
 #pragma mark - <UITableViewDataSource>
 

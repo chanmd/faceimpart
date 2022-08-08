@@ -25,8 +25,8 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo_launch" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-7g-y7b">
-                                <rect key="frame" x="20" y="140" width="60" height="60"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo_launch" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-7g-y7b">
+                                <rect key="frame" x="20" y="123.5" width="60" height="60"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -34,6 +34,7 @@
                             <constraint firstAttribute="trailing" secondItem="A4a-ua-XoI" secondAttribute="trailing" constant="20" id="5EF-3y-5DS"/>
                             <constraint firstItem="A4a-ua-XoI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ckn-va-Udq"/>
                             <constraint firstItem="A4a-ua-XoI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="REH-Q3-w1C"/>
+                            <constraint firstItem="ACu-7g-y7b" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="20" id="Y4X-jz-1qT"/>
                             <constraint firstItem="A4a-ua-XoI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-77" id="Zu7-8s-teY"/>
                             <constraint firstItem="ACu-7g-y7b" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-180" id="yYB-D3-EoE"/>
                         </constraints>
