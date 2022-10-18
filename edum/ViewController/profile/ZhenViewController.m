@@ -15,7 +15,7 @@
 #import "BTKeychain.h"
 #import "AboutViewController.h"
 #import "AboutContentViewController.h"
-#import "LoginViewController.h"
+#import "LoginOverseaViewController.h"
 #import "AvatarView.h"
 #import "GuideEditViewController.h"
 #import "ZhenCell.h"
@@ -148,7 +148,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -276,7 +276,7 @@
 
 - (void)action_login
 {
-    LoginViewController *login = [[LoginViewController alloc] init];
+    LoginOverseaViewController *login = [[LoginOverseaViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     [self presentViewController:nav animated:YES completion:nil];
 }

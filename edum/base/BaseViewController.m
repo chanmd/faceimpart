@@ -31,15 +31,15 @@
 - (void)setupNavigation
 {
 //    self.navigationController.navigationBar.tintColor = [UIColor colorWithHEX:0xffffff];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __fontthin(18)};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(18)};
 //    self.navigationController.navigationBar.backgroundColor = __color_white;
 //    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 //    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"2pxWidthLineImage"]];
     [[UINavigationBar appearance] setBarTintColor:__color_white];
+    [UINavigationBar appearance].backgroundColor = __color_main;
 //    [self.navigationController.navigationBar lt_setBackgroundColor:__color_main];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [[UINavigationBar appearance] setTranslucent:NO];
     
 }
 

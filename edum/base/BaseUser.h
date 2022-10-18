@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BTKeychain.h"
+#define UserInfo [BaseUser instance]
 
 @interface BaseUser : NSObject
 
@@ -30,6 +31,12 @@
 
 @property (nonatomic, copy) NSDictionary *user;
 @property (nonatomic, copy) NSDictionary *teacher;
+
+@property (nonatomic, copy) NSString *loginType;
+@property (nonatomic, copy) NSString *ap_givenName;
+@property (nonatomic, copy) NSString *ap_email;
+@property (nonatomic, copy) NSData *ap_authorizationCode;
+@property (nonatomic, copy) NSData *ap_identityToken;
 
 - (BOOL)isLogin;
 

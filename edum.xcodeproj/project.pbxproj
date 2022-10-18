@@ -194,7 +194,16 @@
 		B2123FB62849F07B006100D2 /* ExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2123FB52849F07B006100D2 /* ExploreCell.m */; };
 		B2123FB92849F268006100D2 /* ExploreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2123FB82849F268006100D2 /* ExploreHeaderView.m */; };
 		B2123FBC284A0367006100D2 /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2123FBB284A0367006100D2 /* BaseCollectionViewCell.m */; };
+		B24CF9D728A499960030DFE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24CF9D628A499960030DFE9 /* AuthenticationServices.framework */; };
 		B294FFAC2855E4D10075A18C /* ExploreCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B294FFAB2855E4D10075A18C /* ExploreCourseCell.m */; };
+		B2D08E4C28ACE5F700E06CC0 /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E4728ACE5F700E06CC0 /* NSArray+Safety.m */; };
+		B2D08E4D28ACE5F700E06CC0 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E4828ACE5F700E06CC0 /* NSObject+Swizzling.m */; };
+		B2D08E4E28ACE5F700E06CC0 /* NSMutableArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E4B28ACE5F700E06CC0 /* NSMutableArray+Safety.m */; };
+		B2D08E5528ACE60B00E06CC0 /* UINavigationController+StatusbarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E4F28ACE60A00E06CC0 /* UINavigationController+StatusbarStyle.m */; };
+		B2D08E5628ACE60B00E06CC0 /* UIViewController+iOS13.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E5228ACE60A00E06CC0 /* UIViewController+iOS13.m */; };
+		B2D08E5A28ACE78A00E06CC0 /* UIViewController+TopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E5828ACE78A00E06CC0 /* UIViewController+TopVC.m */; };
+		B2D08E5D28B62EAA00E06CC0 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D08E5C28B62EA900E06CC0 /* VideoPlayerViewController.m */; };
+		B2FB1EAD28A10434004E4DFC /* LoginOverseaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FB1EAC28A10434004E4DFC /* LoginOverseaViewController.m */; };
 		DA950129E9A6A42D535B51B9 /* libPods-edum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE052C3913611266F1DEFE3 /* libPods-edum.a */; };
 /* End PBXBuildFile section */
 
@@ -544,8 +553,25 @@
 		B2123FB82849F268006100D2 /* ExploreHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreHeaderView.m; sourceTree = "<group>"; };
 		B2123FBA284A0367006100D2 /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
 		B2123FBB284A0367006100D2 /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
+		B24CF9D628A499960030DFE9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		B294FFAA2855E4D10075A18C /* ExploreCourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreCourseCell.h; sourceTree = "<group>"; };
 		B294FFAB2855E4D10075A18C /* ExploreCourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreCourseCell.m; sourceTree = "<group>"; };
+		B2D08E4628ACE5F700E06CC0 /* NSObject+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzling.h"; sourceTree = "<group>"; };
+		B2D08E4728ACE5F700E06CC0 /* NSArray+Safety.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safety.m"; sourceTree = "<group>"; };
+		B2D08E4828ACE5F700E06CC0 /* NSObject+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
+		B2D08E4928ACE5F700E06CC0 /* NSArray+Safety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safety.h"; sourceTree = "<group>"; };
+		B2D08E4A28ACE5F700E06CC0 /* NSMutableArray+Safety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safety.h"; sourceTree = "<group>"; };
+		B2D08E4B28ACE5F700E06CC0 /* NSMutableArray+Safety.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safety.m"; sourceTree = "<group>"; };
+		B2D08E4F28ACE60A00E06CC0 /* UINavigationController+StatusbarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+StatusbarStyle.m"; sourceTree = "<group>"; };
+		B2D08E5128ACE60A00E06CC0 /* UIViewController+iOS13.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+iOS13.h"; sourceTree = "<group>"; };
+		B2D08E5228ACE60A00E06CC0 /* UIViewController+iOS13.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+iOS13.m"; sourceTree = "<group>"; };
+		B2D08E5428ACE60A00E06CC0 /* UINavigationController+StatusbarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+StatusbarStyle.h"; sourceTree = "<group>"; };
+		B2D08E5828ACE78A00E06CC0 /* UIViewController+TopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TopVC.m"; sourceTree = "<group>"; };
+		B2D08E5928ACE78A00E06CC0 /* UIViewController+TopVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TopVC.h"; sourceTree = "<group>"; };
+		B2D08E5B28B62EA900E06CC0 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
+		B2D08E5C28B62EA900E06CC0 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		B2FB1EAB28A10434004E4DFC /* LoginOverseaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginOverseaViewController.h; sourceTree = "<group>"; };
+		B2FB1EAC28A10434004E4DFC /* LoginOverseaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginOverseaViewController.m; sourceTree = "<group>"; };
 		C7B3F2C5DA2D7AF1614D6320 /* Pods-edum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edum.release.xcconfig"; path = "Pods/Target Support Files/Pods-edum/Pods-edum.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -554,6 +580,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24CF9D728A499960030DFE9 /* AuthenticationServices.framework in Frameworks */,
 				0A15ECB3247B72DC0031B642 /* WebKit.framework in Frameworks */,
 				0A328777228960B4002B088D /* libc++.tbd in Frameworks */,
 				0AC38BFB2134E0EA0083E24F /* CoreTelephony.framework in Frameworks */,
@@ -948,6 +975,8 @@
 		0AA713E8213D7F1300C6D038 /* learn */ = {
 			isa = PBXGroup;
 			children = (
+				B2D08E5B28B62EA900E06CC0 /* VideoPlayerViewController.h */,
+				B2D08E5C28B62EA900E06CC0 /* VideoPlayerViewController.m */,
 				0A1FE9E3215B7C7000B74453 /* course */,
 				0A1FE9D9215490CB00B74453 /* courses */,
 				0AA713EC213D802100C6D038 /* StudyBoardViewController.h */,
@@ -1037,6 +1066,12 @@
 		0AC387A8212FB17E0083E24F /* base */ = {
 			isa = PBXGroup;
 			children = (
+				B2D08E4928ACE5F700E06CC0 /* NSArray+Safety.h */,
+				B2D08E4728ACE5F700E06CC0 /* NSArray+Safety.m */,
+				B2D08E4A28ACE5F700E06CC0 /* NSMutableArray+Safety.h */,
+				B2D08E4B28ACE5F700E06CC0 /* NSMutableArray+Safety.m */,
+				B2D08E4628ACE5F700E06CC0 /* NSObject+Swizzling.h */,
+				B2D08E4828ACE5F700E06CC0 /* NSObject+Swizzling.m */,
 				0AC38A3D212FDA770083E24F /* BasePager.h */,
 				0AC38A33212FDA760083E24F /* BasePager.m */,
 				0AC38A37212FDA760083E24F /* BasePickerViewController.h */,
@@ -1080,6 +1115,12 @@
 		0AC38902212FB1800083E24F /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				B2D08E5928ACE78A00E06CC0 /* UIViewController+TopVC.h */,
+				B2D08E5828ACE78A00E06CC0 /* UIViewController+TopVC.m */,
+				B2D08E5428ACE60A00E06CC0 /* UINavigationController+StatusbarStyle.h */,
+				B2D08E4F28ACE60A00E06CC0 /* UINavigationController+StatusbarStyle.m */,
+				B2D08E5128ACE60A00E06CC0 /* UIViewController+iOS13.h */,
+				B2D08E5228ACE60A00E06CC0 /* UIViewController+iOS13.m */,
 				0A5F369324C533AC00F80337 /* NSDate+Category.h */,
 				0A5F369424C533AD00F80337 /* NSDate+Category.m */,
 				0AFAAFC823DBEB66007C91C6 /* KeychainItemWrapper.h */,
@@ -1174,6 +1215,8 @@
 				0AC38BB5212FE4690083E24F /* LoginViewController.m */,
 				0A4F273623F4380800D04BA5 /* VerificationCodeViewController.h */,
 				0A4F273723F4380800D04BA5 /* VerificationCodeViewController.m */,
+				B2FB1EAB28A10434004E4DFC /* LoginOverseaViewController.h */,
+				B2FB1EAC28A10434004E4DFC /* LoginOverseaViewController.m */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -1199,6 +1242,7 @@
 		51E38CE0C064086A568D36A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B24CF9D628A499960030DFE9 /* AuthenticationServices.framework */,
 				0A15ECB2247B72DC0031B642 /* WebKit.framework */,
 				0AC38BFA2134E0E90083E24F /* CoreTelephony.framework */,
 				0AC38BF82134E0DE0083E24F /* SystemConfiguration.framework */,
@@ -1320,6 +1364,7 @@
 				0A76253D2109A8AD0054C4A4 /* Frameworks */,
 				0A76253E2109A8AD0054C4A4 /* Resources */,
 				B3C2DF6223A9DC9DB682F8B0 /* [CP] Copy Pods Resources */,
+				B945DAD7F9C2B7A187B415B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1418,6 +1463,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B945DAD7F9C2B7A187B415B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edum/Pods-edum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1501,6 +1563,7 @@
 				B2123FBC284A0367006100D2 /* BaseCollectionViewCell.m in Sources */,
 				0AE646A4229A39E300E3A370 /* TouchEventsTestViewController.m in Sources */,
 				0A744115242A3BBD0042F7E9 /* CourseHeaderView.m in Sources */,
+				B2D08E5A28ACE78A00E06CC0 /* UIViewController+TopVC.m in Sources */,
 				0A6597512456B996000515F1 /* CourseSectionCell.m in Sources */,
 				0A74411E242EEC590042F7E9 /* PaymentHeader.m in Sources */,
 				0AC38A1E212FDA0E0083E24F /* NSString+IsValidate.m in Sources */,
@@ -1509,10 +1572,12 @@
 				0AC38A48212FDA780083E24F /* SelectSlideContainerViewController.m in Sources */,
 				0AC38B7A212FDABE0083E24F /* AFHTTPRequestOperation.m in Sources */,
 				0A744124243724440042F7E9 /* PaymentDoneController.m in Sources */,
+				B2D08E5D28B62EAA00E06CC0 /* VideoPlayerViewController.m in Sources */,
 				B2123FB62849F07B006100D2 /* ExploreCell.m in Sources */,
 				0A04CEE62681947E00FFCC85 /* TransferTTTTViewController.m in Sources */,
 				0AC38A2A212FDA0E0083E24F /* PaddingLabel.m in Sources */,
 				0AC38A2D212FDA0E0083E24F /* UITableView+YYAdditions.m in Sources */,
+				B2FB1EAD28A10434004E4DFC /* LoginOverseaViewController.m in Sources */,
 				0A15197623F2B04300692178 /* SettingCell.m in Sources */,
 				0A15197923F3B44000692178 /* UserNotificationViewController.m in Sources */,
 				0A96B1102138D4500015A625 /* CategoryHeaderView.m in Sources */,
@@ -1532,6 +1597,7 @@
 				0AAF6B23247E38F400D3519A /* LandingTeacherListCell.m in Sources */,
 				0A744127243882590042F7E9 /* AppointmentViewController.m in Sources */,
 				0AC38A45212FDA780083E24F /* BasePager.m in Sources */,
+				B2D08E5528ACE60B00E06CC0 /* UINavigationController+StatusbarStyle.m in Sources */,
 				0AA713F4213D843D00C6D038 /* SightOrderInputCell.m in Sources */,
 				0A6597542456EA3D000515F1 /* CourseSectionHeaderView.m in Sources */,
 				0AB7C4F6240E6368000F013E /* AllCoursesViewController.m in Sources */,
@@ -1543,6 +1609,7 @@
 				0AC38A26212FDA0E0083E24F /* UILabel+LineSpace.m in Sources */,
 				0AC38A2E212FDA0E0083E24F /* UIImage+ImageCompress.m in Sources */,
 				0A15197C23F3BAB800692178 /* UserNotificationCell.m in Sources */,
+				B2D08E4E28ACE5F700E06CC0 /* NSMutableArray+Safety.m in Sources */,
 				0A4F562923B9F0F3003CB439 /* AFRequest.m in Sources */,
 				0AA713E1213D7A8500C6D038 /* ZhenViewController.m in Sources */,
 				0A4F273523F42C8D00D04BA5 /* WeeklyScheduleHeaderView.m in Sources */,
@@ -1554,10 +1621,13 @@
 				0A6E5F2922C44C2D00551733 /* CourseCalViewController.m in Sources */,
 				0AA86FAF241F649A003A2AA8 /* LandingViewController.m in Sources */,
 				0A5F369224BD99DE00F80337 /* CourseEntity.m in Sources */,
+				B2D08E4C28ACE5F700E06CC0 /* NSArray+Safety.m in Sources */,
 				0AC38BB7212FE4690083E24F /* LoginViewController.m in Sources */,
 				0A6E5F2C22CC336700551733 /* BaseTableViewController.m in Sources */,
+				B2D08E4D28ACE5F700E06CC0 /* NSObject+Swizzling.m in Sources */,
 				0AB649F826D854D9006BA9C0 /* CourseListController.m in Sources */,
 				0A96B1162138D4500015A625 /* BannerView.m in Sources */,
+				B2D08E5628ACE60B00E06CC0 /* UIViewController+iOS13.m in Sources */,
 				0AC38A47212FDA780083E24F /* BasePickerViewController.m in Sources */,
 				0A4F273C23F5328300D04BA5 /* TTTAttributedLabel.m in Sources */,
 				0A74411B242EE9C30042F7E9 /* PaymentViewController.m in Sources */,
@@ -1643,7 +1713,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1695,7 +1765,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1712,6 +1782,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7DFZ9L3YGJ;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/edum/lib/Umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -1726,7 +1797,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = edum/PrefixHeader.pch;
 				INFOPLIST_FILE = edum/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1754,6 +1825,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7DFZ9L3YGJ;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/edum/lib/Umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -1768,7 +1840,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = edum/PrefixHeader.pch;
 				INFOPLIST_FILE = edum/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

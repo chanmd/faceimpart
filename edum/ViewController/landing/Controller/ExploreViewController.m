@@ -13,7 +13,7 @@
 #import "ExploreCell.h"
 #import "CourseListController.h"
 #import "SearchCourseViewController.h"
-#import "CourseViewController.h"
+#import "CourseVideoListViewController.h"
 
 #define SECTION_HEIGHT 40
 #define CELL_HEIGHT 260
@@ -303,7 +303,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ExploreCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ExploreCell class])];
+    cell.section = indexPath.section;
     cell.dataArray = @[@"", @"", @"", @""];
+    WeakSelf;
+    cell.touchBlock = ^(NSInteger section, NSInteger row) {
+        [weakSelf ___action_course_detail:section withIndex:row];
+    };
+    
     return cell;
 }
 
@@ -318,13 +324,13 @@
 
 #pragma mark - actions
 
-- (void)___action_sight_detail:(NSInteger)tag withIndex:(NSInteger)index
+- (void)___action_course_detail:(NSInteger)section withIndex:(NSInteger)row
 {
-    NSLog(@"%ld:%ld", tag, index);
-    CourseViewController *sight = [[CourseViewController alloc] init];
-    NSDictionary *dict = [[self.array_data objectAtIndex:index] objectAtIndex:tag];
-    sight.course_id = [dict stringForKey:@"course_id"];
-    [self.navigationController pushViewController:sight animated:YES];
+    NSLog(@"%ld:%ld", section, row);
+    CourseVideoListViewController *courseVC = [[CourseVideoListViewController alloc] init];
+//    NSDictionary *dict = [[self.array_data objectAtIndex:section] objectAtIndex:row];
+//    courseVC.course_id = @"test";//[dict stringForKey:@"course_id"];
+    [self.navigationController pushViewController:courseVC animated:YES];
 }
 
 - (void)___action_header_readall:(UIButton *)button

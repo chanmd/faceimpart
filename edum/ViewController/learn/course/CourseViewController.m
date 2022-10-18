@@ -7,7 +7,7 @@
 //
 
 #import "CourseViewController.h"
-#import "LoginViewController.h"
+#import "LoginOverseaViewController.h"
 
 #pragma utils
 #import "NSDictionary+JSONExtern.h"
@@ -26,9 +26,8 @@
 #import "CourseBriefDetailViewController.h"
 #import "PaymentViewController.h"
 #import "AppointmentViewController.h"
-//#import <SuperPlayer/SuperPlayer.h>
 #import "TeacherViewController.h"
-//#import "VideoPlayerViewController.h"
+#import "VideoPlayerViewController.h"
 #import "CourseVideoListViewController.h"
 
 #define NAVBAR_CHANGE_POINT 50
@@ -79,6 +78,12 @@
     [self.view addSubview:self.view_buy];
     [self.view addSubview:self.view_arrange];
     [self action_course_detail];
+    
+//    NSDictionary *video = [self.array_course_catlog objectAtIndex:indexPath.row];
+    VideoPlayerViewController *player = [[VideoPlayerViewController alloc] init];
+    player.data = @{};//video;
+    [self.navigationController pushViewController:player animated:YES];
+    
 }
 
 
@@ -539,10 +544,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         
-//        NSDictionary *video = [self.array_course_catlog objectAtIndex:indexPath.row];
-//        VideoPlayerViewController *player = [[VideoPlayerViewController alloc] init];
-//        player.data = video;
-//        [self.navigationController pushViewController:player animated:YES];
+        NSDictionary *video = [self.array_course_catlog objectAtIndex:indexPath.row];
+        VideoPlayerViewController *player = [[VideoPlayerViewController alloc] init];
+        player.data = video;
+        [self.navigationController pushViewController:player animated:YES];
         
     }
     if (indexPath.section == 1) {
@@ -572,7 +577,7 @@
 
 - (void)action_login
 {
-    LoginViewController *login = [[LoginViewController alloc] init];
+    LoginOverseaViewController *login = [[LoginOverseaViewController alloc] init];
     [self presentViewController:login animated:YES completion:nil];
 }
 

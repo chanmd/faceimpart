@@ -16,12 +16,23 @@ PODS:
     - AFNetworking/NSURLSession
   - FDFullscreenPopGesture (1.1)
   - FSCalendar (2.8.4)
+  - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.5)
-  - SDWebImage (5.12.5):
-    - SDWebImage/Core (= 5.12.5)
-  - SDWebImage/Core (5.12.5)
-  - WechatOpenSDK (1.8.7.1)
+  - SDWebImage (5.13.3):
+    - SDWebImage/Core (= 5.13.3)
+  - SDWebImage/Core (5.13.3)
+  - SuperPlayer (3.6.10):
+    - AFNetworking
+    - Masonry
+    - SDWebImage
+    - SuperPlayer/Player (= 3.6.10)
+  - SuperPlayer/Player (3.6.10):
+    - AFNetworking
+    - Masonry
+    - SDWebImage
+    - TXLiteAVSDK_Player
+  - TXLiteAVSDK_Player (10.7.11919)
 
 DEPENDENCIES:
   - AFNetworking
@@ -30,27 +41,31 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJRefresh
   - SDWebImage
-  - WechatOpenSDK
+  - SuperPlayer
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - FDFullscreenPopGesture
     - FSCalendar
+    - Masonry
     - MBProgressHUD
     - MJRefresh
     - SDWebImage
-    - WechatOpenSDK
+    - SuperPlayer
+    - TXLiteAVSDK_Player
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
-  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
-  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  SDWebImage: af5bbffef2cde09f148d826f9733dcde1a9414cd
+  SuperPlayer: dc5b20d7352411c465c450d277d9188374b0f0df
+  TXLiteAVSDK_Player: f72502620cf8c253ddb6f9fcd788614732dfefaa
 
-PODFILE CHECKSUM: 3eca4160616606943e3fbf7269a2d5bb64ea2d09
+PODFILE CHECKSUM: bb175c3099e2d9fd3e3b97a63e1890dca6620e98
 
 COCOAPODS: 1.11.2

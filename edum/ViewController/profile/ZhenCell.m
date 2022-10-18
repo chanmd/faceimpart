@@ -16,7 +16,7 @@
     if (self) {
         [self.contentView addSubview:self.imageview_cover];
         [self.contentView addSubview:self.label_title];
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }
@@ -24,7 +24,7 @@
 - (UIImageView *)imageview_cover
 {
     if (!_imageview_cover) {
-        _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 20, 20)];
+        _imageview_cover = [[UIImageView alloc] initWithFrame:CGRectMake(APPScreenWidth - 35, 20, 20, 20)];
     }
     return _imageview_cover;
 }
@@ -32,8 +32,8 @@
 - (UILabel *)label_title
 {
     if (!_label_title) {
-        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(59, 15, 200, 20)];
-        _label_title.font = __fontthin(16);
+        _label_title = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 200, 20)];
+        _label_title.font = __font(16);
         _label_title.textColor = __color_font_subtitle;
         _label_title.textAlignment = NSTextAlignmentLeft;
     }

@@ -11,8 +11,9 @@
 #import "WeeklyScheduleViewController.h"
 #import "MyCoursesViewController.h"
 #import "ZhenViewController.h"
-#import "LoginViewController.h"
+#import "LoginOverseaViewController.h"
 
+#import "TXLiveBase.h"
 //umeng
 #import <UMCommon/UMCommon.h>
 #import <UserNotifications/UserNotifications.h>
@@ -31,10 +32,15 @@
     
     [BTKeychain saveUUID];
     
+    
+    NSString * const licenceURL = @"https://license.vod2.myqcloud.com/license/v2/1309582492_1/v_cube.license";
+    NSString * const licenceKey = @"64dcbf57ca5f37fc4b038f19e3c2680d";
+    [TXLiveBase setLicenceURL:licenceURL key:licenceKey];
+        NSLog(@"SDK Version = %@", [TXLiveBase getSDKVersionStr]);
+    
     [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
         NSLog(@"log : %@", log);
     }];
-    
     [WXApi registerApp:WEIXIN_APP_ID universalLink:UNIVERSAL_LINK];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -102,7 +108,7 @@
 }
 
 - (void)___initLoginview {
-    LoginViewController *loginview = [[LoginViewController alloc] init];
+    LoginOverseaViewController *loginview = [[LoginOverseaViewController alloc] init];
     loginview.button_dismiss.hidden = YES;
     //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginview];
     self.tabbarcontroller = nil;

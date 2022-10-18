@@ -81,7 +81,12 @@
 
 - (void)bindVideoData:(NSDictionary *)data
 {
-    NSDictionary *video = [data dictionaryForKey:@"video"];
+    NSDictionary *video = @{};
+    if ([data dictionaryForKey:@"video"]) {
+        video = [data dictionaryForKey:@"video"];
+    } else {
+        video = data;
+    }
     [self.imageview_photo sd_setImageWithURL:[NSURL URLWithString:[video stringForKey:@"cover_image"]] placeholderImage:ImageNamed(@"city_placeholder") completed:nil];
     self.label_title.text = [video stringForKey:@"title"];
     self.label_subtitle.text = [video stringForKey:@"subtitle"];

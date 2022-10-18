@@ -12,7 +12,7 @@
 #import "ProfileHeaderView.h"
 #import "BaseUser.h"
 #import "BTKeychain.h"
-#import "LoginViewController.h"
+#import "LoginOverseaViewController.h"
 #import "TeacherCalendarViewController.h"
 #import "AvatarView.h"
 #import "LandingSectionHeaderView.h"
@@ -245,7 +245,7 @@
 
 - (void)action_login
 {
-    LoginViewController *login = [[LoginViewController alloc] init];
+    LoginOverseaViewController *login = [[LoginOverseaViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     [self presentViewController:nav animated:YES completion:nil];
 }

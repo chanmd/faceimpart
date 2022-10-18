@@ -8,7 +8,7 @@
 
 #import "WeeklyScheduleViewController.h"
 #import "CourseRectangleCell.h"
-#import "LoginViewController.h"
+#import "LoginOverseaViewController.h"
 #import "CourseViewController.h"
 
 @interface WeeklyScheduleViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -58,8 +58,8 @@
         [_segmentedControl addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
         _segmentedControl.backgroundColor = [UIColor whiteColor];
         _segmentedControl.selectionIndicatorColor = __color_main;
-        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(18)};
-        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(18)};
+        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(14)};
+        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(14)};
         _segmentedControl.selectionIndicatorHeight = 2.f;
         _segmentedControl.shouldAnimateUserSelection = YES;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
@@ -76,8 +76,8 @@
         _segmentedControlCalendar.frame = CGRectMake(0, self.segmentedControl.bottom, APPScreenWidth, 40);
         [_segmentedControlCalendar addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
         _segmentedControlCalendar.backgroundColor = [UIColor whiteColor];
-        _segmentedControlCalendar.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __fontmedium(18)};
-        _segmentedControlCalendar.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: __color_main, NSFontAttributeName: __fontmedium(18)};
+        _segmentedControlCalendar.titleTextAttributes = @{NSForegroundColorAttributeName: __color_font_title, NSFontAttributeName: __font(16)};
+        _segmentedControlCalendar.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: __color_main, NSFontAttributeName: __fontmedium(16)};
         
         _segmentedControlCalendar.selectionIndicatorColor = __color_main;
         _segmentedControlCalendar.selectionIndicatorHeight = 2.f;
@@ -266,7 +266,7 @@
 
 - (void)action_login
 {
-    LoginViewController *login = [[LoginViewController alloc] init];
+    LoginOverseaViewController *login = [[LoginOverseaViewController alloc] init];
     [self.navigationController presentViewController:login animated:YES completion:nil];
 }
 

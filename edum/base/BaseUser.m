@@ -143,7 +143,85 @@ static BaseUser *_instance;
     [BTKeychain saveKeychain:@"headimgurl" withData:headimgurl];
 }
 
+- (NSString *)ap_givenName
+{
+    if (![BTKeychain loadKeychain:@"ap_givenName"]) {
+        return @"";
+    }
+    return [BTKeychain loadKeychain:@"ap_givenName"];
+}
 
+- (void)setAp_givenName:(NSString *)ap_givenName
+{
+    if (!ap_givenName) {
+        return;
+    }
+    [BTKeychain saveKeychain:@"ap_givenName" withData:ap_givenName];
+}
+
+- (NSString *)ap_email
+{
+    if (![BTKeychain loadKeychain:@"ap_email"]) {
+        return @"";
+    }
+    return [BTKeychain loadKeychain:@"ap_email"];
+}
+
+- (void)setAp_email:(NSString *)ap_email
+{
+    if (!ap_email) {
+        return;
+    }
+    [BTKeychain saveKeychain:@"ap_email" withData:ap_email];
+}
+
+- (NSData *)ap_authorizationCode
+{
+    if (![BTKeychain loadKeychain:@"ap_authorizationCode"]) {
+        return [NSData new];
+    }
+    return [BTKeychain loadKeychain:@"ap_authorizationCode"];
+}
+
+- (void)setAp_authorizationCode:(NSString *)ap_authorizationCode
+{
+    if (!ap_authorizationCode) {
+        return;
+    }
+    [BTKeychain saveKeychain:@"ap_authorizationCode" withData:ap_authorizationCode];
+}
+
+- (NSData *)ap_identityToken
+{
+    if (![BTKeychain loadKeychain:@"ap_identityToken"]) {
+        return [NSData new];
+    }
+    return [BTKeychain loadKeychain:@"ap_identityToken"];
+}
+
+- (void)setAp_identityToken:(NSData *)ap_identityToken
+{
+    if (!ap_identityToken) {
+        return;
+    }
+    [BTKeychain saveKeychain:@"ap_identityToken" withData:ap_identityToken];
+}
+
+- (NSString *)loginType
+{
+    if (![BTKeychain loadKeychain:@"loginType"]) {
+        return @"";
+    }
+    return [BTKeychain loadKeychain:@"loginType"];
+}
+
+- (void)setLoginType:(NSString *)loginType
+{
+    if (!loginType) {
+        return;
+    }
+    [BTKeychain saveKeychain:@"loginType" withData:loginType];
+}
 
 
 - (NSString *)user_id

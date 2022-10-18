@@ -7,13 +7,13 @@
 //
 
 #import "VideoPlayerViewController.h"
-//#import <SuperPlayer/SuperPlayer.h>
+#import <SuperPlayer/SuperPlayer.h>
 #import "NSDictionary+JSONExtern.h"
 
 @interface VideoPlayerViewController () <SuperPlayerDelegate>
 
 @property (nonatomic, strong) SuperPlayerView *playerview;
-@property (nonatomic, strong) SuperPlayerModel *playermodel;
+//@property (nonatomic, strong) SuperPlayerModel *playermodel;
 
 @end
 
@@ -24,8 +24,8 @@
     [self.view addSubview:self.canvas];
 //    [self.view addSubview:self.button_close];
     // Do any additional setup after loading the view.
-    self.playermodel.videoURL = [self.data stringForKey:@"video_url"];
-    [self.playerview playWithModel:self.playermodel];
+//    self.playermodel.videoURL = [self.data stringForKey:@"video_url"];
+//    [self.playerview playWithModel:self.playermodel];
     
     [self performSelector:@selector(back_action) withObject:nil afterDelay:0.5];
     
@@ -62,13 +62,13 @@
     return _playerview;
 }
 
-- (SuperPlayerModel *)playermodel
-{
-    if (!_playermodel) {
-        _playermodel = [[SuperPlayerModel alloc] init];
-    }
-    return _playermodel;
-}
+//- (SuperPlayerModel *)playermodel
+//{
+//    if (!_playermodel) {
+//        _playermodel = [[SuperPlayerModel alloc] init];
+//    }
+//    return _playermodel;
+//}
 
 - (UIView *)canvas
 {
@@ -143,3 +143,4 @@
 */
 
 @end
+

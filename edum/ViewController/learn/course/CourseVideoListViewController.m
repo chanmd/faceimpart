@@ -20,15 +20,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"全部视频";
+    self.title = @"Detail";
+    
+
+    NSString *url = @"https://faceimpart-test.oss-cn-beijing.aliyuncs.com/video/000XxUifgx07P7wnREej01041200iG3E0E010.mp4";//[self.data stringForKey:@"video_url"];
+    [self.view addSubview:self.canvas];
     [self.view addSubview:self.tableView];
+    [self simData];
     [self.tableView reloadData];
+    
+}
+
+- (void)simData {
+    NSArray *array = @[@{@"cover_image": @"", @"title": @"Hello", @"subtitle": @"jfdslfjdakslfasd"},
+                        @{@"cover_image": @"", @"title": @"Hello", @"subtitle": @"jfdslfjdakslfasd"},
+                        @{@"cover_image": @"", @"title": @"Hello", @"subtitle": @"jfdslfjdakslfasd"}];
+    self.array_data = [NSMutableArray arrayWithArray:array];
+    
+    NSArray *array_titles = @[@"1", @"2", @"3"];
+    self.array_data_titles = [NSMutableArray arrayWithArray:array_titles];
+}
+
+- (void)back_action
+{
+//    [self.playerview addObserver:self forKeyPath:@"isLockScreen" options:(NSKeyValueObservingOptionOld) context:nil];
+}
+
+- (void)dealloc
+{
+    
+}
+
+- (UIView *)canvas
+{
+    if (!_canvas) {
+        _canvas = [[UIView alloc] initWithFrame:CGRectMake(0, BASE_TABLEVIEW_Y + 50, APPScreenWidth, APPScreenWidth * 0.75)];
+        _canvas.backgroundColor = __color_clear;
+    }
+    return _canvas;
 }
 
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 55 - SafeAreaBottomHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.canvas.bottom, APPScreenWidth, APPScreenHeight - 55 - SafeAreaBottomHeight - self.canvas.bottom) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

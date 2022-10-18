@@ -7,9 +7,8 @@
 //
 
 #import "BaseTabbarViewController.h"
-#import "LoginViewController.h"
 #import "UIImageEffects.h"
-#import "LoginViewController.h"
+#import "LoginOverseaViewController.h"
 //#import "BaseUser.h"
 
 @interface BaseTabbarViewController ()
@@ -158,7 +157,7 @@
 
 - (void)actionLoginView
 {
-    LoginViewController *login = [[LoginViewController alloc] init];
+    LoginOverseaViewController *login = [[LoginOverseaViewController alloc] init];
     [self presentViewController:login animated:YES completion:nil];
 }
 
